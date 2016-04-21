@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160421205547) do
+ActiveRecord::Schema.define(version: 20160421212850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,9 +50,11 @@ ActiveRecord::Schema.define(version: 20160421205547) do
     t.integer  "room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   add_index "events", ["room_id"], name: "index_events_on_room_id", using: :btree
+  add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
 
   create_table "invites", force: :cascade do |t|
     t.integer  "user_id"
@@ -76,8 +78,16 @@ ActiveRecord::Schema.define(version: 20160421205547) do
 
   create_table "rooms", force: :cascade do |t|
     t.integer  "campus_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "name",                     null: false
+    t.string   "location"
+    t.integer  "capacity"
+    t.string   "picture_url"
+    t.integer  "events_count"
+    t.integer  "average_event_duration"
+    t.integer  "average_attendance_count"
+    t.integer  "average_capacity_use"
   end
 
   add_index "rooms", ["campus_id"], name: "index_rooms_on_campus_id", using: :btree
@@ -92,6 +102,7 @@ ActiveRecord::Schema.define(version: 20160421205547) do
   add_foreign_key "comments", "events"
   add_foreign_key "comments", "users"
   add_foreign_key "events", "rooms"
+  add_foreign_key "events", "users"
   add_foreign_key "invites", "events"
   add_foreign_key "invites", "users"
   add_foreign_key "room_amenities", "amenities"
