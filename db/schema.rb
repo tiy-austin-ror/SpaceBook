@@ -12,10 +12,14 @@
 # It's strongly recommended that you check this file into your version control system.
 
 <<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20160421222959) do
+=======
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160421215047) do
 =======
 ActiveRecord::Schema.define(version: 20160421212033) do
 >>>>>>> 149519d8542cdbefbb2c96967aa11ca6b8301383
+>>>>>>> 1d7d4c7f1e5382a5a9bbdef7b879bdb079f1d15a
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,8 +40,12 @@ ActiveRecord::Schema.define(version: 20160421212033) do
   add_index "campus_users", ["user_id"], name: "index_campus_users_on_user_id", using: :btree
 
   create_table "campuses", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "picture_url"
   end
 
   create_table "comments", force: :cascade do |t|
