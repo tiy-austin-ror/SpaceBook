@@ -1,6 +1,6 @@
 # Spacebook Project
 
-![Alt text](/path/to/UML.png)
+![Alt text](UML.png)
 
 A conference room scheduler and management application for enterprise.
 
