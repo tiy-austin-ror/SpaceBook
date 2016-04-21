@@ -31,4 +31,7 @@ bower.json
 
 # Ignore pow environment settings
 .powenv
+
 .env
+
+db/schema.rb
