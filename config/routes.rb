@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :invites
   resources :comments
   resources :amenities
-  
+
   resources :campuses do
     resources :rooms do
       resources :events
