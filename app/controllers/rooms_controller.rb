@@ -10,13 +10,14 @@ class RoomsController < ApplicationController
 
   def new
     @room = Room.new
+    @campus = Campus.first
   end
 
   def create
     @room = Room.new(room_params)
 
     if @room.save
-      redirect_to @room
+      redirect_to :back
     else
       render :new
     end
@@ -24,13 +25,14 @@ class RoomsController < ApplicationController
 
   def edit
     @room = get_room
+    @campus = Campus.first
   end
 
   def update
     @room = get_room
 
     if @room.update(room_params)
-      redirect_to @room
+      redirect_to :back
     else
       render :edit
     end
@@ -40,7 +42,7 @@ class RoomsController < ApplicationController
     @room = get_room
 
     if @room.destroy
-      redirect_to root_path
+      redirect_to :index
     else
       redirect_to :back
     end
@@ -51,7 +53,8 @@ class RoomsController < ApplicationController
     Room.find(params.fetch(:id))
   end
 
-  def school_params
-    params.require(:room).permit(:name)
+  def room_params
+    params.require(:room).permit(:name, :campus_id, :location,
+      :capacity, :picture_url)
   end
 end

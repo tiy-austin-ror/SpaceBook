@@ -1,0 +1,30 @@
+<h1>Add a New Room</h1>
+<h2> Current Campus: <%=@campus.id%> </h2>
+<hr />
+<div class='col-md-offset-2 col-md-6'>
+  <%= form_for([@campus, @room], class: 'form') do |f| %>
+
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control' %>
+        <%= f.hidden_field :campus_id, :value => @campus.id %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= f.label :location%>
+        <%= f.text_field :location, class: 'form-control' %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= f.label :capacity %>
+        <%= f.number_field(:capacity, in: 1..30) %>
+      </div>
+    </div>
+    <div class='row'>
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
