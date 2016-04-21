@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160421222959) do
+=======
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20160421215047) do
+=======
+ActiveRecord::Schema.define(version: 20160421212033) do
+>>>>>>> 149519d8542cdbefbb2c96967aa11ca6b8301383
+>>>>>>> 1d7d4c7f1e5382a5a9bbdef7b879bdb079f1d15a
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,9 +97,21 @@ ActiveRecord::Schema.define(version: 20160421222959) do
   add_index "rooms", ["campus_id"], name: "index_rooms_on_campus_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "admin",                          null: false
+    t.string   "username",                       null: false
+    t.string   "name",                           null: false
+    t.string   "email",                          null: false
+    t.string   "phone_num",                      null: false
+    t.string   "profile_pic"
+    t.string   "encrypted_password", limit: 128
+    t.string   "confirmation_token", limit: 128
+    t.string   "remember_token",     limit: 128
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
 
   add_foreign_key "campus_users", "campuses"
   add_foreign_key "campus_users", "users"
