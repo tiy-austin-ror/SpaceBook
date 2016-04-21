@@ -5,4 +5,11 @@ class User < ActiveRecord::Base
   has_many :invites
   has_many :comments
   has_many :events
+
+  validates :username, presence: true
+  validates :email, presence: true
+  validates :name, presence: true
+  validates :phone_num, presence: true
+  validates :profile_pic, presence: true
+  validates :admin, presence: true, :inclusion => {:in => [true, false]}
 end
