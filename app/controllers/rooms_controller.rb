@@ -1,4 +1,5 @@
 class RoomsController < ApplicationController
+  before_action :admin_validation, only: [:new, :edit, :create, :update, :destroy]
 
   def index
     @rooms = Room.all

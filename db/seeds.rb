@@ -10,8 +10,11 @@ user = User.new(admin: false, username: Faker::Internet.user_name, name: Faker::
 user.save!
 end
 
-admin = User.new(admin: true, username: "admin", name: Faker::Name.name, email:Faker::Internet.email, phone_num: Faker::PhoneNumber.phone_number, profile_pic: Faker::Avatar.image, password:"password")
+admin = User.new(admin: true, username: "admin", name: Faker::Name.name, email:"admin@spacebook.com", phone_num: Faker::PhoneNumber.phone_number, profile_pic: Faker::Avatar.image, password:"password")
 admin.save!
+
+not_admin = User.new(admin: false, username: "not_admin", name: Faker::Name.name, email:"not_admin@spacebook.com", phone_num: Faker::PhoneNumber.phone_number, profile_pic: Faker::Avatar.image, password:"password")
+not_admin.save!
 
 10.times do
   campus = Campus.new(city:Faker::Address.city, state:Faker::Address.state, zip:Faker::Address.zip, name:Faker::Name.name, picture_url: Faker::Avatar.image)
