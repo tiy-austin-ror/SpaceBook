@@ -1,5 +1,8 @@
 class Room < ActiveRecord::Base
-  has_many :room_amenities
-  has_many :events
-  belongs_to :campus
+  validates :name, presence: true
+  validates :location, presence: true
+  validates :capacity, presence: true
+  has_many :room_amenities, dependent: :destroy
+  has_many :events, dependent: :destroy
+  belongs_to :campus#, counter_cache: true
 end

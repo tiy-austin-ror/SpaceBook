@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20160422010843) do
   create_table "amenities", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "name"
   end
 
   create_table "campus_users", force: :cascade do |t|
@@ -46,6 +47,7 @@ ActiveRecord::Schema.define(version: 20160422010843) do
     t.integer  "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text     "body",       null: false
   end
 
   add_index "comments", ["event_id"], name: "index_comments_on_event_id", using: :btree
@@ -83,8 +85,16 @@ ActiveRecord::Schema.define(version: 20160422010843) do
 
   create_table "rooms", force: :cascade do |t|
     t.integer  "campus_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "name"
+    t.string   "location"
+    t.integer  "capacity"
+    t.string   "picture_url"
+    t.integer  "events_count"
+    t.integer  "average_event_duration"
+    t.integer  "average_attendance_count"
+    t.integer  "average_capacity_use"
   end
 
   add_index "rooms", ["campus_id"], name: "index_rooms_on_campus_id", using: :btree
