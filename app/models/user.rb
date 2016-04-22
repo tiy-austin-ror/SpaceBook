@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   include Clearance::User
+  attr_accessor :password_confirmation
 
   has_one :campus_user
   has_many :invites
