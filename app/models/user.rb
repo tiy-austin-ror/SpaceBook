@@ -14,4 +14,8 @@ class User < ActiveRecord::Base
   validates :phone_num, presence: true
   validates :profile_pic, presence: true
   validates :admin, :inclusion => {:in => [true, false]}
+
+  def campus_events
+    self.campus.events
+  end
 end

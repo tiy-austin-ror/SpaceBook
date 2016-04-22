@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :admin_validation, only: [:admin_dashboard]
+
   def index
     @users = User.all
   end
@@ -50,6 +52,10 @@ class UsersController < ApplicationController
       flash[:danger] = "There was an issue finding that user"
       redirect_to :back
     end
+  end
+
+  def admin_dashboard
+    @user = current_user
   end
 
 private
