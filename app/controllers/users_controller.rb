@@ -14,15 +14,15 @@ class UsersController < ApplicationController
   def create
     if params.fetch(:user).fetch(:password) == params.fetch(:user).fetch(:password_confirmation)
       @user = User.new(user_params)
-      if @user.save!
-        flash[:notice] = "User created!"
+      if @user.save
+        flash[:success] = "User created!"
         redirect_to :back
       else
-        flash.now[:alert] = "All fields are required"
+        flash[:danger] = "All fields are required"
         redirect_to :back
       end
     else
-      flash[:alert] = "Paswords must match"
+      flash[:danger] = "Paswords must match"
       redirect_to :back
     end
   end
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to @user
     else
-      flash[:alert] = "There was an issue with the changes being made"
+      flash[:danger] = "There was an issue with the changes being made"
       redirect_to :back
     end
   end
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
     if @user.destroy
       redirect_to :users_path
     else
-      flash[:alert] = "There was an issue finding that user"
+      flash[:danger] = "There was an issue finding that user"
       redirect_to :back
     end
   end
