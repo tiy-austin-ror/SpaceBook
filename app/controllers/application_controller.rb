@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
              forbidden: {status:403, message: "Forbbiden, must supply valid user credentials"}}
 
   def admin_validation
-    raise ForbiddenAuth unless current_user.admin
+    raise ForbiddenAuth unless current_user && current_user.admin
   end
 
 
