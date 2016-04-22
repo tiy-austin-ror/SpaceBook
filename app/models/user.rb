@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   include Clearance::User
+  attr_accessor :password_confirmation
 
   has_one :campus_user
   has_many :invites
@@ -11,5 +12,5 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validates :phone_num, presence: true
   validates :profile_pic, presence: true
-  validates :admin, presence: true, :inclusion => {:in => [true, false]}
+  validates :admin, :inclusion => {:in => [true, false]}
 end
