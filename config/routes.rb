@@ -3,12 +3,16 @@ Rails.application.routes.draw do
   resources :invites
   resources :comments
   resources :amenities
-  
+
   resources :campuses do
     resources :rooms do
       resources :events
     end
   end
+
+  get 'admin' => "users#admin_dashboard"
+  root 'dashboard#home'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

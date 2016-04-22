@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
   include Clearance::User
+  attr_accessor :password_confirmation
 
   has_one :campus_user
+  has_one :campus, through: :campus_user
   has_many :invites
   has_many :comments
   has_many :events
@@ -11,5 +13,9 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validates :phone_num, presence: true
   validates :profile_pic, presence: true
-  validates :admin, presence: true, :inclusion => {:in => [true, false]}
+  validates :admin, :inclusion => {:in => [true, false]}
+
+  def campus_events
+    self.campus.events
+  end
 end

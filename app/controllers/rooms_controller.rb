@@ -1,4 +1,5 @@
 class RoomsController < ApplicationController
+  before_action :admin_validation, only: [:new, :edit, :create, :update, :destroy]
 
   def index
     @rooms = Room.all
@@ -17,7 +18,8 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
 
     if @room.save
-      redirect_to :back
+      @campus = Campus.find_by(id: params[:campus_id])
+      redirect_to campus_room_path(@campus, @room)
     else
       render :new
     end
