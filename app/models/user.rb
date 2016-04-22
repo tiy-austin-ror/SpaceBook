@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   attr_accessor :password_confirmation
 
   has_one :campus_user
+  has_one :campus, through: :campus_user
   has_many :invites
   has_many :comments
   has_many :events
