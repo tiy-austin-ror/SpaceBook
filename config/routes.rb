@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'admin' => "users#admin_dashboard"
   root 'dashboard#home'
 
 

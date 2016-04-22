@@ -25,8 +25,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'react-rails'
 gem 'annotate'
 gem "rails-erd"
+gem "faker"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -52,7 +54,6 @@ end
 
 gem 'clearance'
 gem 'bootstrap-sass', '~> 3.3.5'
-gem 'faker'
 gem 'kaminari'
 gem 'bcrypt'
 group :production do

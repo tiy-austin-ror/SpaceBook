@@ -1,5 +1,5 @@
 class CampusesController < ApplicationController
-
+before_action :admin_validation, only: [:create, :update, :destroy]
   def index
     @campuses = Campus.all
   end

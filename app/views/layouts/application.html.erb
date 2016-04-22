@@ -14,11 +14,11 @@
    <% else %>
      <%= link_to 'Sign in', sign_in_path %>
  <% end %>
- <div id="flash">
-   <% flash.each do |key, value| %>
-     <div class="flash <%= key %>"><%= value %></div>
-   <% end %>
-</div>
+ <% flash.each do |message_type, message| %>
+   <div class="alert alert-<%= message_type%>" id = "flash">
+     <%= message %>
+   </div>
+ <% end %>
 
 <%= yield %>
 
