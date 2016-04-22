@@ -14,8 +14,6 @@ class UsersController < ApplicationController
   def create
     if params.fetch(:user).fetch(:password) == params.fetch(:user).fetch(:password_confirmation)
       @user = User.new(user_params)
-      @user.admin = false
-      binding.pry
       if @user.save!
         flash[:notice] = "User created!"
         redirect_to :back
