@@ -43,7 +43,7 @@ class CommentsController < ApplicationController
         format.html { redirect_to campus_room_event(params[:campus_id],
                                       params[:room_id],
                                       params[:id]) }
-        format.json { render json: { message: "Sucessfulyl Deleted" }}
+        format.json { render json: { message: "Successfully Deleted" }}
       else
         format.html { redirect_to campus_room_event(params[:campus_id],
                                       params[:room_id],
