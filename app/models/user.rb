@@ -11,5 +11,5 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validates :phone_num, presence: true
   validates :profile_pic, presence: true
-  validates :admin, presence: true, :inclusion => {:in => [true, false]}
+  validates :admin, :inclusion => {:in => [true, false]}
 end
