@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to @user
     else
-      flash.now[:alert] = "There was an issue"
+      flash[:alert] = "There was an issue with the changes being made"
       redirect_to :back
     end
   end
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
     if @user.destroy
       redirect_to :users_path
     else
-      flash.now[:alert] = "There was an issue"
+      flash[:alert] = "There was an issue finding that user"
       redirect_to :back
     end
   end
