@@ -26,6 +26,7 @@ gem 'react-rails'
 gem 'annotate'
 gem "rails-erd"
 gem "faker"
+gem 'rails-footnotes', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
