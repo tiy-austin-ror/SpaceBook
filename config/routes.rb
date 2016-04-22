@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/sign_up', to: 'users#new'
+
   root 'dashboard#home'
 
 
