@@ -2,9 +2,9 @@
 <%= form_for(@user) do |f| %>
   <p> Username: <%= f.text_field :username %></p>
   <p> E-mail address: <%= f.text_field :email %></p>
-  <p> First name: <%= f.text_field :name %></p>
-  <p> Last name: <%= f.text_field :phone_num %></p>
-  <p> Bio: <%= f.text_field :profile_pic %></p>
+  <p> Name: <%= f.text_field :name %></p>
+  <p> Phone number: <%= f.text_field :phone_num %></p>
+  <p> Profile picture: <%= f.text_field :profile_pic %></p>
   <p> Password: <%= f.password_field :password %></p>
   <p> Password Confirmation: <%= f.password_field :password_confirmation %></p>
   <%= f.submit "Create User", class: "form-submit" %>

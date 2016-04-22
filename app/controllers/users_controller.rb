@@ -8,16 +8,24 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = get_user
+    @user = User.new
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save!
-      redirect_to root_path notice: "User created!"
+    if params.fetch(:user).fetch(:password) == params.fetch(:user).fetch(:password_confirmation)
+      @user = User.new(user_params)
+      @user.admin = false
+      binding.pry
+      if @user.save!
+        flash[:notice] = "User created!"
+        redirect_to :back
+      else
+        flash.now[:alert] = "All fields are required"
+        redirect_to :back
+      end
     else
-      flash.now[:alert] = "All fields are required"
-      render :new
+      flash[:alert] = "Paswwords must match"
+      redirect_to :back
     end
   end
 
