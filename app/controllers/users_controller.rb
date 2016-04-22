@@ -24,7 +24,7 @@ class UsersController < ApplicationController
         redirect_to :back
       end
     else
-      flash[:alert] = "Paswwords must match"
+      flash[:alert] = "Paswords must match"
       redirect_to :back
     end
   end
