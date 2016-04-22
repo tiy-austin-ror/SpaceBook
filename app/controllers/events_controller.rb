@@ -5,9 +5,12 @@ class EventsController < ApplicationController
   end
 
   def show
+    @event = Event.find(params[:id])
   end
 
   def new
+    @campus = Campus.find(:campus_id)
+    @room = Room.find(:room_id)
     @event = Event.new
   end
 
@@ -32,8 +35,8 @@ class EventsController < ApplicationController
 
   def destroy
     @even.destroy
-    espond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+    respond_to do |format|
+      format.html { redirect_to campus_room_event_path, notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
