@@ -9,8 +9,8 @@ class EventsController < ApplicationController
   end
 
   def new
-    @campus = Campus.find(:campus_id)
-    @room = Room.find(:room_id)
+    @campus = Campus.find(params[:campus_id])
+    @room = Room.find(params[:room_id])
     @event = Event.new
   end
 
@@ -18,7 +18,15 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
+    @campus = Campus.find(params[:campus_id])
+    @room = Room.find(params[:room_id])
+    @event = @room.events.new(event_params.merge(user_id: current_user.id))
+    if @event.save
+      redirect_to campus_room_event_path(@campus, @room, @event)
+    else
+      flash[:danger] = "invalid input!"
+      redirect_to :back
+    end
   end
 
   def update
@@ -49,7 +57,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:start_time, :duration, :description, :room_id, :user_id, )
+    params.require(:event).permit(:start_time, :duration, :description, :room_id, :user_id )
   end
 
 

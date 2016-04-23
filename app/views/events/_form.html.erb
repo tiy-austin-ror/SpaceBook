@@ -4,15 +4,21 @@
   <div class='row'>
     <div class='col-md-12'>
       <%= f.label :name %><br>
-      <%= f.number_field :name %>
+      <%= f.text_field :name %>
     </div>
   </div>
     <div class="row">
       <div class='col-md-12'>
         <%= f.label :start_time %><br>
-        <%= f.text_field :start_time %>
+        <%= f.datetime_select :start_time, ampm: true, minute_step: 15 %>
       </div>
+    </div>
+    <div class="row">
+      <div class='col-md-12'>
+        <%= f.label "Duration" %><br>
+        <%= f.select :duration, time_array %>
       </div>
+    </div>
     </div>
     <div class="row">
       <div class='col-md-12'>
