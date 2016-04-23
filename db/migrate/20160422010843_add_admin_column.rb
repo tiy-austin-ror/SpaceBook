@@ -1,5 +1,9 @@
 class AddAdminColumn < ActiveRecord::Migration
-  def change
-    add_column :users, :admin, :boolean, default: false
+  def up
+    change_column :events, :start_time, :datetime
+  end
+
+  def down
+    change_column :events, :start_time, :date
   end
 end

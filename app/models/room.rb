@@ -9,7 +9,8 @@ class Room < ActiveRecord::Base
   def event_array
     all_events = []
     self.events.each do |event|
-      end_time = event.start_time + (event.duration*15).minutes
+      start_time = Time.parse(event.start_time)
+      end_time = start_time + (event.duration*15).minutes
       all_events << (event.start_time..end_time)
     end
     all_events
