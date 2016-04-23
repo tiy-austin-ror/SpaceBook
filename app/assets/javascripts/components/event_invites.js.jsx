@@ -18,6 +18,7 @@ var EventInvites = React.createClass({
   },
 
   render: function(){
+    var that = this;
     return (
       <div>
         <label><strong>Invite: </strong>
@@ -26,9 +27,13 @@ var EventInvites = React.createClass({
                  onChange={this.handleChange}/>
         </label>
         {this.props.users.map(function(user) {
-          return (
-            <div> {user.name} </div>
-          );
+          var reg = new RegExp(that.state.filterQuery, "i");
+          if (user.name.match(reg)) {
+            return (
+              <div key={user.id}> {user.name} </div>
+            );
+          }
+
         })}
       </div>
     );
