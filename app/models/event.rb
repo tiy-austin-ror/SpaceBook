@@ -16,4 +16,13 @@ class Event < ActiveRecord::Base
   def campus
     self.room.campus
   end
+
+  def is_private?
+    self.private
+  end
+
+  def invite_type
+    return "Open" if open_invite == true
+    return "Closed"
+  end
 end
