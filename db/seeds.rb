@@ -65,3 +65,10 @@ amenity_list = [
 8.times do
   Amenity.create(name: amenity_list.shift)
 end
+
+n = 0
+10.times do |n|
+  n = n + 1
+  RoomAmenity.create(room_id: n, amenity_id: rand(1..Amenity.count))
+  RoomAmenity.create(room_id: n, amenity_id: rand(1..Amenity.count))
+end
