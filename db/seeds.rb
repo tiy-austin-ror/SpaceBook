@@ -44,3 +44,5 @@ end
     event.save! unless user.nil?
   end
 end
+
+Amenity.create(name: "Coffee")
