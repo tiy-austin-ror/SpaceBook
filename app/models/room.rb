@@ -10,7 +10,7 @@ class Room < ActiveRecord::Base
     all_events = []
     self.events.each do |event|
       end_time = event.start_time + (event.duration*15).minutes
-      all_events << (event.start_time..end_time)
+      all_events << (event.start_time..end_time) unless event.created_at.nil?
     end
 
     unless new_event.nil?

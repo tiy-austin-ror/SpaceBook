@@ -49,7 +49,7 @@ end
       start = rand(Time.now..1.week.from_now)
       start = time_floor(start)
       event = room.events.new(user_id: user.id || 0, start_time: start, duration: rand(1..12))
-      event.save unless user.nil? || room.event_overlap?
+      event.save unless user.nil? || room.event_overlap?(event)
     end
   end
 end
