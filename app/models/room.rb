@@ -5,4 +5,13 @@ class Room < ActiveRecord::Base
   has_many :room_amenities, dependent: :destroy
   has_many :events, dependent: :destroy
   belongs_to :campus#, counter_cache: true
+
+  def event_array
+    all_events = []
+    self.events.each do |event|
+      end_time = event.start_time + (event.duration*15).minutes
+      all_events << (event.start_time..end_time)
+    end
+    all_events
+  end
 end

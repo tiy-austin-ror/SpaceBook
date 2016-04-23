@@ -22,8 +22,9 @@ not_admin.save!
   10.times do
     room = campus.rooms.new(name:Faker::Name.name,location:Faker::Address.city, capacity: rand(10..30), picture_url: Faker::Avatar.image, events_count:0)
     room.save!
-    10.times do
-      room.events.new(user_id: rand(1..User.count))
+    20.times do
+      room.events.new(user_id: rand(1..User.count), start_time: rand(Time.now-7.days..Time.now), duration: rand(1..12))
+      event.save
     end
   end
 end
