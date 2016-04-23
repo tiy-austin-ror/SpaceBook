@@ -18,7 +18,6 @@ class EventsController < ApplicationController
   end
 
   def create
-    binding.pry
     @campus = Campus.find(params[:campus_id])
     @room = Room.find(params[:room_id])
     @event = @room.events.new(event_params.merge(user_id: current_user.id))
