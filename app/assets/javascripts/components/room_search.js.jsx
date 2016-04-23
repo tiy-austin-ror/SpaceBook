@@ -39,32 +39,31 @@ var RoomSearch = React.createClass({
               placeholder='Type Here' />
           <div>
           <div>
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Location</th>
-                  <th>Capacity</th>
-                  <th>Amenities</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.search_return.map(function (room) {
+            {this.state.search_return.map(function (room) {
+              return (
+                <ul>
+                  <li>{room.name}</li>
+                  <li>{room.location}</li>
+                  <li>{room.capacity}</li>
+                  if (!this.props.rooms.amenities) {
+                    return null;
+                  }
                   return (
-                    <tr>
-                      <td>{ room.name }</td>
-                      <td> { room.location }</td>
-                      <td> { room.capacity }</td>
-                      { room.amenities.each do |amenity| }
-                      <td> {amenity.name} </td>
-                    </tr>
+                    <ul className="AmenityList">
+                    {
+                      this.props.rooms.amenities.map(function(player) {
+                        return <li key={amenity}>{amenity.name}</li>
+                      })
+                    }
+                    </ul>
                   );
-                })}
-              </tbody>
-            </table>
+                  { room.amenities.each do |amenity| }
+                  <li> {amenity.name} </li>
+              );
+            })},
           </div>
         </section>
-    );
-  },
-});
+      );
+    },
+  });
 );
