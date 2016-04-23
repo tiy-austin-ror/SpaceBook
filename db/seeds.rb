@@ -33,14 +33,14 @@ campus_user.save!
   campus_user.save!
 end
 
-
-10.times do
-  campus = Campus.all.to_a.sample
-  room = campus.rooms.new(name:Faker::Name.name,location:Faker::Address.city, capacity: rand(10..30), picture_url: Faker::Avatar.image, events_count:0)
-  room.save!
-  10.times do
-    user = User.all.to_a.select{|u| u.campus.id == campus.id}.sample
-    event = room.events.new(user_id: user.id)
-    event.save! unless user.nil?
-  end
-end
+# 
+# 10.times do
+#   campus = Campus.all.to_a.sample
+#   room = campus.rooms.new(name:Faker::Name.name,location:Faker::Address.city, capacity: rand(10..30), picture_url: Faker::Avatar.image, events_count:0)
+#   room.save!
+#   10.times do
+#     user = User.all.to_a.select{|u| u.campus.id == campus.id}.sample
+#     event = room.events.new(user_id: user.id)
+#     event.save! unless user.nil?
+#   end
+# end

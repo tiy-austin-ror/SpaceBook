@@ -2,7 +2,7 @@ class RoomsController < ApplicationController
   before_action :admin_validation, only: [:new, :edit, :create, :update, :destroy]
 
   def index
-    @rooms = Room.all
+    @rooms = Room.search(params[:search])
   end
 
   def show
@@ -49,6 +49,8 @@ class RoomsController < ApplicationController
       redirect_to :back
     end
   end
+
+
 
   private
   def get_room

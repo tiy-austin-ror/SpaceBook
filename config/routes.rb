@@ -9,7 +9,6 @@ Rails.application.routes.draw do
       resources :events
     end
   end
-
   get 'admin' => "users#admin_dashboard"
   root 'dashboard#home'
 
