@@ -45,4 +45,15 @@ end
   end
 end
 
+amenity_list = [
+      "Coffee",
+      "Projector",
+      "Windows",
+      "Internal AC",
+      "Speakers",
+      "Video camera",
+      "Microphone",
+      "White board"
+]
+
 Amenity.create(name: "Coffee")
