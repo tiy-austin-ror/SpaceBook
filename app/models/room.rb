@@ -6,13 +6,32 @@ class Room < ActiveRecord::Base
   has_many :events, dependent: :destroy
   belongs_to :campus#, counter_cache: true
 
-  def event_array
+  def event_array(new_event = nil)
     all_events = []
     self.events.each do |event|
-      start_time = Time.parse(event.start_time)
-      end_time = start_time + (event.duration*15).minutes
+      end_time = event.start_time + (event.duration*15).minutes
       all_events << (event.start_time..end_time)
     end
-    all_events
+
+    unless new_event.nil?
+      end_time = new_event.start_time + (new_event.duration*15).minutes
+      all_events << (new_event.start_time..end_time)
+    end
+
+    all_events.sort_by{|range| range.min.to_i}
+  end
+
+  def get_event_overlap(new_event = nil)
+    event_ranges = event_array(new_event)
+    event_ranges.each_with_index do |event_range,index|
+      if (index+1 < event_ranges.count) && (event_range.max > event_ranges[index+1].min)
+        return "#{event_range} overlaps with #{event_ranges[index+1]}"
+      end
+    end
+    return false
+  end
+
+  def event_overlap?(new_event=nil)
+    !!get_event_overlap(new_event)
   end
 end
