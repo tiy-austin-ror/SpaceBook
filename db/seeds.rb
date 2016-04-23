@@ -55,5 +55,6 @@ amenity_list = [
       "Microphone",
       "White board"
 ]
-
-Amenity.create(name: "Coffee")
+8.times do
+  Amenity.create(name: amenity_list.shift)
+end
