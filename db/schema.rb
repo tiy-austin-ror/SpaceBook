@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20160423201902) do
 
   # These are extensions that must be enabled in order to support this database
@@ -55,8 +56,8 @@ ActiveRecord::Schema.define(version: 20160423201902) do
 
   create_table "events", force: :cascade do |t|
     t.integer  "room_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "user_id"
     t.string   "name"
     t.datetime "start_time"
@@ -64,6 +65,7 @@ ActiveRecord::Schema.define(version: 20160423201902) do
     t.text     "agenda"
     t.text     "description"
     t.boolean  "private"
+    t.boolean  "open_invite", default: true
   end
 
   add_index "events", ["room_id"], name: "index_events_on_room_id", using: :btree
