@@ -24,4 +24,8 @@ class User < ActiveRecord::Base
   def campus_events
     self.campus.events
   end
+
+  def full_name
+    self.name
+  end
 end
