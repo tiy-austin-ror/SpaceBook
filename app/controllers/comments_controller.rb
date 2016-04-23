@@ -33,7 +33,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.destroy
         format.html { redirect_to_event }
-        format.json { render json: { message: "Sucessfulyl Deleted" }}
+        format.json { render json: { message: "Successfully Deleted" } }
       else
         format.html { redirect_to_event }
         format.json { render json: { message: "Failed to Delete" } }
