@@ -44,7 +44,7 @@ end
     room.save!
     20.times do
       start = rand(Time.now..1.week.from_now)
-      start = start.to_s
+      start = start
       event = room.events.new(user_id: user.id || 0, start_time: start, duration: rand(1..12))
       event.save unless user.nil?
     end
