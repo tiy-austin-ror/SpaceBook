@@ -1,12 +1,15 @@
 <div class='col-md-offset-2 col-md-6'>
   <%= form_for([@campus,@room,@event]) do |f| %>
 
-  <div class='row'>
-    <div class='col-md-12'>
-      <%= f.label :name %><br>
-      <%= f.text_field :name %>
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= f.label :name %><br>
+        <%= f.text_field :name %>
+      </div>
     </div>
-  </div>
+    <div class='row'>
+      <%= react_component('PrivateEvent') %>
+    </div>
     <div class="row">
       <div class='col-md-12'>
         <%= f.label :start_time %><br>

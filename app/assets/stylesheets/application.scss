@@ -17,6 +17,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
 body {
   padding-top: 90px;
   background-color: #CCDBDC;
@@ -54,4 +55,7 @@ body {
       background-color: white !important;
     }
   }
+
+.sm-margin-right {
+  margin-right: 5px;
 }
