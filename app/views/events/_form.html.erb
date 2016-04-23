@@ -1,0 +1,40 @@
+<div class='col-md-offset-2 col-md-6'>
+  <%= form_for([@campus,@room,@event]) do |f| %>
+
+  <div class='row'>
+    <div class='col-md-12'>
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+  </div>
+    <div class="row">
+      <div class='col-md-12'>
+        <%= f.label :start_time %><br>
+        <%= f.datetime_select :start_time, ampm: true, minute_step: 15 %>
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-md-12'>
+        <%= f.label "Duration" %><br>
+        <%= f.select :duration, time_array %>
+      </div>
+    </div>
+    </div>
+    <div class="row">
+      <div class='col-md-12'>
+        <%= f.label :description %><br>
+        <%= f.text_field :description %>
+        <div>
+    </div>
+    <div class="row">
+      <div class='col-md-12'>
+        <%= f.label :agenda %><br>
+        <%= f.text_field :agenda %>
+      </div>
+    </div>
+    <div class="row">
+      <%= f.submit "Submit", class: "btn btn-default btn-primary" %>
+    </div>
+
+  <% end %>
+</div>

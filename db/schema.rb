@@ -55,9 +55,15 @@ ActiveRecord::Schema.define(version: 20160422010843) do
 
   create_table "events", force: :cascade do |t|
     t.integer  "room_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "user_id"
+    t.string   "name"
+    t.date     "start_time"
+    t.integer  "duration"
+    t.text     "agenda"
+    t.text     "description"
+    t.boolean  "private"
   end
 
   add_index "events", ["room_id"], name: "index_events_on_room_id", using: :btree
@@ -68,6 +74,7 @@ ActiveRecord::Schema.define(version: 20160422010843) do
     t.integer  "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "status"
   end
 
   add_index "invites", ["event_id"], name: "index_invites_on_event_id", using: :btree

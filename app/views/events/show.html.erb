@@ -1,0 +1,16 @@
+<h1>Show Event</h1>
+<div class = 'description'>
+  <h2><strong>Event Details:</strong></h2>
+  <p><strong>Start time:</strong></p>
+  <p><%= @event.formatted_start_time %></p>
+  <p><strong>Duration:</strong></p>
+  <p><%= @event.formatted_event_duration %></p>
+  <p><%= @event.description %></p>
+  <p><strong>Room Name:</strong></p>
+  <p><%= @event.room.name.titleize %></p>
+  <p><strong>Event created by:</strong></p>
+  <p><%= @event.user.full_name.titleize %></p>
+</div>
+
+<%= link_to 'Edit', edit_campus_room_event_path(@event.campus, @event.room, @event), class: "btn btn-default" %> |
+<%= link_to 'Back', campus_room_events_path(@event.campus, @event.room, @event), class: "btn btn-default" %>

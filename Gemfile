@@ -26,6 +26,7 @@ gem 'react-rails'
 gem 'annotate'
 gem "rails-erd"
 gem "faker"
+gem 'rails-footnotes', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -42,6 +43,13 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'pry-rails'
+
+  gem "codeclimate-test-reporter", require: nil
+  gem 'cucumber-rails', require: false
+  gem 'selenium-webdriver'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'quiet_assets'
 end
 
 group :development do
@@ -54,7 +62,6 @@ end
 
 gem 'clearance'
 gem 'bootstrap-sass', '~> 3.3.5'
-gem 'faker'
 gem 'kaminari'
 gem 'bcrypt'
 group :production do
