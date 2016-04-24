@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_one :campus_user
   has_one :campus, through: :campus_user
   has_many :invites
+  has_many :meetings, through: :invites, source: :event
   has_many :comments
   has_many :events
 
