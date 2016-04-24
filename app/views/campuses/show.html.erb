@@ -2,17 +2,17 @@
 </br>
 </br>
 </br>
-<p>
+<h3>
   <strong>Campus:</strong>
   <%= @campus.name %>
   <img src="<%= @campus.picture_url %>"></img>
-</p>
+</h3>
 
   <div>
     <% @campus.rooms.each do |room| %>
           <div>
-            <h3>Room: <%= room.name %></h3>
-            <img src="<%= room.picture_url %>"></img>
+            <h4>Room: <%= room.name %></h4>
+            <img src="<%= room.picture_url, width: 50, height:50 %>"></img>
           </br>
             <p>Location: <%= room.location %></p>
             <p>Capacity: <%= room.capacity %></p>

@@ -2,22 +2,15 @@
 <div class="container">
 
   <h1>Listing campuses</h1>
-
-
-  <table>
-    <thead>
-      <tr>
-        <th>Campus:</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
+  </br>
+  </br>
 
     <tbody>
-      <% @campus.each do |campus| %>
+      <% @campuses.each do |campus| %>
         <tr>
           <div>
-            <p><%= campus.name %></p>
-            <img src="<%= campus.picture_url %>"></img>
+            <h4><%= campus.name %></h4>
+            <img src="<%= campus.picture_url, width: 50, height:50  %>"></img>
             <p><%= link_to 'Show', campus %></p>
           </div>
         </tr>
