@@ -29,4 +29,8 @@ class User < ActiveRecord::Base
   def full_name
     self.name
   end
+
+  def finished_events
+    current_user.events.where("started_time <= ?", Time.zone.now)
+  end
 end

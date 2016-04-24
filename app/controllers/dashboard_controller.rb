@@ -4,7 +4,7 @@ before_action :require_login
     @user = get_user
     @events = current_user.events
     @pending = @user.meetings
-    @finished = @user.meetings.where("started_date <= ?", Time.zone.now)
+    @finished = @user.events.where("start_time <= ?", Time.zone.now)
   end
 
   private
