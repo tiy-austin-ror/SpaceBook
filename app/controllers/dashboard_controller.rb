@@ -4,6 +4,7 @@ before_action :require_login
     @user = get_user
     @events = current_user.events
     @pending = @user.meetings
+    @finished
   end
 
   private

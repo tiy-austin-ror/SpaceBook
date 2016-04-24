@@ -17,3 +17,13 @@
     <% end %>
   </ul>
 </div>
+
+<div class='pending-events-dispaly'>
+  <h5 class='pending-events-header'>Completed events</h6>
+  <ul class='pending-events-dispaly-list'>
+  </ul>
+</div>
+
+<div class='pending-events-dispaly'>
+  <h5><%= link_to "Create an event?", campus_path(current_user.campus), class: "dashboard-event-create" %></h5>
+</div>
