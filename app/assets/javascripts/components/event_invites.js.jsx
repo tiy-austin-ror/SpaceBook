@@ -24,7 +24,6 @@ var EventInvites = React.createClass({
         }
       }
     }).done(function(response){
-      console.log(response)
       that.setState({
         filterQuery: '',
         message: response.message
