@@ -1,10 +1,11 @@
 Given(/^I have an existing account$/) do
-  User.create!(admin: false, username: "test_user",
+  not_admin = User.create!(admin: false, username: "test_user",
            name: "Test User",
            email:"test_user@spacebook.com",
            phone_num: Faker::PhoneNumber.phone_number,
            profile_pic: Faker::Avatar.image,
            password:"password")
+  CampusUser.new(user_id: not_admin.id, campus_id: 1)
 end
 
 When(/^I go to the sign in path$/) do
