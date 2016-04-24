@@ -31,4 +31,28 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def save_for_html_json(object, render_string)
+    respond_to do |format|
+      if object.save
+        format.html { redirect_to yield }
+        format.json { render json: object}
+      else
+        format.html { render action: render_string }
+        format.json { render json: object.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy_html_json(object, redirect_path)
+      respond_to do |format|
+        if object.destroy
+          format.html { redirect_to redirect_path}
+          format.json { head :no_content }
+        else
+          format.html { redirect_to :back }
+          format.json { head :no_content }
+        end
+      end
+  end
+
 end

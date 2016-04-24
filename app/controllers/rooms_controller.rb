@@ -1,58 +1,51 @@
 class RoomsController < ApplicationController
   before_action :admin_validation, only: [:new, :edit, :create, :update, :destroy]
+  before_action :get_campus, only: [:new, :create]
+  before_action :get_room, only: [:show ]
+  before_action :get_room_campus, only: [:update, :edit]
+
 
   def index
     @rooms = Room.all
   end
 
   def show
-    @room = get_room
   end
 
   def new
     @room = Room.new
-    @campus = Campus.first
   end
 
   def create
     @room = Room.new(room_params)
-
-    if @room.save
-      @campus = Campus.find_by(id: params[:campus_id])
-      redirect_to campus_room_path(@campus, @room)
-    else
-      render :new
-    end
+    save_for_html_json(@room, "new") {campus_room_path(@campus, @room)}
   end
 
   def edit
-    @room = get_room
-    @campus = Campus.first
   end
 
   def update
-    @room = get_room
-
-    if @room.update(room_params)
-      redirect_to :back
-    else
-      render :edit
-    end
+    @room.assign_attributes(room_params)
+    save_for_html_json(@room, "edit") {campus_room_path(@campus, @room)}
   end
 
   def destroy
-    @room = get_room
-
-    if @room.destroy
-      redirect_to :index
-    else
-      redirect_to :back
-    end
+    destroy_html_json(@room, "/")
   end
 
   private
+
+  def get_room_campus
+    get_room
+    get_campus
+  end
+
   def get_room
-    Room.find(params.fetch(:id))
+    @room = Room.find(params.fetch(:id))
+  end
+
+  def get_campus
+    @campus = Campus.find(params[:campus_id])
   end
 
   def room_params
