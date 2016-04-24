@@ -1,31 +1,13 @@
 class CommentsController < ApplicationController
+  before_action :get_comment, only: [:create, :update, :destroy]
   def create
-    #Builds the comment for the current user
-    #params[:id] should be the id of the Event
     @comment = current_user.comments.build(comment_params)
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to_event }
-        format.json { render json: @comment }
-      else
-        format.html { redirect_to_event }
-        format.json { render json: @comment.errors }
-      end
-    end
+    save_for_html_json(@comment, "new") { comment_path(@comment) }
   end
 
   def update
-    ##Not sure how to get the comment id
-    @comment = get_comment
-    respond_to do |format|
-      if @comment.update(comment_params)
-        format.html { redirect_to_event }
-        format.json { render json: @comment }
-      else
-        format.html { redirect_to_event }
-        format.json { render json: @comment.errors }
-      end
-    end
+    @comment.assign_attributes(comment_params)
+    save_for_html_json(@comment, "new") { comment_path(@comment) }
   end
 
   def destroy
@@ -42,9 +24,9 @@ class CommentsController < ApplicationController
   end
 
   private
+
   def get_comment
-    ##Not sure how to get the comment id
-    Comment.find(params[:comment_id])
+    @comment = Comment.find(params[:id])
   end
 
   def redirect_to_event
@@ -52,6 +34,7 @@ class CommentsController < ApplicationController
                                   params[:room_id],
                                   params[:id])
   end
+
 
   def comment_params
     params.require(:comment).permit(:body, :event_id)

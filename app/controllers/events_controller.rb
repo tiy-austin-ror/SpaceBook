@@ -1,57 +1,33 @@
 class EventsController < ApplicationController
-
+before_action :set_campus_room_event, only: [:edit, :update]
+before_action :set_campus_room, only: [:create, :new]
+before_action :set_event, only: [:show, :destroy]
   def index
     @events = Event.where(room: params[:room_id])
   end
 
   def show
-    @event = Event.find(params[:id])
   end
 
   def new
-    @campus = Campus.find(params[:campus_id])
-    @room = Room.find(params[:room_id])
     @event = Event.new
   end
 
   def edit
-    set_event
-    @campus = Campus.find(params[:campus_id])
-    @room = Room.find(params[:room_id])
   end
 
   def create
-    @campus = Campus.find(params[:campus_id])
-    @room = Room.find(params[:room_id])
     @event = @room.events.new(event_params.merge(user_id: current_user.id))
-    if @event.save
-      redirect_to campus_room_event_path(@campus, @room, @event)
-    else
-      flash[:danger] = "invalid input!"
-      redirect_to :back
-    end
+    save_for_html_json(@event, "new") {campus_room_event_path(@campus, @room, @event)}
   end
 
   def update
-    set_event
-    @campus = Campus.find(params[:campus_id])
-    @room = Room.find(params[:room_id])
-    respond_to do |format|
-      if @event.update(event_params)
-        format.html { redirect_to campus_room_event_path(@campus, @room, @event), notice: 'Event was successfully updated.' }
-        format.json { render :show, status: :ok, location: @event }
-      else
-        format.html do
-          flash[:danger] = "error!"
-          render 'edit'
-        end
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
-    end
+    @event.assign_attributes(event_params)
+    save_for_html_json(@event, "edit") {campus_room_event_path(@campus, @room, @event)}
   end
 
   def destroy
-    @even.destroy
+    @event.destroy
     respond_to do |format|
       format.html { redirect_to campus_room_event_path, notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }
@@ -60,8 +36,28 @@ class EventsController < ApplicationController
 
   private
 
+
   def set_event
     @event = Event.find(params[:id])
+  end
+
+  def set_room
+    @room = Room.find(params[:room_id])
+  end
+
+  def set_campus
+    @campus = Campus.find(params[:campus_id])
+  end
+
+  def set_campus_room_event
+    set_campus
+    set_room
+    set_event
+  end
+
+  def set_campus_room
+    set_room
+    set_campus
   end
 
   def event_params
@@ -70,6 +66,7 @@ class EventsController < ApplicationController
                                   :private, :open_invite,
                                   :room_id, :user_id, :agenda )
   end
+
 
 
 end

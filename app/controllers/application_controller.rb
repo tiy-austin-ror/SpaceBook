@@ -31,4 +31,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def save_for_html_json(object, render_string)
+    respond_to do |format|
+      if object.save
+        format.html { redirect_to yield }
+        format.json { render json: object}
+      else
+        format.html { render action: render_string }
+        format.json { render json: object.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
 end
