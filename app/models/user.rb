@@ -31,6 +31,15 @@ class User < ActiveRecord::Base
   end
 
   def finished_events
-    current_user.events.where("started_time <= ?", Time.zone.now)
+    self.events.where("start_time <= ?", Time.zone.now) ||
+    self.meetings.where("start_time <= ?", Time.zone.now)
+  end
+
+  def upcoming_events
+    self.events.where("start_time >= ?", Time.zone.now)
+  end
+
+  def upcoming_meetings
+    self.meetings.where("start_time >= ?", Time.zone.now)
   end
 end

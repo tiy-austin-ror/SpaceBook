@@ -19,7 +19,8 @@
 </div>
 
 <div class='pending-events-dispaly'>
-  <h5 class='pending-events-header'>Completed events</h6>
+  <h5 class='pending-events-header'>Completed events</h5>
+  <ul class='pending-events-dispaly-list'>
     <% @finished.each do |finish| %>
       <li class='pending-events-dispaly-list-item'><%= finish.name %> <%= finish.agenda %> <%= finish.formatted_start_time %> <%= finish.formatted_event_duration %></li>
     <% end %>
