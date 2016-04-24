@@ -1,11 +1,11 @@
 
-<%= form_for(@user) do |f| %>
-  <p> Username: <%= f.text_field :username %></p>
-  <p> E-mail address: <%= f.text_field :email %></p>
-  <p> Name: <%= f.text_field :name %></p>
-  <p> Phone number: <%= f.text_field :phone_num %></p>
-  <p> Profile picture: <%= f.text_field :profile_pic %></p>
-  <p> Password: <%= f.password_field :password %></p>
-  <p> Password Confirmation: <%= f.password_field :password_confirmation %></p>
-  <%= f.submit "Create User", class: "form-submit" %>
+<%= bootstrap_form_for @user do |f| %>
+  <%= f.text_field :username %>
+  <%= f.text_field :email %>
+  <%= f.text_field :name %>
+  <%= f.text_field :phone_num %>
+  <%= f.text_field :profile_pic %>
+  <%= f.password_field :password %>
+  <%= f.password_field :password_confirmation %>
+  <%= f.submit "Create User"%>
 <% end %>
