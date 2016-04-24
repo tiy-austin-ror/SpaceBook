@@ -19,6 +19,10 @@ class Event < ActiveRecord::Base
     self.start_time
   end
 
+  def end_time
+    start_time+(duration*15).minutes
+  end
+
   def formatted_event_duration
     self.duration
   end

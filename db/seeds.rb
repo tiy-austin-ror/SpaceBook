@@ -49,7 +49,10 @@ Campus.all.each do |campus|
       start = time_floor(start)
       event = room.events.new(user_id: user.id || 0, start_time: start, duration: rand(1..12), name: Faker::Company.buzzword,
                               description: Faker::Company.bs, agenda: Faker::Company.catch_phrase, private: truth.sample) unless user.nil?
+      past_event = room.events.new(user_id: 2, start_time: Time.now, duration: rand(1), name: Faker::Company.buzzword,
+                              description: Faker::Company.bs, agenda: Faker::Company.catch_phrase, private: truth.sample) unless user.nil?
       event.save unless user.nil?
+      past_event.save!
     end
   end
 end
