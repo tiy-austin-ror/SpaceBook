@@ -1,7 +1,7 @@
 <h1>Editing Event</h1>
 <hr />
-
+<%= render 'errors' %>
 <%= render 'form' %>
 
-<%= link_to 'Show', campus_room_event_path(@event) %> |
-<%= link_to 'Back', campus_room_events_path, class: "btn btn-default" %>
+<%= link_to 'Show',  campus_room_event_path(@event.campus, @event.room, @event), class: "btn btn-default" %> |
+<%= link_to 'Back', campus_room_events_path(@event.campus, @event.room), class: "btn btn-default" %>
