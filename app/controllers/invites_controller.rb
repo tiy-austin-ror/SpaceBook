@@ -5,7 +5,7 @@ class InvitesController < ApplicationController
     if @invite.save
       render json: { invite: @invite, message: "Success" }
     else
-      #temp to display staus of invite
+      #TODO: For temp message display
       render json: { message: @invite.errors[:user_id][0] }
     end
   end
