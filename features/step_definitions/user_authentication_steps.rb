@@ -5,6 +5,7 @@ Given(/^I have an existing account$/) do
            phone_num: Faker::PhoneNumber.phone_number,
            profile_pic: Faker::Avatar.image,
            password:"password")
+  Campus.create!(city:Faker::Address.city, state:Faker::Address.state, zip:Faker::Address.zip, name:Faker::Name.name, picture_url: Faker::Avatar.image)
   CampusUser.create!(user_id: not_admin.id, campus_id: 1)
 end
 
