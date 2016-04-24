@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-truth = ["true", "false"]
+truth = [true, false]
 
 def time_floor(time, seconds = 15.minutes)
   Time.at((time.to_f / seconds).floor * seconds).utc
@@ -49,7 +49,7 @@ end
       start = rand(Time.now..1.week.from_now)
       start = time_floor(start)
       event = room.events.new(user_id: user.id || 0, start_time: start, duration: rand(1..12), name: Faker::Company.buzzword,
-                              description: Faker::Company.bs, agenda: Faker::Company.catch_phrase, private: truth.select) unless user.nil?
+                              description: Faker::Company.bs, agenda: Faker::Company.catch_phrase, private: truth.sample) unless user.nil?
       event.save unless user.nil?
     end
   end
