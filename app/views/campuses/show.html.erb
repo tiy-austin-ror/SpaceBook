@@ -6,4 +6,20 @@
   <img src="<%= @campus.picture_url %>"></img>
 </p>
 
+  <div>
+    <% @campus.rooms.each do |room| %>
+        <tr>
+          <div>
+            <p><%= room.name %></p>
+            <img src="<%= room.picture_url %>"></img>
+            <p><%= room.location %></p>
+            <p><%= room.capacity %></p>
+            <p><%= room.events_count %></p>
+            <p><%= link_to 'Show', campus_room_path(@campus, room.id) %></p>
+          </div>
+        </tr>
+
+      <% end %>
+  </div>
+
 <%= link_to 'Back', campuses_path %>
