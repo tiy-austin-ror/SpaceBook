@@ -15,5 +15,6 @@
   <p><strong>Event created by:</strong></p>
   <p><%= @event.user.full_name.titleize %></p>
 </div>
-
-<%= react_component('EventInvites', users: @users, event_id: @event.id) %>
+<% if current_user == @event.user %>
+  <%= react_component('EventInvites', users: @users, event_id: @event.id) %>
+<% end %>

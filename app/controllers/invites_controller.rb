@@ -3,9 +3,10 @@ class InvitesController < ApplicationController
   def create
     @invite = Invite.new(invite_params)
     if @invite.save
-      render json: @invite
+      render json: { invite: @invite, message: "Success" }
     else
-      render json: @invite.errors
+      #temp to display staus of invite
+      render json: { message: @invite.errors[:user_id][0] }
     end
   end
 

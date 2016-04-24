@@ -7,7 +7,8 @@ var EventInvites = React.createClass({
   getInitialState: function () {
     return {
       filterQuery: '',
-      user_id: ''
+      user_id: '',
+      message: ''
     };
   },
 
@@ -23,15 +24,18 @@ var EventInvites = React.createClass({
         }
       }
     }).done(function(response){
+      console.log(response)
       that.setState({
-        filterQuery: ''
+        filterQuery: '',
+        message: response.message
       });
     });
   },
 
   handleChange: function (event) {
     this.setState({
-      filterQuery: event.target.value
+      filterQuery: event.target.value,
+      message: ''
     });
   },
 
@@ -61,6 +65,7 @@ var EventInvites = React.createClass({
                  value="Send Invite"
                  onClick={this.handleSendInvite} />
         </label>
+        <span className="sm-padding-left">{that.state.message}</span>
         <div className="dropdown">
         {this.props.users.map(function(user) {
           var reg = new RegExp(that.state.filterQuery, "i");
