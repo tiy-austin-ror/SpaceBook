@@ -27,7 +27,7 @@ end
 campus_user = CampusUser.new(user_id: admin.id, campus_id: rand(1..Campus.count))
 campus_user.save!
 
-campus_user = CampusUser.new(user_id: not_admin.id, campus_id: rand(1..Campus.count))
+campus_user = CampusUser.new(user_id: not_admin.id, campus_id: 1)
 campus_user.save!
 
 
@@ -49,11 +49,12 @@ Campus.all.each do |campus|
       start = time_floor(start)
       event = room.events.new(user_id: user.id || 0, start_time: start, duration: rand(1..12), name: Faker::Company.buzzword,
                               description: Faker::Company.bs, agenda: Faker::Company.catch_phrase, private: truth.sample) unless user.nil?
-      past_event = room.events.new(user_id: 2, start_time: Time.now, duration: rand(1), name: Faker::Company.buzzword,
-                              description: Faker::Company.bs, agenda: Faker::Company.catch_phrase, private: truth.sample) unless user.nil?
       event.save unless user.nil?
-      past_event.save!
+
     end
+    past_event = room.events.new(user_id: 2, start_time: Time.new(2016, 4, 20, "+6:00"), duration: 1, name: Faker::Company.buzzword,
+                            description: Faker::Company.bs, agenda: Faker::Company.catch_phrase, private: truth.sample) unless user.nil?
+    past_event.save!
   end
 end
 
