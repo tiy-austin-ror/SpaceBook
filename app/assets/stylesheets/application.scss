@@ -13,6 +13,9 @@
  *= require_tree .
  *= require_self
  */
+ /*
+ *= require rails_bootstrap_forms
+ */
 
  $secondary-color: #1D3557;
 
@@ -21,7 +24,7 @@
 
 
 body {
-  padding-top: 5.625em;
+  padding-top: 6.625em;
   background-color: #CCDBDC;
 }
 
@@ -79,4 +82,8 @@ body {
 
 .sm-margin-right {
   margin-right: .3125em;
+}
+
+.form-control {
+  width: 50%;
 }
