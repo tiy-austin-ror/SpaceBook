@@ -1,10 +1,10 @@
 class AmenitiesController < ApplicationController
+  before_action :set_amenity, only: [:show, :update, :destroy]
   def index
     @amenities = Amenity.all
   end
 
   def show
-    @amenity = Amenity.find(params[:id])
   end
 
   def new
@@ -13,33 +13,16 @@ class AmenitiesController < ApplicationController
 
   def create
     @amenity = Amenity.new(amenity_params)
-
-    respond_to do |format|
-      if @amenity.save
-        format.html { redirect_to @amenity, notice: 'Amenity was successfully created.' }
-        format.json { render :show, status: :created, location: @amenity }
-      else
-        format.html { render :new }
-        format.json { render json: @amenity.errors, status: :unprocessable_entity }
-      end
-    end
+    save_for_html_json(@amenity, "new") { amenity_path(@aminity) }
   end
 
   def update
-    set_amenity
-    respond_to do |format|
-      if @amenity.update(amenity_params)
-        format.html { redirect_to @amenity, notice: 'Amenity was successfully updated.' }
-        format.json { render :show, status: :ok, location: @amenity }
-      else
-        format.html { render :edit }
-        format.json { render json: @amenity.errors, status: :unprocessable_entity }
-      end
-    end
+    @amenity.assign_attributes(amenity_params)
+    save_for_html_json(@amenity, "edit") { amenity_path(@aminity) }
   end
 
   def destroy
-    @user.destroy
+    @amenity.destroy
     respond_to do |format|
       format.html { redirect_to amenities_url, notice: 'Amenities was successfully destroyed.' }
       format.json { head :no_content }

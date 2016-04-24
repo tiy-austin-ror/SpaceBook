@@ -60,7 +60,8 @@ amenity_list = [
       "Video camera",
       "Microphone",
       "White board"
-]
+      ]
+      
 8.times do
   Amenity.create(name: amenity_list.shift)
 end
