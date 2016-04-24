@@ -72,3 +72,9 @@ body {
 .form-control {
   width: 50%;
 }
+
+.form-control-100 {
+  @extend .form-control;
+  width: 100%;
+  height: auto;
+}

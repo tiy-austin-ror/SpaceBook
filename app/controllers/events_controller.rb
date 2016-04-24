@@ -8,10 +8,12 @@ before_action :set_event, only: [:show]
   end
 
   def show
-    #Fetching all users instead of users just in campus
+    #TODO Fetching all users instead of users just in campus
     @users = User.all
     @event = Event.find(params[:id])
-
+    @room = @event.room
+    @campus = @room.campus
+    @comments = @event.comments.order(created_at: :desc)
   end
 
   def new

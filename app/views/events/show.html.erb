@@ -1,4 +1,5 @@
 <h1>Show Event</h1>
+
 <%= link_to 'Edit', edit_campus_room_event_path(@event.campus, @event.room, @event), class: "btn btn-default" %> |
 <%= link_to 'Back', campus_room_events_path(@event.campus, @event.room), class: "btn btn-default" %>
 <div class = 'description'>
@@ -18,4 +19,21 @@
 
 <% if current_user == @event.user %>
   <%= react_component('EventInvites', users: @users, event_id: @event.id) %>
+<% end %>
+
+<hr />
+<h3>Comments</h3>
+<%= react_component('CommentForm', user: current_user,
+                                   campus_id: @campus.id,
+                                   room_id: @room.id,
+                                   event_id: @event.id) %>
+<hr />
+<% @comments.each do |comment| %>
+  <div class="container">
+    <strong class="sm-margin-right"><%= comment.user.name %></strong> |
+    <em class="sm-padding-left"><%= comment.created_time %></em>
+    <div>
+      -> <%= comment.body %>
+    </div>
+  </div>
 <% end %>
