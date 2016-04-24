@@ -9,11 +9,14 @@ class Room < ActiveRecord::Base
   def event_array(new_event = nil)
     all_events = []
     self.events.each do |event|
+      if new_event && new_event.id == event.id
+        event = new_event
+      end
       end_time = event.start_time + (event.duration*15).minutes
       all_events << (event.start_time..end_time) unless event.created_at.nil?
     end
 
-    unless new_event.nil?
+    if new_event && !new_event.created_at
       end_time = new_event.start_time + (new_event.duration*15).minutes
       all_events << (new_event.start_time..end_time)
     end

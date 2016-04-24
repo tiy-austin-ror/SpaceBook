@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 
   def index
-    @events = Event.all
+    @events = Event.where(room: params[:room_id])
   end
 
   def show
@@ -15,6 +15,9 @@ class EventsController < ApplicationController
   end
 
   def edit
+    set_event
+    @campus = Campus.find(params[:campus_id])
+    @room = Room.find(params[:room_id])
   end
 
   def create
@@ -30,12 +33,18 @@ class EventsController < ApplicationController
   end
 
   def update
+    set_event
+    @campus = Campus.find(params[:campus_id])
+    @room = Room.find(params[:room_id])
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.html { redirect_to campus_room_event_path(@campus, @room, @event), notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
-        format.html { render :edit }
+        format.html do
+          flash[:danger] = "error!"
+          render 'edit'
+        end
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
@@ -53,14 +62,13 @@ class EventsController < ApplicationController
 
   def set_event
     @event = Event.find(params[:id])
-
   end
 
   def event_params
     params.require(:event).permit(:name, :description,
                                   :start_time, :duration,
                                   :private, :open_invite,
-                                  :room_id, :user_id )
+                                  :room_id, :user_id, :agenda )
   end
 
 
