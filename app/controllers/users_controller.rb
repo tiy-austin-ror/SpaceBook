@@ -32,12 +32,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if @user.destroy
-      redirect_to :users_path
-    else
-      flash[:danger] = "There was an issue finding that user"
-      redirect_to :back
-    end
+    destroy_html_json(@user, users_path)
   end
 
   def admin_dashboard

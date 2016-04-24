@@ -43,4 +43,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def destroy_html_json(object, redirect_path)
+      respond_to do |format|
+        if object.destroy
+          format.html { redirect_to redirect_path}
+          format.json { head :no_content }
+        else
+          format.html { redirect_to :back }
+          format.json { head :no_content }
+        end
+      end
+  end
+
 end

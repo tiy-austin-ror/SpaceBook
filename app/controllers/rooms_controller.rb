@@ -30,12 +30,7 @@ class RoomsController < ApplicationController
   end
 
   def destroy
-    @room = get_room
-    if @room.destroy
-      redirect_to :index
-    else
-      redirect_to :back
-    end
+    destroy_html_json(@room, "/")
   end
 
   private

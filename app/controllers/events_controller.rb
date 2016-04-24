@@ -1,7 +1,8 @@
 class EventsController < ApplicationController
-before_action :set_campus_room_event, only: [:edit, :update]
+before_action :set_campus_room_event, only: [:edit, :update, :destroy]
 before_action :set_campus_room, only: [:create, :new]
-before_action :set_event, only: [:show, :destroy]
+before_action :set_event, only: [:show]
+
   def index
     @events = Event.where(room: params[:room_id])
   end
@@ -27,11 +28,7 @@ before_action :set_event, only: [:show, :destroy]
   end
 
   def destroy
-    @event.destroy
-    respond_to do |format|
-      format.html { redirect_to campus_room_event_path, notice: 'Event was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    destroy_html_json(@event, campus_room_path(@campus, @room))
   end
 
   private

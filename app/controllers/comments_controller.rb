@@ -11,16 +11,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = get_comment
-    respond_to do |format|
-      if @comment.destroy
-        format.html { redirect_to_event }
-        format.json { render json: { message: "Successfully Deleted" } }
-      else
-        format.html { redirect_to_event }
-        format.json { render json: { message: "Failed to Delete" } }
-      end
-    end
+    destroy_html_json(@comment, redirect_to_event)
+
   end
 
   private
@@ -30,7 +22,7 @@ class CommentsController < ApplicationController
   end
 
   def redirect_to_event
-    redirect_to campus_room_event_path(params[:campus_id],
+    campus_room_event_path(params[:campus_id],
                                   params[:room_id],
                                   params[:id])
   end

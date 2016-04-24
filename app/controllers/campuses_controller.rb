@@ -23,11 +23,7 @@ before_action :set_campus, only: [:show, :update, :destroy]
   end
 
   def destroy
-    @campus.destroy
-    respond_to do |format|
-      format.html { redirect_to campuses_url, notice: 'Campus was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    destroy_html_json(@campus, campus_path(@campus))
   end
 
   private
