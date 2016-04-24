@@ -37,8 +37,7 @@ campus_user.save!
 end
 
 
-10.times do
-  campus = Campus.all.to_a.sample
+Campus.all.each do |campus|
   10.times do
     user = User.all.to_a.select{|u| u.campus.id == campus.id}.sample
     room = campus.rooms.new(name:Faker::Name.name,location:Faker::Address.city, capacity: rand(10..30), picture_url: Faker::Avatar.image, events_count:0)
@@ -46,7 +45,7 @@ end
     30.times do
       start = rand(Time.now..1.week.from_now)
       start = time_floor(start)
-      event = room.events.new(user_id: user.id || 0, start_time: start, duration: rand(1..12)) unless user.nil?
+      event = room.events.new(user_id: user.id || 0, start_time: start, duration: rand(1..12), name: Faker::Name.name) unless user.nil?
       event.save unless user.nil?
     end
   end
