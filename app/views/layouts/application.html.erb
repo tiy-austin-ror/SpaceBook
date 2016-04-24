@@ -8,12 +8,26 @@
 </head>
 <body>
 
-<% if signed_in? %>
-     Signed in as: <%= current_user.email %>
-     <%= button_to 'Sign out', sign_out_path, method: :delete %>
-   <% else %>
-     <%= link_to 'Sign in', sign_in_path %>
- <% end %>
+  <nav class='navbar navbar-default navbar-fixed-top'>
+    <div class="container-fluid">
+      <%= link_to "SpaceBook", root_path, class: "pull-left nav-link" %>
+
+          <ul class="nav navbar-nav navbar pull-right">
+            <% if signed_in? %>
+
+              <li> <%= link_to "Rooms", campus_rooms_path(current_user.campus), class: "btn btn-default" %> </li>
+              <li> <%= link_to "Events", invites_path, class: "btn btn-default" %> </li>
+              <li> <%= link_to 'Sign out', sign_out_path, method: :delete, class: "btn btn-default" %> </li>
+            <% else %>
+              <li> <%= link_to "Sign In", sign_in_path, class: "btn btn-default navbar-btn" %> </li>
+              <li> <%= link_to "Sign Up", new_user_path, class: "btn btn-default navbar-btn" %> </li>
+            <% end %>
+          </ul>
+      </div>
+    </nav>
+
+<div class="container">
+
  <% flash.each do |message_type, message| %>
    <div class="alert alert-<%= message_type%>" id = "flash">
      <%= message %>
@@ -22,5 +36,6 @@
 
 <%= yield %>
 
+</div>
 </body>
 </html>
