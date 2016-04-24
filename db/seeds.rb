@@ -14,7 +14,7 @@ admin = User.new(admin: true, username: "admin", name: Faker::Name.name, email:"
 admin.save!
 
 
-not_admin = User.new(admin: false, username: "not_admin", name: Faker::Name.name, email:"not_admin@spacebook.com", phone_num: Faker::PhoneNumber.phone_number, profile_pic: Faker::Avatar.image, password:"password")
+not_admin = User.new(admin: false, username: "not_admin", name: Faker::Name.name, email:"not_admin@spacebook.com", phone_num: Faker::PhoneNumber.phone_number, password:"password")
 not_admin.save!
 
 10.times do

@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
 
   before_create :default_values
   def default_values
-    if self.profile_pic.empty?
+    if self.profile_pic.nil?
       self.profile_pic = 'https://cdn0.vox-cdn.com/thumbor/dUhFuohIxvh-F4v3EKsjY3XSWIU=/cdn0.vox-cdn.com/uploads/chorus_asset/file/3893454/win10_skype_320x320.0.gif'
     end
   end
