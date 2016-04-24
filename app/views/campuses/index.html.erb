@@ -2,23 +2,10 @@
 <div class="container">
 
   <h1>Listing campuses</h1>
-  </br>
-  </br>
 
-    <tbody>
       <% @campuses.each do |campus| %>
-        <tr>
-          <div>
-            <h4><%= campus.name %></h4>
-            <img src="<%= campus.picture_url %>"></img>
-            <p><%= link_to 'Show', campus %></p>
-          </div>
-        </tr>
-
+          <%= campus.name %> <br>
+          <%= image_tag campus.picture_url, width: 50, height:50 %> <br>
+          <%= link_to 'Show', campus %><br>
+          <hr>
       <% end %>
-    </tbody>
-  </table>
-
-  <br>
-
-</div>

@@ -1,6 +1,5 @@
 <h1>All Current Rooms</h1>
 <% @rooms.each do |room| %>
-  <div class='col-md-offset-2 col-md-6 target'>
-    <%=room.name%>
-  </div>
+    <%= link_to room.name, campus_room_path(room.campus, room) %>
+    <hr>
 <% end %>
