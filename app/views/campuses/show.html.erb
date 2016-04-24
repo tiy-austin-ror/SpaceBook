@@ -9,10 +9,10 @@
 </h3>
 
   <div>
-    <% @campus.rooms.each do |room| %>
+    <% @rooms.each do |room| %>
           <div>
             <h4>Room: <%= room.name %></h4>
-            <img src="<%= room.picture_url, width: 50, height:50 %>"></img>
+            <img src="<%= room.picture_url %>"></img>
           </br>
             <p>Location: <%= room.location %></p>
             <p>Capacity: <%= room.capacity %></p>

@@ -6,6 +6,7 @@ before_action :admin_validation, only: [:create, :update, :destroy]
 
   def show
     @campus = Campus.find(params[:id])
+    @rooms = @campus.rooms.order( average_capacity_use: :DESC )
   end
 
   def new
