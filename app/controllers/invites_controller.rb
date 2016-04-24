@@ -1,9 +1,12 @@
 class InvitesController < ApplicationController
 
   def create
-    get_invite
-    @invite.create
-    render json: @invite
+    @invite = Invite.new(invite_params)
+    if @invite.save
+      render json: @invite
+    else
+      render json: @invite.errors
+    end
   end
 
   def update

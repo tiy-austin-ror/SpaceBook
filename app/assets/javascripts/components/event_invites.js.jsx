@@ -1,20 +1,32 @@
 var EventInvites = React.createClass({
   propTypes: {
-    users: React.PropTypes.array
+    users: React.PropTypes.array,
+    event_id: React.PropTypes.number
   },
 
   getInitialState: function () {
     return {
-      filterQuery: ''
+      filterQuery: '',
+      user_id: ''
     };
   },
 
   handleSendInvite: function () {
+    var that = this;
     $.ajax({
       method: "POST",
-      url: "/invites"
-
-    })
+      url: "/invites",
+      data: {
+        invite: {
+          user_id: this.state.user_id,
+          event_id: this.props.event_id
+        }
+      }
+    }).done(function(response){
+      that.setState({
+        filterQuery: ''
+      });
+    });
   },
 
   handleChange: function (event) {
@@ -26,7 +38,8 @@ var EventInvites = React.createClass({
   handleSelect:function (user) {
     console.log(user.id);
     this.setState({
-      filterQuery: user.name
+      filterQuery: user.name,
+      user_id: user.id
     });
   },
 
