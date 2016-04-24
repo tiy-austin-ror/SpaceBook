@@ -1,8 +1,8 @@
 <h4> 'Sup:  <img class='dash-picture' src='<%=@user.profile_pic%>'/> <%=@user.name%> </h4>
 
 <div class='pending-events-dispaly'>
+  <h5 class='pending-events-header'>Pending Event Invitations</h6>
   <ul class='pending-events-dispaly-list'>
-    <h5 class='pending-events-header'>Pending Events</h6>
     <% @pending.each do |pend| %>
       <li class='pending-events-dispaly-list-item'><%= pend.name %> <%= pend.agenda %> <%= pend.formatted_start_time %> <%= pend.formatted_event_duration %></li>
     <% end %>
@@ -10,8 +10,8 @@
 </div>
 
 <div class='pending-events-dispaly'>
+  <h5 class='pending-events-header'>Pending Created Events</h6>
   <ul class='pending-events-dispaly-list'>
-    <h5 class='pending-events-header'>Pending Created Events</h6>
     <% @events.each do |event| %>
       <li class='pending-events-dispaly-list-item'><%= event.name %> <%= event.agenda %> <%= event.formatted_start_time %> <%= event.formatted_event_duration %></li>
     <% end %>
