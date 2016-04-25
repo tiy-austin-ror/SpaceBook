@@ -72,4 +72,3 @@ n = 0
   RoomAmenity.create(room_id: n, amenity_id: rand(1..Amenity.count))
   RoomAmenity.create(room_id: n, amenity_id: rand(1..Amenity.count))
 end
->>>>>>> 996d1c580714d075455eabdf2d15ec74f53295b0

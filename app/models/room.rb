@@ -6,15 +6,14 @@ class Room < ActiveRecord::Base
   has_many :events, dependent: :destroy
   belongs_to :campus#, counter_cache: true
 
-<<<<<<< HEAD
   def self.search(search)
     if search
       find(:all, :conditions => ['name ILIKE ?', 'location ILIKE ?', 'capacity ILIKE ?', "%#{search}%"])
     else
       find(:all)
     end
-  end 
-=======
+  end
+
   def event_array(new_event = nil)
     all_events = []
     self.events.each do |event|
@@ -46,5 +45,4 @@ class Room < ActiveRecord::Base
   def event_overlap?(new_event=nil)
     !!get_event_overlap(new_event)
   end
->>>>>>> 996d1c580714d075455eabdf2d15ec74f53295b0
 end

@@ -1,34 +1,46 @@
+var Rooms = React.createClass({
+  render: function(){
+    return (
+      <ul>
+      {
+        this.props.items.map(function(room) {
+          return <li key={name}>{name}</li>
+        })
+       }
+      </ul>
+    )
+  }
+});
+
 var RoomSearch = React.createClass({
+
+    filterList: function(e){
+       var searchReturn = this.state.initialItems;
+       var searchReturn = this.state.all_rooms.filter(function (room) {
+         return (room.name.toLowerCase().indexOf(e.target.value.toLowerCase()) > -1);
+       });
+       this.setState({rooms: searchReturn});
+     },
 
     getInitialState: function(){
       return {
-        search_return: [],
-        all_rooms: [],
-        search: ''
+        searchReturn: [],
+        allRooms: [],
+        search: ""
       };
     },
 
     componentDidMount: function () {
       $.ajax({
-        url: '/campuses/:campus_id/rooms',
+        url: 'api/campuses/:campus_id/rooms',
         dataType: 'JSON',
         method: 'get'
       }).done(function (response) {
         this.setState({
-          search_return: response,
-          all_rooms: reponse
+          searchReturn: response,
+          allRooms: reponse
         });
       }.bind(this));
-    },
-
-    handleChange: function(e){
-        var search_return = this.state.all_rooms.filter(function (room) {
-          return (room.name.toLowerCase().indexOf(e.target.value.toLowerCase()) > -1);
-        });
-        this.setState({
-          search: e.target.value,
-          search_return: search_return
-        });
     },
 
     render: function() {
@@ -36,14 +48,14 @@ var RoomSearch = React.createClass({
         <section>
           <div>
             <input className='container' type='text'
-              onChange={this.handleChange} value={this.state.search}
+              onChange={this.filterList} value={this.state.search}
               placeholder='Type Here' />
           </div>
           <div>
-            {this.state.search_return.map(function (room) {
+            {this.state.searchReturn.map(function (room) {
               return (
                 <ul>
-                  <li>{current_user.campus.city}<li>
+                  <li>{current_user.campus.city}</li>
                   <li>{room.name}</li>
                   <li>{room.location}</li>
                   <li>{room.capacity}</li>
@@ -54,6 +66,7 @@ var RoomSearch = React.createClass({
                       />)
                       })}
                   </li>
+                </ul>
               );
             })};
           </div>
@@ -61,3 +74,7 @@ var RoomSearch = React.createClass({
       );
     },
 });
+ReactDOM.render(
+  <RoomSearch url="/api/campuses/:campus_id/rooms" pollInterval={2000} />,
+  document.getElementById('rooms')
+);

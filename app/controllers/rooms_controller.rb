@@ -6,11 +6,7 @@ class RoomsController < ApplicationController
 
 
   def index
-<<<<<<< HEAD
-    @rooms = Room.search(params[:search])
-=======
     @rooms = Room.all.order("average_capacity_use")
->>>>>>> 996d1c580714d075455eabdf2d15ec74f53295b0
   end
 
   def show

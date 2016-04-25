@@ -1,7 +1,7 @@
+<%= react_component('RoomSearch', rooms: @rooms) %>
+
 <h1>All Current Rooms</h1>
 <% @rooms.each do |room| %>
     <%= link_to room.name, campus_room_path(room.campus, room) %>
     <hr>
 <% end %>
-
-<%= react_component('RoomSearch', rooms: @rooms) %>
