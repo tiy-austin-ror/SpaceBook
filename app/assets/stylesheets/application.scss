@@ -18,13 +18,30 @@
  *= require rails_bootstrap_forms
  */
 
+ $secondary-color: #1D3557;
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url(https://fonts.googleapis.com/css?family=Esteban|Merriweather:300);
 
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Esteban;
+}
 
 body {
   padding-top: 6.625em;
   background-color: #CCDBDC;
+  font-family: Merriweather;
+}
+
+.pull-left.nav-link {
+  font-family: Esteban;
 }
 
 .pull-center {
@@ -35,8 +52,8 @@ body {
 
 .navbar {
   background-color: #457B9D;
-  border-color: #1D3557;
-  padding-bottom: 1px;
+  border-bottom: 2px solid $secondary-color;
+  padding: 2px 0 2px 0;
   ul {
     border: none;
   }
@@ -61,10 +78,75 @@ body {
   }
 }
 
+.dash-picture {
+  height: 3.75em;
+  width: 3.75em;
+}
+
+.pending-events-dispaly {
+  margin-top: 2.5em;
+  border: 2px solid $secondary-color;
+}
+
+.pending-events-dispaly-list {
+  list-style: none;
+}
+
+.pending-events-header {
+  margin-left: .5em
+}
+
 .sm-margin-right {
   margin-right: .3125em;
 }
 
+.dashboard-event-create {
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  color: black;
+}
+
+.pending-events-dispaly-list-item {
+  margin-bottom: .15em;
+}
+
+.sm-padding-left {
+  padding-left: 5px;
+}
+
 .form-control {
   width: 50%;
+}
+
+.form-control-100 {
+  @extend .form-control;
+  width: 100%;
+  height: auto;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #1D3557;
+}
+
+#all_footnotes {
+  background-color: #1D3557;
+  color: white;
+}
+
+#footnotes_debug a {
+  color: #2E6BA3 !important;
+}
+
+@media (min-width: 768px) {
+  .pending-events-dispaly {
+    width: 38em;
+    margin-right: 2em;
+    float: left;
+  }
 }

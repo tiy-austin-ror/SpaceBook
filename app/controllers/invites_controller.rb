@@ -1,9 +1,13 @@
 class InvitesController < ApplicationController
 
   def create
-    get_invite
-    @invite.create
-    render json: @invite
+    @invite = Invite.new(invite_params)
+    if @invite.save
+      render json: { invite: @invite, message: "Success" }
+    else
+      #TODO: For temp message display
+      render json: { message: @invite.errors[:user_id][0] }
+    end
   end
 
   def update

@@ -1,1 +1,33 @@
-<h1> WELCOME: <%=@user%> </h1>
+<h3> 'Sup:  <img class='dash-picture' src='<%=@user.profile_pic%>'/> <%=@user.name%> </h3>
+
+<div class='pending-events-dispaly'>
+  <h4 class='pending-events-header'>Pending Event Invitations</h4>
+  <ul class='pending-events-dispaly-list'>
+    <% @pending.each do |pend| %>
+      <li class='pending-events-dispaly-list-item'><%= pend.name.titleize %> <%= pend.agenda %> | <%= pend.formatted_start_time %> until <%= pend.end_time %></li>
+    <% end %>
+  </ul>
+</div>
+
+<div class='pending-events-dispaly'>
+  <h4 class='pending-events-header'>Pending Created Events</h4>
+  <ul class='pending-events-dispaly-list'>
+    <% @events.each do |event| %>
+      <li class='pending-events-dispaly-list-item'><%= event.name.titleize %> | <%= event.agenda %> | <%= event.formatted_start_time %> until <%= event.end_time %></li>
+    <% end %>
+  </ul>
+</div>
+
+<div class='pending-events-dispaly'>
+  <h4 class='pending-events-header'>Completed events</h4>
+  <ul class='pending-events-dispaly-list'>
+    <% @finished.each do |finish| %>
+      <li class='pending-events-dispaly-list-item'><%= finish.name.titleize %> | <%= finish.agenda %> | <%= finish.formatted_start_time %> until <%= finish.end_time %></li>
+    <% end %>
+  <ul class='pending-events-dispaly-list'>
+  </ul>
+</div>
+
+<div class='pending-events-dispaly'>
+  <h5><%= link_to "Create an event?", campus_path(current_user.campus), class: "dashboard-event-create" %></h5>
+</div>
