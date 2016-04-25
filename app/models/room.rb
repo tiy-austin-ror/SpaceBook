@@ -3,8 +3,17 @@ class Room < ActiveRecord::Base
   validates :location, presence: true
   validates :capacity, presence: true
   has_many :room_amenities, dependent: :destroy
+  has_many :amenities, through: :room_amenities
   has_many :events, dependent: :destroy
   belongs_to :campus#, counter_cache: true
+
+  def self.search(search)
+    if search
+      find(:all, :conditions => ['name ILIKE ?', 'location ILIKE ?', 'capacity ILIKE ?', "%#{search}%"])
+    else
+      find(:all)
+    end
+  end
 
   def event_array(new_event = nil)
     all_events = []
