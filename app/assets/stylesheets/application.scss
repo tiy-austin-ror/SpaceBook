@@ -38,9 +38,12 @@ nav.navbar-default {
   .navbar-brand {
     font-family: Lato;
     color: white;
+    &:hover {
+      text-decoration: none;
+      color: white;
+    }
   }
 }
-
 
 p {
   font-family: Merriweather;
@@ -81,19 +84,24 @@ body {
   width: 3.75em;
 }
 
-.pending-events-dispaly {
+.pending-events-display {
   padding: .75em 0;
   margin-top: 2.5em;
   background-color: #F5F5F5;
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+  li {
+    font-family: Merriweather;
+  }
 }
 
-.pending-events-dispaly-list {
+.pending-events-display-list {
   list-style: none;
 }
 
 .pending-events-header {
-  margin-left: .5em
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 1em;
 }
 
 .sm-margin-right {
@@ -107,8 +115,12 @@ body {
   color: black;
 }
 
-.pending-events-dispaly-list-item {
+.pending-events-display-list-item {
   margin-bottom: .5em;
+}
+
+.time-display {
+  font-weight: bold;
 }
 
 .sm-padding-left {
