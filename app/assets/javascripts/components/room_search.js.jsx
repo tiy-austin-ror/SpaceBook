@@ -53,7 +53,7 @@ var RoomSearch = React.createClass({
                 {this.state.filteredRooms.map(function (room) {
                   return (
                     <tr key={room.id} >
-                      <td>{room.name}</td>
+                      <td><a href={'/campuses/' + room.campus_id + '/rooms/' + room.id}> {room.name} </a></td>
                       <td>{room.location}</td>
                       <td>{room.capacity}</td>
                       {room.room_amenities.map(function (amenity) {
