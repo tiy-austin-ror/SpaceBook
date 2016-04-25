@@ -14,6 +14,10 @@ before_action :set_event, only: [:show]
     @room = @event.room
     @campus = @room.campus
     @comments = @event.comments.order(created_at: :desc)
+    respond_to do |format|
+      format.html { }
+      format.json { render json: @comments }
+    end
   end
 
   def new

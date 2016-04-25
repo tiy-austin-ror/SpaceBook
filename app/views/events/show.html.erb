@@ -28,12 +28,7 @@
                                    room_id: @room.id,
                                    event_id: @event.id) %>
 <hr />
-<% @comments.each do |comment| %>
-  <div class="container">
-    <strong class="sm-margin-right"><%= comment.user.name %></strong> |
-    <em class="sm-padding-left"><%= comment.created_time %></em>
-    <div>
-      -> <%= comment.body %>
-    </div>
-  </div>
-<% end %>
+
+<div class="container" id="comments-container">
+
+</div>
