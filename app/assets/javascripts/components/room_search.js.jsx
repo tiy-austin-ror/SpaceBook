@@ -1,46 +1,32 @@
-// var Rooms = React.createClass({
-//   render: function(){
-//     return (
-//       <ul>
-//       {
-//         this.props.items.map(function(room) {
-//           return <li key={name}>{name}</li>
-//         })
-//        }
-//       </ul>
-//     )
-//   }
-// });
-
 var RoomSearch = React.createClass({
-
 
     getInitialState: function(){
       return {
-        searchReturn: [],
         allRooms: [],
+        filteredRooms: [],
         search: ""
       };
     },
 
     filterList: function(e){
-       var allRooms = this.state.initialItems;
        var searchReturn = this.state.allRooms.filter(function (room) {
          return (room.name.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1);
        });
-       this.setState({rooms: searchReturn});
+       this.setState({
+         filteredRooms: searchReturn,
+         search: e.target.value
+       });
      },
 
 
     componentDidMount: function () {
       $.ajax({
-        url: '/rooms.json',
+        url: '/campuses/' + this.props.campusID + '/rooms.json',
         dataType: 'JSON',
         method: 'get'
       }).done(function (response) {
         this.setState({
-          searchReturn: response,
-          allRooms: reponse
+          allRooms: response
         });
       }.bind(this));
     },
@@ -51,26 +37,33 @@ var RoomSearch = React.createClass({
           <div>
             <input className='form-control' type='text'
               onChange={this.filterList} value={this.state.search}
-              placeholder='Type Here' />
+              placeholder='What are you looking for?' />
           </div>
-          <div>
-            {this.state.searchReturn.map(function (room) {
-              return (
-                <ul>
-                  <li>{current_user.campus.city}</li>
-                  <li>{room.name}</li>
-                  <li>{room.location}</li>
-                  <li>{room.capacity}</li>
-                  <li>{this.state.room.amenities.map(function (amenity) {
-                      (<Amenity
-                      key={amenity.id}
-                      name={amenity.name}
-                      />)
+          <div className="table-responsive">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Room Name:</th>
+                  <th>Room Location:</th>
+                  <th>Room Capacity:</th>
+                  <th>Room Amenities</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.filteredRooms.map(function (room) {
+                  return (
+                    <tr key={room.id} >
+                      <td>{room.name}</td>
+                      <td>{room.location}</td>
+                      <td>{room.capacity}</td>
+                      {room.room_amenities.map(function (amenity) {
+                          return (<td key={amenity.id}>{amenity.name}</td>)
                       })}
-                  </li>
-                </ul>
-              );
-            })};
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           </div>
         </section>
       );
