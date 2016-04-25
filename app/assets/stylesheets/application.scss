@@ -88,8 +88,8 @@ body {
 
 .pending-events-dispaly {
   margin-top: 2.5em;
-  border: 1px solid $secondary-color;
-  background-color: #fff;
+  background-color: #F5F5F5;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)
 }
 
 .pending-events-dispaly-list {
@@ -112,7 +112,7 @@ body {
 }
 
 .pending-events-dispaly-list-item {
-  margin-bottom: .15em;
+  margin-bottom: .5em;
 }
 
 .sm-padding-left {
