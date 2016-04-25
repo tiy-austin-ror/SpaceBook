@@ -9,6 +9,7 @@ before_action :set_event, only: [:show]
 
   def show
     #TODO Fetching all users instead of users just in campus
+
     @users = User.all
     @event = Event.find(params[:id])
     @room = @event.room
