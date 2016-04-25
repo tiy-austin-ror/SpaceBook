@@ -2,9 +2,9 @@ class DashboardController < ApplicationController
 before_action :require_login
   def home
     @user = current_user
-    @events = @user.upcoming_events
-    @pending = @user.upcoming_meetings
-    @finished = @user.finished_events
+    @events = @user.upcoming_events.order("start_time")
+    @pending = @user.upcoming_meetings.order("start_time")
+    @finished = @user.finished_events.order("start_time")
   end
 
   private

@@ -43,6 +43,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
   def destroy_html_json(object, redirect_path)
       respond_to do |format|
         if object.destroy
