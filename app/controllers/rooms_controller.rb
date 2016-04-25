@@ -9,7 +9,7 @@ class RoomsController < ApplicationController
     @rooms = Room.all.order("average_capacity_use")
 
     respond_to do |format|
-      format.json { render json: @rooms.to_json(include: :room_amenities) }
+      format.json { render json: @rooms.to_json(include: :amenities) }
       format.html
     end
   end

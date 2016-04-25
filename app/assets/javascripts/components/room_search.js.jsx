@@ -12,7 +12,10 @@ var RoomSearch = React.createClass({
        var searchReturn = this.state.allRooms.filter(function (room) {
          return (room.name.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1 ||
                  room.capacity == e.target.value ||
-                 room.location.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1 );
+                 room.location.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1 ||
+                 room.amenities.filter(function (amenity) {
+                     return amenity.name.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1;
+                 }).length > 0 );
        });
        this.setState({
          filteredRooms: searchReturn,
@@ -59,9 +62,11 @@ var RoomSearch = React.createClass({
                       <td><a href={'/campuses/' + room.campus_id + '/rooms/' + room.id}> {room.name} </a></td>
                       <td>{room.location}</td>
                       <td>{room.capacity}</td>
-                      {room.room_amenities.map(function (amenity) {
-                          return (<td key={amenity.id}>{amenity.name}</td>)
-                      })}
+                      <td>
+                        {room.amenities.map(function (amenity, index) {
+                          return (<p key={index}>{amenity.name}</p>)
+                        })}
+                      </td>
                     </tr>
                   );
                 })}
