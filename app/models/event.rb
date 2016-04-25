@@ -15,9 +15,13 @@ class Event < ActiveRecord::Base
   belongs_to :user
   validates_with UniqueTime
 
-
   def formatted_start_time
-    self.start_time
+    "#{start_time.strftime('%x')} at #{start_time.strftime('%r')}"
+  end
+
+  def end_time
+    end_time = start_time+(duration*15).minutes
+    "#{end_time.strftime('%r')}"
   end
 
   def formatted_event_duration
