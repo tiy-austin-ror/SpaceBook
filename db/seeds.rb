@@ -6,6 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+def time_floor(time, seconds = 15.minutes)
+  Time.at((time.to_f / seconds).floor * seconds).utc
+end
 
 admin = User.new(admin: true, username: "admin", name: Faker::Name.name, email:"admin@spacebook.com", phone_num: Faker::PhoneNumber.phone_number, profile_pic: Faker::Avatar.image, password:"password")
 admin.save!
@@ -26,21 +29,47 @@ campus_user = CampusUser.new(user_id: not_admin.id, campus_id: rand(1..Campus.co
 campus_user.save!
 
 
-15.times do
+30.times do
   user = User.new(admin: false, username: Faker::Internet.user_name, name: Faker::Name.name, email:Faker::Internet.email, phone_num: Faker::PhoneNumber.phone_number, profile_pic: Faker::Avatar.image, password:"password")
   user.save!
   campus_user = CampusUser.new(user_id: user.id, campus_id: rand(1..Campus.count))
   campus_user.save!
 end
 
-# 
-# 10.times do
-#   campus = Campus.all.to_a.sample
-#   room = campus.rooms.new(name:Faker::Name.name,location:Faker::Address.city, capacity: rand(10..30), picture_url: Faker::Avatar.image, events_count:0)
-#   room.save!
-#   10.times do
-#     user = User.all.to_a.select{|u| u.campus.id == campus.id}.sample
-#     event = room.events.new(user_id: user.id)
-#     event.save! unless user.nil?
-#   end
-# end
+
+Campus.all.each do |campus|
+  10.times do
+    user = User.all.to_a.select{|u| u.campus.id == campus.id}.sample
+    room = campus.rooms.new(name:Faker::Name.name,location:Faker::Address.city, capacity: rand(10..30), picture_url: Faker::Avatar.image, events_count:0, average_capacity_use: rand(1..100))
+    room.save!
+    30.times do
+      start = rand(Time.now..1.week.from_now)
+      start = time_floor(start)
+      event = room.events.new(user_id: user.id || 0, start_time: start, duration: rand(1..12), name: Faker::Name.name) unless user.nil?
+      event.save unless user.nil?
+    end
+  end
+end
+
+amenity_list = [
+      "Coffee",
+      "Projector",
+      "Windows",
+      "Internal AC",
+      "Speakers",
+      "Video camera",
+      "Microphone",
+      "White board"
+      ]
+
+8.times do
+  Amenity.create(name: amenity_list.shift)
+end
+
+n = 0
+10.times do |n|
+  n = n + 1
+  RoomAmenity.create(room_id: n, amenity_id: rand(1..Amenity.count))
+  RoomAmenity.create(room_id: n, amenity_id: rand(1..Amenity.count))
+end
+>>>>>>> 996d1c580714d075455eabdf2d15ec74f53295b0

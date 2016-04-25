@@ -14,5 +14,57 @@
  *= require_self
  */
 
+ /*
+ *= require rails_bootstrap_forms
+ */
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
+body {
+  padding-top: 6.625em;
+  background-color: #CCDBDC;
+}
+
+.pull-center {
+  margin: 0;
+  text-align: center;
+  float: none;
+}
+
+.navbar {
+  background-color: #457B9D;
+  border-color: #1D3557;
+  padding-bottom: 1px;
+  ul {
+    border: none;
+  }
+}
+
+.nav-link {
+  margin-top: .5em;
+  color: white;
+  font-size: 1.5em;
+  &:hover {
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.navbar {
+  .btn-default {
+    margin-right: 1em;
+    &:hover {
+      background-color: white !important;
+    }
+  }
+}
+
+.sm-margin-right {
+  margin-right: .3125em;
+}
+
+.form-control {
+  width: 50%;
+}

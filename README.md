@@ -1,4 +1,4 @@
-# Spacebook Project [![Code Climate](https://codeclimate.com/github/tiy-austin-ror/SpaceBook/badges/gpa.svg)](https://codeclimate.com/github/tiy-austin-ror/SpaceBook) [![Test Coverage](https://codeclimate.com/github/tiy-austin-ror/SpaceBook/badges/coverage.svg)](https://codeclimate.com/github/tiy-austin-ror/SpaceBook/coverage) 
+# Spacebook Project [![Code Climate](https://codeclimate.com/github/tiy-austin-ror/SpaceBook/badges/gpa.svg)](https://codeclimate.com/github/tiy-austin-ror/SpaceBook) [![Test Coverage](https://codeclimate.com/github/tiy-austin-ror/SpaceBook/badges/coverage.svg)](https://codeclimate.com/github/tiy-austin-ror/SpaceBook/coverage)
 
 ![Alt text](UML.png)
 
