@@ -20,7 +20,7 @@ var CommentForm = React.createClass({
     var that = this;
     $.ajax({
       method: "POST",
-      url: "/comments",
+      url: "/comments.json",
       data: {
         comment: {
           body: this.state.commentText,
