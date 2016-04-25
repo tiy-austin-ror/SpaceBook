@@ -22,7 +22,7 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import url(https://fonts.googleapis.com/css?family=Esteban|Merriweather:300);
+@import url(https://fonts.googleapis.com/css?family=Merriweather:400,700|Lato);
 
 
 html {
@@ -30,14 +30,17 @@ html {
   min-height: 100%;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: Esteban;
+h1, h2, h3, h4, h5, h6, .btn, .btn-default {
+  font-family: Lato;
+}
+
+p, li {
+  font-family: Merriweather;
 }
 
 body {
   padding: 6.625em 0 6.625em 0;
   background-color: #CCDBDC;
-  font-family: Merriweather;
 }
 
 .pull-left.nav-link {
@@ -85,7 +88,8 @@ body {
 
 .pending-events-dispaly {
   margin-top: 2.5em;
-  border: 2px solid $secondary-color;
+  border: 1px solid $secondary-color;
+  background-color: #fff;
 }
 
 .pending-events-dispaly-list {
@@ -143,7 +147,7 @@ footer {
   color: #2E6BA3 !important;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 770px) {
   .pending-events-dispaly {
     width: 38em;
     margin-right: 2em;
