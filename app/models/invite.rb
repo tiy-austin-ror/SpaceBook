@@ -11,4 +11,12 @@ class Invite < ActiveRecord::Base
     scope: :event_id,
     message: "Already on Invite List"
   }
+
+  def user_name
+    user.name
+  end
+
+  def as_json(_ = nil)
+    super(methods: [:user_name])
+  end
 end
