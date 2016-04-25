@@ -6,9 +6,10 @@ class UniqueTime < ActiveModel::Validator
   end
 end
 
-
 class Event < ActiveRecord::Base
   has_many :invites
+  has_many :invitees, through: :invites, source: :user
+
   has_many :comments
   belongs_to :room, counter_cache: true
   belongs_to :user
@@ -25,6 +26,15 @@ class Event < ActiveRecord::Base
 
   def campus
     self.room.campus
+  end
+
+  def is_private?
+    self.private
+  end
+
+  def invite_type
+    return "Open" if open_invite == true
+    return "Closed"
   end
 
   def good_time_range?

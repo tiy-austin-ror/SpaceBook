@@ -8,6 +8,10 @@ before_action :set_event, only: [:show]
   end
 
   def show
+    #Fetching all users instead of users just in campus
+    @users = User.all
+    @event = Event.find(params[:id])
+
   end
 
   def new
