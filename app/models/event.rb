@@ -24,6 +24,11 @@ class Event < ActiveRecord::Base
     "#{end_time.strftime('%r')}"
   end
 
+  def duration_display
+    display = duration*15
+    "#{display} minutes"
+  end
+
   def formatted_event_duration
     self.duration
   end
