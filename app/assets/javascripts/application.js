@@ -30,11 +30,11 @@ ready = function() {
 
     if (window.location.pathname.split('/').includes("events")) {
       var getHTML = function(comment) {
-          return `<strong class="sm-margin-right"> ${comment.user_name} </strong> |
-          <em class="sm-padding-left"> ${comment.created_time} </em>
-          <div>
-            -> ${comment.body}
-          </div>`
+          return '<strong class="sm-margin-right">' + comment.user_name + '</strong> |' +
+          '<em class="sm-padding-left">' + comment.created_time + '</em>' +
+          '<div>' +
+            '-> '+ comment.body +
+          '</div>';
       };
       var jsonComments = function () {
           $.getJSON(url, function(response){
