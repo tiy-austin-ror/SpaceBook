@@ -8,8 +8,9 @@ var CommentsContainer = React.createClass({
     var that = this;
     var url = document.URL;
     $.getJSON(url, function(response){
+      console.log(response);
       that.setState({
-        comments: response
+        comments: response.comments
       })
     });
   },

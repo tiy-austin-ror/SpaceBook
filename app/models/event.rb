@@ -8,6 +8,7 @@ end
 
 class Event < ActiveRecord::Base
   has_many :invites
+  #TODO Probably wont need the has_many invitees
   has_many :invitees, through: :invites, source: :user
 
   has_many :comments
