@@ -1,3 +1,8 @@
-EventMailer#new_event
+A new event was created in <%= @room.name %>:
 
-<%= @greeting %>, find me in app/views/event_mailer/new_event.text.erb
+  Name: <%= @event.name %>
+  When: <%= @event.start_time %>
+
+To see more details about the event, please visit the event page at:
+
+  <%= event_url(@event) %>
