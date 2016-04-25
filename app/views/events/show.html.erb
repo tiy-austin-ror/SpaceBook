@@ -1,4 +1,5 @@
 <h1>Show Event</h1>
+
 <%= link_to 'Edit', edit_campus_room_event_path(@event.campus, @event.room, @event), class: "btn btn-default" %> |
 <%= link_to 'Back', campus_room_events_path(@event.campus, @event.room), class: "btn btn-default" %>
 <div class = 'description'>
@@ -19,8 +20,22 @@
 <% if current_user == @event.user %>
   <%= react_component('EventInvites', users: @users, event_id: @event.id) %>
 <% end %>
+
 <div id="join-event">
   <% if current_user && current_user.invites.where(event_id: @event.id).count.zero? %>
     <%= link_to "Join Event", "/invites?invite[status]=Accepted&invite[event_id]=#{@event.id}&invite[user_id]=#{current_user.id}", method: :POST, class: "btn btn-default" %>
   <% end %>
+</div>
+
+<hr />
+<h3>Comments</h3>
+<%= react_component('CommentForm', user: current_user,
+                                   campus_id: @campus.id,
+                                   room_id: @room.id,
+                                   event_id: @event.id) %>
+<hr />
+
+<div class="container" id="comments-container">
+
+
 </div>

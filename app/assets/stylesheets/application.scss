@@ -24,12 +24,18 @@
 @import "bootstrap";
 @import url(https://fonts.googleapis.com/css?family=Esteban|Merriweather:300);
 
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: Esteban;
 }
 
 body {
-  padding-top: 6.625em;
+  padding: 6.625em 0 6.625em 0;
   background-color: #CCDBDC;
   font-family: Merriweather;
 }
@@ -111,6 +117,30 @@ body {
 
 .form-control {
   width: 50%;
+}
+
+.form-control-100 {
+  @extend .form-control;
+  width: 100%;
+  height: auto;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #1D3557;
+}
+
+#all_footnotes {
+  background-color: #1D3557;
+  color: white;
+}
+
+#footnotes_debug a {
+  color: #2E6BA3 !important;
 }
 
 @media (min-width: 768px) {
