@@ -22,11 +22,20 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url(https://fonts.googleapis.com/css?family=Esteban|Merriweather:300);
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: Esteban;
+}
 
 body {
   padding-top: 6.625em;
   background-color: #CCDBDC;
+  font-family: Merriweather;
+}
+
+.pull-left.nav-link {
+  font-family: Esteban;
 }
 
 .pull-center {
@@ -85,11 +94,16 @@ body {
   margin-right: .3125em;
 }
 
+
 .dashboard-event-create {
   text-decoration: none;
   display: block;
   text-align: center;
   color: black;
+}
+
+.sm-padding-left {
+  padding-left: 5px;
 }
 
 .form-control {

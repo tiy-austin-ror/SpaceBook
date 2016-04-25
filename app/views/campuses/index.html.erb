@@ -3,9 +3,6 @@
 
   <h1>Listing campuses</h1>
 
-
-        Campuses:
-
       <% @campuses.each do |campus| %>
           <%= campus.name %> <br>
           <%= image_tag campus.picture_url, width: 50, height:50 %> <br>
