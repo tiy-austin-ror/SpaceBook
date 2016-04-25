@@ -1,7 +1,7 @@
-<h3> Welcome: <%=@user.name%>  <img class='dash-picture' src='<%=@user.profile_pic%>'/></h3>
+<h4> Welcome: <%=@user.name%>  <img class='dash-picture' src='<%=@user.profile_pic%>'/></h4>
 
 <div class='pending-events-display'>
-  <h4 class='pending-events-header'>Pending Event Invitations</h4>
+  <h3 class='pending-events-header'>Pending Event Invitations</h3>
   <ul class='pending-events-display-list'>
     <% @pending.each do |pend| %>
       <li class='pending-events-display-list-item'><%= pend.name.titleize %> <%= pend.agenda %> | <p class='time-display'><%= pend.formatted_start_time %> for <%= pend.duration_display %></p></li>
@@ -10,7 +10,7 @@
 </div>
 
 <div class='pending-events-display'>
-  <h4 class='pending-events-header'>Pending Created Events</h4>
+  <h3 class='pending-events-header'>Pending Created Events</h3>
   <ul class='pending-events-display-list'>
     <% @events.each do |event| %>
       <li class='pending-events-display-list-item'><%= event.name.titleize %> | <%= event.agenda %> | <p class='time-display'><%= event.formatted_start_time %> for <%= event.duration_display %> </p></li>
@@ -19,7 +19,7 @@
 </div>
 
 <div class='pending-events-display'>
-  <h4 class='pending-events-header'>Completed events</h4>
+  <h3 class='pending-events-header'>Completed events</h3>
   <ul class='pending-events-display-list'>
     <% @finished.each do |finish| %>
       <li class='pending-events-display-list-item'><%= finish.name.titleize %> | <%= finish.agenda %> | <p class='time-display'><%= finish.formatted_start_time %> for <%= finish.duration_display %></p></li>
