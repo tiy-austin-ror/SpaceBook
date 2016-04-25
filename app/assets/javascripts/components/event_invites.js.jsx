@@ -12,23 +12,36 @@ var EventInvites = React.createClass({
     };
   },
 
+
+  handleSuccess: function (response) {
+        this.setState({
+          filterQuery: '',
+          message: "Success"
+      });
+  },
+
+  handleError: function(response){
+    this.setState({
+      filterQuery: '',
+      message: response.responseJSON.user_id[0]
+    });
+  },
+
   handleSendInvite: function () {
     var that = this;
-    $.ajax({
-      method: "POST",
-      url: "/invites",
-      data: {
-        invite: {
-          user_id: this.state.user_id,
-          event_id: this.props.event_id
-        }
-      }
-    }).done(function(response){
-      that.setState({
-        filterQuery: '',
-        message: response.message
-      });
-    });
+    var response = $.ajax({
+                            method: "POST",
+                            dataType: "json",
+                            url: "/invites",
+                            data: {
+                              invite: {
+                                user_id: this.state.user_id,
+                                event_id: this.props.event_id
+                              }
+                            },
+                            success: that.handleSuccess,
+                            error: that.handleError
+                          });
   },
 
   handleChange: function (event) {

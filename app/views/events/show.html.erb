@@ -21,6 +21,12 @@
   <%= react_component('EventInvites', users: @users, event_id: @event.id) %>
 <% end %>
 
+<div id="join-event">
+  <% if current_user && current_user.invites.where(event_id: @event.id).count.zero? %>
+    <%= link_to "Join Event", "/invites?invite[status]=Accepted&invite[event_id]=#{@event.id}&invite[user_id]=#{current_user.id}", method: :POST, class: "btn btn-default" %>
+  <% end %>
+</div>
+
 <hr />
 <h3>Comments</h3>
 <%= react_component('CommentForm', user: current_user,
@@ -30,5 +36,6 @@
 <hr />
 
 <div class="container" id="comments-container">
+  <%= react_component('CommentsContainer') %>
 
 </div>
