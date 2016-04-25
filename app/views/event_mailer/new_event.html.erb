@@ -1,5 +1,14 @@
-<h1>EventMailer#new_event</h1>
+<p>A new event was created in <%= link_to @room.name %></p>
 
-<p>
-  <%= @greeting %>, find me in app/views/event_mailer/new_event.html.erb
-</p>
+<blockquote>
+  Name: <em><%= @event.name %></em>
+</blockquote>
+<blockquote>
+  When: <%= @event.start_time %>
+</blockquote>
+
+<p>To see more details about the event, please visit the event page at:</p>
+
+<blockquote>
+  <%= link_to "event page", @event %>
+</blockquote>
