@@ -21,6 +21,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+html {
+  position: relative;
+  min-height: 100%;
+}
 
 body {
   padding-top: 6.625em;
@@ -67,4 +71,22 @@ body {
 
 .form-control {
   width: 50%;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #1D3557;
+}
+
+#all_footnotes {
+  background-color: #1D3557;
+  color: white;
+}
+
+#footnotes_debug a {
+  color: #2E6BA3 !important;
 }
