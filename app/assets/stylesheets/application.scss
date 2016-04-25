@@ -119,6 +119,12 @@ body {
   width: 50%;
 }
 
+.form-control-100 {
+  @extend .form-control;
+  width: 100%;
+  height: auto;
+}
+
 footer {
   position: absolute;
   bottom: 0;
