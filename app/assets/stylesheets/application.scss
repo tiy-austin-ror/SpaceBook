@@ -43,6 +43,9 @@ nav.navbar-default {
       color: white;
     }
   }
+  .row {
+    min-width: 12em;
+  }
 }
 
 p {
@@ -64,11 +67,11 @@ body {
   background-color: #457B9D;
   border-bottom: 2px solid $secondary-color;
   padding: 2px 0 2px 0;
-  ul {
+  div {
     border: none;
+          margin-top: .5em;
     a.nav-link {
       font-size: 1.125em;
-      margin-right: 1em;
       font-family: Lato;
       color: white;
       &:hover {
