@@ -10,7 +10,9 @@ var RoomSearch = React.createClass({
 
     filterList: function(e){
        var searchReturn = this.state.allRooms.filter(function (room) {
-         return (room.name.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1);
+         return (room.name.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1 ||
+                 room.capacity == e.target.value ||
+                 room.location.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1 );
        });
        this.setState({
          filteredRooms: searchReturn,
@@ -26,7 +28,8 @@ var RoomSearch = React.createClass({
         method: 'get'
       }).done(function (response) {
         this.setState({
-          allRooms: response
+          allRooms: response,
+          filteredRooms: response
         });
       }.bind(this));
     },
