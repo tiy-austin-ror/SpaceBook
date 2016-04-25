@@ -4,7 +4,7 @@
   <h4 class='pending-events-header'>Pending Event Invitations</h4>
   <ul class='pending-events-dispaly-list'>
     <% @pending.each do |pend| %>
-      <li class='pending-events-dispaly-list-item'><%= pend.name.titleize %> <%= pend.agenda %> <%= pend.formatted_start_time %> <%= pend.formatted_event_duration %></li>
+      <li class='pending-events-dispaly-list-item'><%= pend.name.titleize %> <%= pend.agenda %> | <%= pend.formatted_start_time %> until <%= pend.end_time %></li>
     <% end %>
   </ul>
 </div>
@@ -13,7 +13,7 @@
   <h4 class='pending-events-header'>Pending Created Events</h4>
   <ul class='pending-events-dispaly-list'>
     <% @events.each do |event| %>
-      <li class='pending-events-dispaly-list-item'><%= event.name.titleize %> <%= event.agenda %> <%= event.formatted_start_time %> <%= event.formatted_event_duration %></li>
+      <li class='pending-events-dispaly-list-item'><%= event.name.titleize %> | <%= event.agenda %> | <%= event.formatted_start_time %> until <%= event.end_time %></li>
     <% end %>
   </ul>
 </div>
@@ -22,7 +22,7 @@
   <h4 class='pending-events-header'>Completed events</h4>
   <ul class='pending-events-dispaly-list'>
     <% @finished.each do |finish| %>
-      <li class='pending-events-dispaly-list-item'><%= finish.name.titleize %> <%= finish.agenda %> <%= finish.formatted_start_time %> <%= finish.formatted_event_duration %></li>
+      <li class='pending-events-dispaly-list-item'><%= finish.name.titleize %> | <%= finish.agenda %> | <%= finish.formatted_start_time %> until <%= finish.end_time %></li>
     <% end %>
   <ul class='pending-events-dispaly-list'>
   </ul>
