@@ -19,7 +19,7 @@
 <% if current_user == @event.user %>
   <%= react_component('EventInvites', users: @users, event_id: @event.id) %>
 <% end %>
-<div class="">
+<div id="join-event">
   <% if current_user && current_user.invites.where(event_id: @event.id).count.zero? %>
     <%= link_to "Join Event", campus_room_events_path(@event.campus, @event.room, @event), method: :POST, class: "btn btn-default", remote: true %>
   <% end %>
