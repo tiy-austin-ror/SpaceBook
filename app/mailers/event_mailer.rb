@@ -5,9 +5,11 @@ class EventMailer < ApplicationMailer
   #
   #   en.event_mailer.new_event.subject
   #
-  def new_event
-    @greeting = "Hi"
+  def new_event(event)
+    @event = event
+    @room = @event.room
 
-    mail to: "to@example.org"
+    mail to: @event.user.email,
+         subject: "New event in #{@room.name}"
   end
 end
