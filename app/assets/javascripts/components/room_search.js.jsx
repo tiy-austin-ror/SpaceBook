@@ -1,26 +1,19 @@
-var Rooms = React.createClass({
-  render: function(){
-    return (
-      <ul>
-      {
-        this.props.items.map(function(room) {
-          return <li key={name}>{name}</li>
-        })
-       }
-      </ul>
-    )
-  }
-});
+// var Rooms = React.createClass({
+//   render: function(){
+//     return (
+//       <ul>
+//       {
+//         this.props.items.map(function(room) {
+//           return <li key={name}>{name}</li>
+//         })
+//        }
+//       </ul>
+//     )
+//   }
+// });
 
 var RoomSearch = React.createClass({
 
-    filterList: function(e){
-       var searchReturn = this.state.initialItems;
-       var searchReturn = this.state.all_rooms.filter(function (room) {
-         return (room.name.toLowerCase().indexOf(e.target.value.toLowerCase()) > -1);
-       });
-       this.setState({rooms: searchReturn});
-     },
 
     getInitialState: function(){
       return {
@@ -30,9 +23,18 @@ var RoomSearch = React.createClass({
       };
     },
 
+    filterList: function(e){
+       var allRooms = this.state.initialItems;
+       var searchReturn = this.state.allRooms.filter(function (room) {
+         return (room.name.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1);
+       });
+       this.setState({rooms: searchReturn});
+     },
+
+
     componentDidMount: function () {
       $.ajax({
-        url: 'api/campuses/:campus_id/rooms',
+        url: '/rooms.json',
         dataType: 'JSON',
         method: 'get'
       }).done(function (response) {
@@ -47,7 +49,7 @@ var RoomSearch = React.createClass({
       return (
         <section>
           <div>
-            <input className='container' type='text'
+            <input className='form-control' type='text'
               onChange={this.filterList} value={this.state.search}
               placeholder='Type Here' />
           </div>
@@ -74,7 +76,3 @@ var RoomSearch = React.createClass({
       );
     },
 });
-ReactDOM.render(
-  <RoomSearch url="/api/campuses/:campus_id/rooms" pollInterval={2000} />,
-  document.getElementById('rooms')
-);
