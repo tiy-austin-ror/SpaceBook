@@ -1,5 +1,4 @@
 class CampusesController < ApplicationController
-before_action :admin_validation, only: [:create, :update, :destroy]
 before_action :company_validation, except: [:index]
 before_action :set_campus, only: [:show, :update, :destroy]
   def index

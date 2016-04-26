@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  rescue_from ForbiddenAuth, with: :forbidden_auth
 
   private
 
@@ -14,26 +13,11 @@ class ApplicationController < ActionController::Base
               bad_input: {status: 400, message: "Invalid input "},
              forbidden: {status:403, message: "Forbbiden, must supply valid user credentials"}}
 
-  def admin_validation
-    raise ForbiddenAuth unless current_user && current_user.admin
-  end
 
   def company_validation
     campus = Campus.find(params[:campus_id]) unless params[:campus_id].nil?
     campus = Campus.find(params[:id]) if campus.nil?
     raise ForbiddenAuth unless current_user.company == campus.company
-  end
-
-  def forbidden_auth
-    respond_to do |format|
-      format.html do
-        flash[:danger] = API_MESSAGE[:forbidden][:message]
-        redirect_to "/sign_in"
-      end
-      format.json do
-        render json: API_MESSAGE[:bad_input], status: 400
-      end
-    end
   end
 
   def save_for_html_json(object, render_string)
