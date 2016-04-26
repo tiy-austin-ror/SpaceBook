@@ -12,3 +12,7 @@ Given(/^I already have an account and a room$/) do
   CampusUser.create!(user_id: user.id, campus_id: campus.id)
   room = Room.create!(name:Faker::Name.name,location:Faker::Address.city, capacity: rand(10..30), picture_url: Faker::Avatar.image, events_count:0, average_capacity_use: rand(1..100), campus_id: campus.id)
 end
+
+When(/^I click the room link$/) do
+  find("#room-name").find('a').click
+end
