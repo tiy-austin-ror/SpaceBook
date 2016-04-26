@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'invite_codes/create'
 
   resources :users
   resources :invites
@@ -15,7 +14,6 @@ Rails.application.routes.draw do
   post 'invite_codes' => "invite_codes#create"
   get 'admin' => "users#admin_dashboard"
   root 'dashboard#home'
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
