@@ -1,6 +1,6 @@
 class Invite < ActiveRecord::Base
   def self.confirmation
-    ['Accepted', 'Rejected', 'Pending']
+    ['Accepted', 'Rejected', 'Pending', 'Accepted[remote]']
   end
 
   belongs_to :user

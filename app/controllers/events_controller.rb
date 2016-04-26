@@ -34,6 +34,7 @@ before_action :set_event, only: [:show]
     @event = @room.events.new(event_params.merge(user_id: current_user.id))
     EventMailer.new_event(@event).deliver_now
     save_for_html_json(@event, "new") {campus_room_event_path(@campus, @room, @event)}
+    #text_schedule(@event)  Don't enable this, it will text me everytime an event is added.
   end
 
   def update
@@ -46,6 +47,20 @@ before_action :set_event, only: [:show]
   end
 
   private
+
+  def text_schedule(event)
+    account_sid = '#'
+    auth_token = '#'
+      # = Placeholders, currently keeping these off for security.
+    @client = Twilio::REST::Client.new account_sid, auth_token
+
+    @client.account.messages.create({
+    	:from => '+17372104484',
+    	:to => '15126275853',
+    	:body => 'You have an event scheduled for ' + (event.formatted_start_time) + '. ' +
+                'It is in ' + event.room.name + ' at ' + event.room.location + ' and lasts for ' + (event.formatted_event_duration * 15).to_s + ' minutes.',
+    })
+  end
 
 
   def set_event
