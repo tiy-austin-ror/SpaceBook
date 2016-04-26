@@ -62,4 +62,13 @@ class Event < ActiveRecord::Base
   def get_total_participation
     invites.where(status: "Accepted").count + invites.where(status:"Accepted[remote]").count
   end
+
+  def self.to_csv(query)
+    CSV.generate do |csv|
+      csv << column_names
+      where(query).each do |event|
+        csv << event.attributes.values_at(*column_names)
+      end
+    end
+  end
 end

@@ -1,3 +1,5 @@
+require 'csv'
+
 class EventsController < ApplicationController
 before_action :set_campus_room_event, only: [:edit, :update, :destroy]
 before_action :set_campus_room, only: [:create, :new]
@@ -10,12 +12,14 @@ before_action :set_event, only: [:show]
       format.pdf do
         render pdf: 'event-report', disable_external_links: true, template: 'events/index.html.erb'
       end
+      format.csv do
+        render text: Event.to_csv(room: params[:room_id])
+      end
     end
   end
 
   def show
     #TODO Fetching all users will have to modify to all users in company
-
     @users = User.all
     @event = Event.find(params[:id])
     @room = @event.room
@@ -27,9 +31,7 @@ before_action :set_event, only: [:show]
       format.pdf do
         render pdf: 'event-report', template: 'events/show.html.erb'
       end
-      format.csv do
-        render csv: @rooms.to_csv
-      end
+
       format.json { render json: {comments: @comments,
                                   invites: @invites} }
     end
