@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'companies/show'
+
+  get 'companies/edit'
+
   get 'invite_codes/create'
 
   resources :users
