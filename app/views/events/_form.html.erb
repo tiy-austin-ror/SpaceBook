@@ -21,6 +21,9 @@
       <%= f.label :agenda %><br>
       <%= f.text_field :agenda, class: "form-control" %><br>
 
+      <%= f.label :allow_remote, "Allow remote attendance?" %>
+      <%= f.check_box :allow_remote %><br>
+
       <%= f.submit "Submit", class: "btn btn-default btn-primary" %>
   <% end %>
 </div>

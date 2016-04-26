@@ -6,7 +6,7 @@ Feature: Signing In/Out
       And I fill in "Email" with "test_admin@spacebook.com"
       And I fill in "Password" with "password"
       And I press "Sign in"
-      Then I should see "Welcome: Admin User"
+      Then I should see "click an event to edit it:"
 
     Scenario: A User Signs In
       Given I have an existing account
@@ -47,7 +47,7 @@ Feature: Signing In/Out
         And I fill in "Password" with "password"
         And I fill in "Password confirmation" with "password"
         And I press "Create User"
-        Then I should see "Cucumber Tester"
+        Then I should see "SpaceBook"
 
         Scenario: Creating An Uninvited User
           When I go to the sign up path

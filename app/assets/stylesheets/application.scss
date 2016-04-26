@@ -65,6 +65,10 @@ body {
   background-color: #CCDBDC;
 }
 
+.campus-header {
+  margin: 2em;
+}
+
 .pull-center {
   margin: 0;
   text-align: center;
@@ -155,6 +159,20 @@ body {
   @extend .form-control;
   width: 100%;
   height: auto;
+}
+
+.style-custome {
+    width:70%;
+    height: auto;
+}
+
+.campus-room {
+  text-align: center;
+
+}
+
+.campus-description-padding {
+  padding-top: 25px;
 }
 
 footer {

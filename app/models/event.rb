@@ -50,4 +50,16 @@ class Event < ActiveRecord::Base
   def good_time_range?
     room.event_overlap?(self)
   end
+
+  def get_physical_participation
+    invites.where(status: "Accepted").count
+  end
+
+  def get_remote_participation
+    invites.where(status: "Accepted[remote]").count
+  end
+
+  def get_total_participation
+    invites.where(status: "Accepted").count + invites.where(status:"Accepted[remote]").count
+  end
 end
