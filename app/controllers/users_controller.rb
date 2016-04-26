@@ -24,6 +24,7 @@ class UsersController < ApplicationController
     else
       if params.fetch(:user).fetch(:password) == params.fetch(:user).fetch(:password_confirmation)
         save_for_html_json(@user, "new") do
+          @user.update(company_id: @user_code.campus.company.id)
           CampusUser.create(campus_id: @user_code.campus_id, user_id: @user.id)
           @user_code.destroy
           user_path(@user)

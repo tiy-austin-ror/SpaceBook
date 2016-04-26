@@ -20,32 +20,43 @@ valve.save!
 
 admin = User.new(admin: true, username: "admin", name: Faker::Name.name, company_id: google.id, email:"admin@spacebook.com", phone_num: Faker::PhoneNumber.phone_number, profile_pic: Faker::Avatar.image, password:"password")
 admin.save!
-admin = User.new(admin: true, username: "admin", name: Faker::Name.name, company_id: valve.id, email:"vadmin@spacebook.com", phone_num: Faker::PhoneNumber.phone_number, profile_pic: Faker::Avatar.image, password:"password")
-admin.save!
+
 
 not_admin = User.new(admin: false, username: "not_admin", name: Faker::Name.name, company_id: google.id, email:"not_admin@spacebook.com", phone_num: Faker::PhoneNumber.phone_number, password:"password")
 not_admin.save!
-not_admin = User.new(admin: false, username: "not_admin", name: Faker::Name.name, company_id: valve.id, email:"vnot_admin@spacebook.com", phone_num: Faker::PhoneNumber.phone_number, password:"password")
-not_admin.save!
 
-5.times do
+
+4.times do
   campus = Campus.new(company_id: google.id, city:Faker::Address.city, state:Faker::Address.state, zip:Faker::Address.zip, name:Faker::Name.name, picture_url: Faker::Avatar.image)
   campus.save!
 end
 
-5.times do
-  campus = Campus.new(company_id: valve.id, city:Faker::Address.city, state:Faker::Address.state, zip:Faker::Address.zip, name:Faker::Name.name, picture_url: Faker::Avatar.image)
-  campus.save!
-end
-
-campus_user = CampusUser.new(user_id: admin.id, campus_id: rand(1..Campus.count))
+campus_user = CampusUser.new(user_id: admin.id, campus_id: google.campuses.sample.id)
 campus_user.save!
 
 campus_user = CampusUser.new(user_id: not_admin.id, campus_id: 1)
 campus_user.save!
 
 
-50.times do
+admin = User.new(admin: true, username: "admin", name: Faker::Name.name, company_id: valve.id, email:"vadmin@spacebook.com", phone_num: Faker::PhoneNumber.phone_number, profile_pic: Faker::Avatar.image, password:"password")
+admin.save!
+
+not_admin = User.new(admin: false, username: "not_admin", name: Faker::Name.name, company_id: valve.id, email:"vnot_admin@spacebook.com", phone_num: Faker::PhoneNumber.phone_number, password:"password")
+not_admin.save!
+
+4.times do
+  campus = Campus.new(company_id: valve.id, city:Faker::Address.city, state:Faker::Address.state, zip:Faker::Address.zip, name:Faker::Name.name, picture_url: Faker::Avatar.image)
+  campus.save!
+end
+
+campus_user = CampusUser.new(user_id: admin.id, campus_id: valve.campuses.sample.id)
+campus_user.save!
+
+campus_user = CampusUser.new(user_id: not_admin.id, campus_id: 1)
+campus_user.save!
+
+
+200.times do
   company = Company.all.sample
   user = User.new(admin: false, company_id: company.id, username: Faker::Internet.user_name, name: Faker::Name.name, email:Faker::Internet.email, phone_num: Faker::PhoneNumber.phone_number, profile_pic: Faker::Avatar.image, password:"password")
   user.save!
