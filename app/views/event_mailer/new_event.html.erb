@@ -2,8 +2,8 @@
         :controller => "rooms",
         :action => "show",
         :only_path => false,
-        :campus_id => @room.campus.id
-        :id => @room.id
+        :campus_id => @room.campus.id,
+        :id => @room.id,
         :host => "example.com" %>.</p>
 
 <blockquote>
@@ -17,7 +17,7 @@
         :controller => "events",
         :action => "show",
         :only_path => false,
-        :campus_id => @room.campus.id
-        :room_id => @event.room.id
-        :id => @event.id
+        :campus_id => @room.campus.id,
+        :room_id => @event.room.id,
+        :id => @event.id,
         :host => "example.com" %>.</p>
