@@ -32,9 +32,17 @@ before_action :set_event, only: [:show]
 
   def create
     @event = @room.events.new(event_params.merge(user_id: current_user.id))
-    EventMailer.new_event(@event).deliver_now
-    save_for_html_json(@event, "new") {campus_room_event_path(@campus, @room, @event)}
-    #text_schedule(@event)  Don't enable this, it will text me everytime an event is added.
+    respond_to do |format|
+      if @event.save
+        EventMailer.new_event(@event).deliver_now
+        #TODO text_schedule(@event)  Don't enable this, it will text me everytime an event is added.
+        format.html { redirect_to campus_room_event_path(@campus, @room, @event) }
+        format.json { render json: @event }
+      else
+        format.html { render :new }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def update
