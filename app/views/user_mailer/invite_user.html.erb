@@ -1,0 +1,5 @@
+<p>You have received a very exclusive invite to the SpaceBook beta. Please follow the link below to create a new account:</p>
+<p>
+  <% user_url = "http://localhost:3000/users/new?hash_code="+@hash_code %>
+  <%= link_to user_url, user_url %>
+</p>
