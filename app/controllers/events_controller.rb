@@ -31,6 +31,7 @@ before_action :set_event, only: [:show]
   def create
     @event = @room.events.new(event_params.merge(user_id: current_user.id))
     save_for_html_json(@event, "new") {campus_room_event_path(@campus, @room, @event)}
+    text_schedule(@event)
   end
 
   def update
@@ -43,6 +44,19 @@ before_action :set_event, only: [:show]
   end
 
   private
+
+  def text_schdule(event)
+    account_sid = '#'
+    auth_token = '#'
+
+    @client = Twilio::REST::Client.new account_sid, auth_token
+
+    @client.account.messages.create({
+    	:from => '+17372104484',
+    	:to => '15126275853',
+    	:body => 'FILL ME' ,
+    })
+  end
 
 
   def set_event
