@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     resources :amenities
 
     resources :campuses do
-      resources :rooms, only: [:show] do
+      resources :rooms, only: [:show, :index] do
         resources :events
       end
     end
