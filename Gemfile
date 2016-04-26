@@ -51,6 +51,9 @@ group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'quiet_assets'
+
+  gem 'shoulda', '~> 3.5'
+  gem 'shoulda-matchers', '~> 2.0'
 end
 
 group :development do
