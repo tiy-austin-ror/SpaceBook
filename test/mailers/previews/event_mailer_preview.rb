@@ -6,5 +6,4 @@ class EventMailerPreview < ActionMailer::Preview
     event = Event.last
     EventMailer.new_event(event)
   end
-
 end

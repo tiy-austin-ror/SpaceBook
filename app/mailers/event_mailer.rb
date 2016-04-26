@@ -1,5 +1,4 @@
 class EventMailer < ApplicationMailer
-
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
@@ -8,8 +7,8 @@ class EventMailer < ApplicationMailer
   def new_event(event)
     @event = event
     @room = @event.room
+    @user = @event.user
 
-    mail to: @event.user.email,
-         subject: "New event in #{@room.name}"
+    mail to: @user.email, subject: "Test email"
   end
 end

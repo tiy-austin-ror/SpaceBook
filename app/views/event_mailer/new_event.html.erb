@@ -1,4 +1,4 @@
-<p>A new event was created in <%= link_to @room.name %></p>
+<p>A new event was created in <%= @room.name %></p>
 
 <blockquote>
   Name: <em><%= @event.name %></em>
@@ -7,8 +7,4 @@
   When: <%= @event.start_time %>
 </blockquote>
 
-<p>To see more details about the event, please visit the event page at:</p>
-
-<blockquote>
-  <%= link_to "event page", @event %>
-</blockquote>
+<p>To see more details about the event, please visit the event page.</p>
