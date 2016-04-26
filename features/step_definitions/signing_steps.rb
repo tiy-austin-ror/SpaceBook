@@ -10,3 +10,7 @@ end
 When(/^I go to the invitation sign up page$/) do
   visit('/users/new?hash_code=123')
 end
+
+When(/^I go to the sign up path$/) do
+  visit('/users/new')
+end

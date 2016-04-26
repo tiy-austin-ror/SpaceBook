@@ -37,9 +37,20 @@ Feature: Signing In/Out
         And I click "Sign out"
         Then I should see "Forgot password?"
 
-        Scenario: Creating A User
-          Given I have an invitation
-          When I go to the invitation sign up page
+      Scenario: Creating An Invited User
+        Given I have an invitation
+        When I go to the invitation sign up page
+        And I fill in "Username" with "testcumber"
+        And I fill in "Email" with "testcumber@spacebook.com"
+        And I fill in "Name" with "Cucumber Tester"
+        And I fill in "Phone num" with "5555555555"
+        And I fill in "Password" with "password"
+        And I fill in "Password confirmation" with "password"
+        And I press "Create User"
+        Then I should see "Cucumber Tester"
+
+        Scenario: Creating An Uninvited User
+          When I go to the sign up path
           And I fill in "Username" with "testcumber"
           And I fill in "Email" with "testcumber@spacebook.com"
           And I fill in "Name" with "Cucumber Tester"
@@ -47,4 +58,4 @@ Feature: Signing In/Out
           And I fill in "Password" with "password"
           And I fill in "Password confirmation" with "password"
           And I press "Create User"
-          Then I should see "Cucumber Tester"
+          Then I should see "Invalid invite link. This is a very exclusive app, you must be invited first!!"
