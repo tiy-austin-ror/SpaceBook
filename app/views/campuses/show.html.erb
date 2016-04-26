@@ -2,6 +2,8 @@
 </br>
 </br>
 </br>
+<%= react_component('RoomSearch', rooms: @rooms, campusID: params[:campus_id]) %>
+
 <h3>
   <strong>Campus:</strong>
   <%= @campus.name %>
@@ -10,7 +12,7 @@
 
 
     <div><%= link_to 'Create New Room', new_campus_room_path(@campus) %></div>
-  
+
   <div>
     <% @rooms.each do |room| %>
           <div>
