@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @hash_code = params[:hash_code]
   end
 
   def create

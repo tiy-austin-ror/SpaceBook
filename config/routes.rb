@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'invite_codes/create'
+
   resources :users
   resources :invites
   resources :comments

@@ -1,5 +1,6 @@
 
 <%= bootstrap_form_for @user do |f| %>
+  <%= f.text_field :invite_code, value: @hash_code %>
   <%= f.text_field :username %>
   <%= f.text_field :email %>
   <%= f.text_field :name %>
