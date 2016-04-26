@@ -27,6 +27,9 @@ before_action :set_event, only: [:show]
       format.pdf do
         render pdf: 'event-report', template: 'events/show.html.erb'
       end
+      format.csv do
+        render csv: @rooms.to_csv
+      end
       format.json { render json: {comments: @comments,
                                   invites: @invites} }
     end
