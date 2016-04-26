@@ -14,14 +14,14 @@
     <tbody>
       <% @events.each do |event| %>
       <tr>
-        <td><%= event.name %></td>
+        <td><%= link_to "#{event.name}", campus_room_event_path(event.campus, event.room, event), class: "table-link" %></td>
         <td><%= event.start_time %></td>
+        <td><%= event.end_time %></td>
         <td><%= event.description %></td>
         <td><%= event.room.name %></td>
         <td><%= event.user.username %></td>
-        <td><%= link_to 'Show', campus_room_event_path(event.campus, event.room, event), class: "btn btn-default" %></td>
-        <td><%= link_to 'Edit', edit_campus_room_event_path(event.campus, event.room, event), class: "btn btn-default" %></td>
-        <td><%= link_to 'Destroy', campus_room_event_path(event.campus, event.room, event), class: "btn btn-default", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit Event Details', edit_campus_room_event_path(event.campus, event.room, event), class: "btn btn-default" %></td>
+        <td><%= link_to 'Delete Event', campus_room_event_path(event.campus, event.room, event), class: "btn btn-default", method: :delete, data: { confirm: 'Are you sure?' } %></td>
        </tr>
        <% end %>
       </tr>
