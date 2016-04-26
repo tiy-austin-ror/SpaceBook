@@ -16,7 +16,8 @@ class ApplicationController < ActionController::Base
 
   def company_validation
     campus = Campus.find(params[:campus_id]) unless params[:campus_id].nil?
-    campus = Campus.find(params[:id]) if campus.nil?
+    campus = Campus.find(params[:id]) if campus.nil? && params[:id].present?
+    return if current_user.nil? || campus.nil?
     raise ForbiddenAuth unless current_user.company == campus.company
   end
 
