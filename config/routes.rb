@@ -1,74 +1,59 @@
 Rails.application.routes.draw do
-  get 'invite_codes/create'
 
-  resources :users
-  resources :invites
-  resources :comments
-  resources :amenities
+  constraints Clearance::Constraints::SignedIn.new { |user| user.admin? } do
+    root 'users#admin_dashboard', as: :admin_root
 
-  resources :campuses do
-    resources :rooms do
-      resources :events
+    resources :campuses do
+      resources :rooms do
+        resources :events
+      end
     end
   end
 
-  post 'invite_codes' => "invite_codes#create"
-  get 'admin' => "users#admin_dashboard"
-  root 'dashboard#home'
+  constraints Clearance::Constraints::SignedIn.new do
 
+    delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
+    resources :users
+    resources :invites
+    resources :comments
+    resources :amenities
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+    resources :campuses do
+      resources :rooms, only: [:show, :index] do
+        resources :events
+      end
+    end
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+    post 'invite_codes' => "invite_codes#create"
+    get 'admin' => "users#admin_dashboard"
+    root 'dashboard#home'
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+    resources :passwords, controller: "clearance/passwords", only: [:create, :new]
+    resource :session, controller: "clearance/sessions", only: [:create]
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+    resources :users, controller: "clearance/users", only: [:create] do
+      resource :password,
+        controller: "clearance/passwords",
+        only: [:create, :edit, :update]
+    end
+  end
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  constraints Clearance::Constraints::SignedOut.new do
+    resources :passwords, controller: "clearance/passwords", only: [:create, :new]
+    resource :session, controller: "clearance/sessions", only: [:create]
 
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+    resources :users, only: [:new, :create]
 
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
+    resources :users, controller: "clearance/users", except: [:create] do
+      resource :password,
+        controller: "clearance/passwords",
+        only: [:create, :edit, :update]
+    end
 
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
+    get "/sign_in" => "clearance/sessions#new", as: "sign_in"
+    get "/sign_up" => "clearance/users#new", as: "sign_up"
 
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
+    root "clearance/sessions#new", as: :guest_root
+  end
 
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 end

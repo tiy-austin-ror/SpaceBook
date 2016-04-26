@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :admin_validation, only: [:admin_dashboard]
   before_action :get_user, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -17,7 +16,6 @@ class UsersController < ApplicationController
   def create
     @user_code = InviteCode.find_by(hash_code: params[:hash_code])
     @user = User.new(user_params)
-
     if @user_code.nil?
       flash.now[:danger] = "Invalid invite link. This is a very exclusive app, you must be invited first!!"
       render "new"
@@ -26,7 +24,7 @@ class UsersController < ApplicationController
         save_for_html_json(@user, "new") do
           CampusUser.create(campus_id: @user_code.campus_id, user_id: @user.id)
           @user_code.destroy
-          user_path(@user)
+          guest_root_url
         end
       else
         flash[:danger] = "Passwords must match"
@@ -58,6 +56,6 @@ private
   end
 
   def user_params
-    params.require(:user).permit(:username, :password, :password_confirmation, :name, :phone_num, :profile_pic, :email)
+    params.require(:user).permit(:username, :email, :password, :password_confirmation, :name, :phone_num, :profile_pic)
   end
 end
