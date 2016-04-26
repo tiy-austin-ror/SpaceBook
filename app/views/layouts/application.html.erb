@@ -8,19 +8,35 @@
 </head>
 <body>
 
-<% if signed_in? %>
-     Signed in as: <%= current_user.email %>
-     <%= button_to 'Sign out', sign_out_path, method: :delete %>
-   <% else %>
-     <%= link_to 'Sign in', sign_in_path %>
- <% end %>
- <% flash.each do |message_type, message| %>
-   <div class="alert alert-<%= message_type%>" id = "flash">
-     <%= message %>
-   </div>
- <% end %>
+  <nav class='navbar navbar-default navbar-fixed-top'>
+    <div class="container-fluid">
+      <%= link_to "SpaceBook", root_path, class: "navbar-brand" %>
+          <div class="nav navbar-nav navbar pull-right row">
+            <% if signed_in? %>
+              <div class= "col-xs-3 col-xs-offset-1"> <%= link_to "Rooms", campus_rooms_path(current_user.campus), class: "nav-link" %> </div>
+              <div class= "col-xs-3"> <%= link_to "Events", campus_path(current_user.campus), class: "nav-link" %> </div>
+              <div class= "col-xs-5"> <%= link_to 'Sign out', sign_out_path, method: :delete, class: "nav-link" %> </div>
+            <% else %>
+              <div class= "col-xs-6"> <%= link_to "Sign In", sign_in_path, class: "nav-link" %> </div>
+              <div class= "col-xs-6"> <%= link_to "Sign Up", new_user_path, class: "nav-link" %> </div>
+            <% end %>
+          </ul>
+      </div>
+    </nav>
 
-<%= yield %>
+  <div class="container">
 
+   <% flash.each do |message_type, message| %>
+     <div class="alert alert-<%= message_type%>" id = "flash">
+       <%= message %>
+     </div>
+   <% end %>
+
+  <%= yield %>
+
+  </div>
+  <footer>
+    <div id="footnotes_holder"></div>
+  </footer>
 </body>
 </html>

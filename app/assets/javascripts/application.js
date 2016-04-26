@@ -18,3 +18,13 @@
 //= require react_ujs
 //= require components
 //= require_tree .
+
+
+var ready;
+var refreshComments;
+ready = function() {
+
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);

@@ -27,6 +27,7 @@ gem 'annotate'
 gem "rails-erd"
 gem "faker"
 gem 'rails-footnotes', '~> 4.0'
+gem 'bootstrap_form'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

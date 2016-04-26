@@ -17,11 +17,11 @@
         <td><%= event.name %></td>
         <td><%= event.start_time %></td>
         <td><%= event.description %></td>
-        <td><%= event.room %></td>
-        <td><%= event.user %></td>
-        <td><%= link_to 'Show', campus_room_event_path, class: "btn btn-default" %></button></td>
-        <td><%= link_to 'Edit', edit_campus_room_event_path(event), class: "btn btn-default" %></td>
-        <td><%= link_to 'Destroy', campus_room_event_path, class: "btn btn-default", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= event.room.name %></td>
+        <td><%= event.user.username %></td>
+        <td><%= link_to 'Show', campus_room_event_path(event.campus, event.room, event), class: "btn btn-default" %></td>
+        <td><%= link_to 'Edit', edit_campus_room_event_path(event.campus, event.room, event), class: "btn btn-default" %></td>
+        <td><%= link_to 'Destroy', campus_room_event_path(event.campus, event.room, event), class: "btn btn-default", method: :delete, data: { confirm: 'Are you sure?' } %></td>
        </tr>
        <% end %>
       </tr>

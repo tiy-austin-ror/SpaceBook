@@ -1,9 +1,11 @@
 class InvitesController < ApplicationController
 
   def create
-    get_invite
-    @invite.create
-    render json: @invite
+    @invite = Invite.new(invite_params)
+    @event = Event.find(params[:invite][:event_id])
+    @room = @event.room
+    @campus = @event.campus
+    save_for_html_json(@invite, "/events/show") { :back }
   end
 
   def update
