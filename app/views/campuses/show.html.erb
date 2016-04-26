@@ -1,47 +1,42 @@
-
-<div class="container">
-  <p id="notice"><%= notice %></p>
-</div>
-
-</br>
-
-<div class="row">
-  <div class="pending-events-display col-md-8 col-md-offset-1">
-    <h3>
+<div class='row pending-events-display'>
+  <div class='col-sm-8 col-sm-offset-1'>
+    <h3 class="campus-header">
       <strong>Campus:</strong>
       <%= @campus.name %>
     </h3>
-    <div class="col-md-2 col-md-offset-1">
-        <img src="<%= @campus.picture_url%>"></img>
-    </div>
-      <%= link_to 'Create New Room', new_campus_room_path(@campus) %>
   </div>
-
+  <div class='col-sm-2 col-sm-offset-1'>
+    <img class="style-custome" src="<%= @campus.picture_url%>" />
+  </div>
 </div>
-
-
-
-
-
-
-
-
-
+<% @rooms.each_slice(2) do |rooms| %>
   <div class="row">
-
-    <% @rooms.each do |room| %>
-          <div class="pending-events-display col-sm-5 col-md-offset-1"
-            <h4>Room: <%= room.name %></h4>
-            <img src="<%= room.picture_url %>"></img>
-
-            <p>Location: <%= room.location %></p>
-            <p>Capacity: <%= room.capacity %></p>
-            <p>Events Count: <%= room.events_count %></p>
-            <p>Average Capacity Use: <%= room.average_capacity_use %></p>
-            <p><%= link_to 'Show', campus_room_path(@campus, room.id) %></p>
-
+    <div class='col-sm-12'>
+      <% rooms.each_with_index do |room, index| %>
+        <div class="pending-events-display campus-room col-sm-5 col-sm-offset-<%= 2 if index == 1 %>">
+          <h3><%= link_to room.name %></h3>
+          <%=link_to image_tag (room.picture_url) %>
+          <div class="row campus-description-padding">
+            <div class="col-sm-6">
+              <%= room.location %>
+            </div>
+            <div class="col-sm-6">
+              <p>capacity <%= room.capacity %></p>
+            </div>
           </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <p><%= room.events_count %> Events</p>
+            </div>
+            <div class="col-sm-6">
+              <p>Avg Use <%= room.average_capacity_use %></p>
+            </div>
+          </div>
+        </div>
       <% end %>
+    </div>
   </div>
-
-<%= link_to 'Back', campuses_path %>
+<% end %>
+<div class='row'>
+  <%= link_to 'Back', campuses_path %>
+</div>

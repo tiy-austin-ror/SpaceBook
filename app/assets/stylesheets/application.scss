@@ -65,6 +65,10 @@ body {
   background-color: #CCDBDC;
 }
 
+.campus-header {
+  margin: 2em;
+}
+
 .pull-center {
   margin: 0;
   text-align: center;
@@ -149,11 +153,19 @@ body {
   height: auto;
 }
 
-img.custom-style.resize{
-    width:20%; 
+.style-custome {
+    width:70%;
     height: auto;
 }
 
+.campus-room {
+  text-align: center;
+
+}
+
+.campus-description-padding {
+  padding-top: 25px;
+}
 
 footer {
   position: absolute;
