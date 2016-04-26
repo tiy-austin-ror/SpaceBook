@@ -13,6 +13,8 @@
     <% if @event.is_private? %>
       <p><strong>Invite Type:</strong> <%= @event.invite_type %>
     <% end %>
+    <p><strong> Allow Remote Attendance: </strong> <%= if @event.allow_remote then "Yes" else "No" end %> </p>
+
     <p><strong>Room Name:</strong> <%= @event.room.name.titleize %></p>
     <p><strong>Event created by:</strong></p>
     <p><%= @event.user.full_name.titleize %></p>

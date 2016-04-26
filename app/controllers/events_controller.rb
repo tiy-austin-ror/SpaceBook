@@ -90,7 +90,7 @@ before_action :set_event, only: [:show]
     params.require(:event).permit(:name, :description,
                                   :start_time, :duration,
                                   :private, :open_invite,
-                                  :room_id, :user_id, :agenda )
+                                  :room_id, :user_id, :agenda, :allow_remote )
   end
 
 
