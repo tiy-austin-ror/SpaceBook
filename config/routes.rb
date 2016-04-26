@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
 
-
   constraints Clearance::Constraints::SignedIn.new { |user| user.admin? } do
     root 'users#admin_dashboard', as: :admin_root
+
+    resources :campuses do
+      resources :rooms do
+        resources :events
+      end
+    end
   end
 
   constraints Clearance::Constraints::SignedIn.new do
@@ -22,7 +27,7 @@ Rails.application.routes.draw do
     resources :amenities
 
     resources :campuses do
-      resources :rooms do
+      resources :rooms, only: [:show] do
         resources :events
       end
     end
