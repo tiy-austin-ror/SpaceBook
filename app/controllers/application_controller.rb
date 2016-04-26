@@ -18,6 +18,11 @@ class ApplicationController < ActionController::Base
     raise ForbiddenAuth unless current_user && current_user.admin
   end
 
+  def company_validation
+    campus = Campus.find(params[:campus_id]) unless params[:campus_id].nil?
+    campus = Campus.find(params[:id]) if campus.nil?
+    raise ForbiddenAuth unless current_user.company == campus.company
+  end
 
   def forbidden_auth
     respond_to do |format|

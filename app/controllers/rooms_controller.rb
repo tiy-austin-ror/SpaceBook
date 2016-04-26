@@ -1,4 +1,5 @@
 class RoomsController < ApplicationController
+  before_action :company_validation
   before_action :admin_validation, only: [:new, :edit, :create, :update, :destroy]
   before_action :get_campus, only: [:new, :create]
   before_action :get_room, only: [:show ]
@@ -24,6 +25,7 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new(room_params)
     save_for_html_json(@room, "new") {campus_room_path(@campus, @room)}
+    @room.update(company_id: @campus.company.id)
   end
 
   def edit
