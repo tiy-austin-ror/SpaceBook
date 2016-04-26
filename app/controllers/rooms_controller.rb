@@ -25,7 +25,6 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new(room_params)
     save_for_html_json(@room, "new") {campus_room_path(@campus, @room)}
-    @room.update(company_id: @campus.company.id)
   end
 
   def edit
