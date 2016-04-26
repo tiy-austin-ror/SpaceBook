@@ -31,7 +31,7 @@ before_action :set_event, only: [:show]
   def create
     @event = @room.events.new(event_params.merge(user_id: current_user.id))
     save_for_html_json(@event, "new") {campus_room_event_path(@campus, @room, @event)}
-    #text_schedule(@event)
+    #text_schedule(@event)  Don't enable this, it will text me everytime an event is added.
   end
 
   def update
