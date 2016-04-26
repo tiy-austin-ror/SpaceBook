@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get 'companies/show'
+  get 'company' => 'companies#show'
 
-  get 'companies/edit'
+  get 'company/edit' => 'companies#edit'
 
   get 'invite_codes/create'
 
