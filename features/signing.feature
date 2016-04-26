@@ -47,7 +47,7 @@ Feature: Signing In/Out
         And I fill in "Password" with "password"
         And I fill in "Password confirmation" with "password"
         And I press "Create User"
-        Then I should see "Cucumber Tester"
+        Then I should see "SpaceBook"
 
         Scenario: Creating An Uninvited User
           When I go to the sign up path
