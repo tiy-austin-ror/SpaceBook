@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :admin_validation, only: [:admin_dashboard]
+  # before_action :admin_validation, only: [:admin_dashboard]
   before_action :get_user, only: [:show, :edit, :update, :destroy]
 
   def index

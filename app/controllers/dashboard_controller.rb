@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-before_action :require_login
+# before_action :require_login
   def home
     @user = current_user
     @events = @user.upcoming_events.order("start_time")
