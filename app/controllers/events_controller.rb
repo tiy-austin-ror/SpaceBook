@@ -5,6 +5,12 @@ before_action :set_event, only: [:show]
 
   def index
     @events = Event.where(room: params[:room_id])
+    respond_to do |format|
+      format.html { }
+      format.pdf do
+        render pdf: 'event-report', template: 'events/index.html.erb'
+      end
+    end
   end
 
   def show
@@ -18,6 +24,9 @@ before_action :set_event, only: [:show]
     @invites = @event.invites.order(created_at: :desc)
     respond_to do |format|
       format.html { }
+      format.pdf do
+        render pdf: 'event-report', template: 'events/show.html.erb'
+      end
       format.json { render json: {comments: @comments,
                                   invites: @invites} }
     end
