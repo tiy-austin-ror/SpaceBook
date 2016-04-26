@@ -8,6 +8,9 @@
   <img src="<%= @campus.picture_url %>"></img>
 </h3>
 
+
+    <div><%= link_to 'Create New Room', new_campus_room_path(@campus) %></div>
+  
   <div>
     <% @rooms.each do |room| %>
           <div>

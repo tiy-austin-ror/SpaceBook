@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'invite_codes/create'
+
   resources :users
   resources :invites
   resources :comments
@@ -10,6 +12,7 @@ Rails.application.routes.draw do
     end
   end
 
+  post 'invite_codes' => "invite_codes#create"
   get 'admin' => "users#admin_dashboard"
   root 'dashboard#home'
 

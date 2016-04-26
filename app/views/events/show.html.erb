@@ -2,24 +2,36 @@
 
 <%= link_to 'Edit', edit_campus_room_event_path(@event.campus, @event.room, @event), class: "btn btn-default" %> |
 <%= link_to 'Back', campus_room_events_path(@event.campus, @event.room), class: "btn btn-default" %>
-<div class = 'description'>
-  <h2><strong>Name: <%= @event.name %> | Event Details:</strong></h2>
-  <p><strong>Start time:</strong> <%= @event.formatted_start_time %></p>
-  <p><strong>Duration:</strong> <%= @event.formatted_event_duration %></p>
-  <p><strong>Description:</strong> <%= @event.description %></p>
-  <p><strong>Agenda:</strong> <%= @event.agenda %></p>
-  <p><strong> Event Type: </strong> <%= if @event.is_private? then "Private" else "Public" end %> </p>
-  <% if @event.is_private? %>
-    <p><strong>Invite Type:</strong> <%= @event.invite_type %>
-  <% end %>
-  <p><strong>Room Name:</strong> <%= @event.room.name.titleize %></p>
-  <p><strong>Event created by:</strong></p>
-  <p><%= @event.user.full_name.titleize %></p>
+<div class="row">
+  <div class = 'description col-xs-12 col-sm-8 col-md-8'>
+    <h2><strong>Name: <%= @event.name %> | Event Details:</strong></h2>
+    <p><strong>Start time:</strong> <%= @event.formatted_start_time %></p>
+    <p><strong>Duration:</strong> <%= @event.formatted_event_duration %></p>
+    <p><strong>Description:</strong> <%= @event.description %></p>
+    <p><strong>Agenda:</strong> <%= @event.agenda %></p>
+    <p><strong> Event Type: </strong> <%= if @event.is_private? then "Private" else "Public" end %> </p>
+    <% if @event.is_private? %>
+      <p><strong>Invite Type:</strong> <%= @event.invite_type %>
+    <% end %>
+    <p><strong>Room Name:</strong> <%= @event.room.name.titleize %></p>
+    <p><strong>Event created by:</strong></p>
+    <p><%= @event.user.full_name.titleize %></p>
+  </div>
+  <div class="col-xs-12 col-sm-4 col-md-4">
+    <h2><strong>Invite List </strong></h2>
+    <%= react_component('InvitesContainer') %>
+  </div>
 </div>
-
+<hr />
 <% if current_user == @event.user %>
   <%= react_component('EventInvites', users: @users, event_id: @event.id) %>
 <% end %>
+
+<div id="join-event">
+  <% if current_user && current_user.invites.where(event_id: @event.id).count.zero? %>
+    <%= link_to "Join Event", "/invites?invite[status]=Accepted&invite[event_id]=#{@event.id}&invite[user_id]=#{current_user.id}", method: :POST, class: "btn btn-default" %>
+  <% end %>
+</div>
 
 <hr />
 <h3>Comments</h3>
@@ -30,5 +42,6 @@
 <hr />
 
 <div class="container" id="comments-container">
+  <%= react_component('CommentsContainer') %>
 
 </div>

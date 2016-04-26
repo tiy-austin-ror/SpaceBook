@@ -8,6 +8,7 @@ end
 
 class Event < ActiveRecord::Base
   has_many :invites
+  #TODO Probably wont need the has_many invitees
   has_many :invitees, through: :invites, source: :user
 
   has_many :comments
@@ -22,6 +23,11 @@ class Event < ActiveRecord::Base
   def end_time
     end_time = start_time+(duration*15).minutes
     "#{end_time.strftime('%r')}"
+  end
+
+  def duration_display
+    display = duration*15
+    "#{display} minutes"
   end
 
   def formatted_event_duration

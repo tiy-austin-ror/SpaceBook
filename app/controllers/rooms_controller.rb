@@ -7,6 +7,11 @@ class RoomsController < ApplicationController
 
   def index
     @rooms = Room.all.order("average_capacity_use")
+
+    respond_to do |format|
+      format.json { render json: @rooms.to_json(include: :amenities) }
+      format.html
+    end
   end
 
   def show
@@ -32,6 +37,8 @@ class RoomsController < ApplicationController
   def destroy
     destroy_html_json(@room, "/")
   end
+
+
 
   private
 

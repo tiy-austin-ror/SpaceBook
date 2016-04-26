@@ -21,6 +21,10 @@ When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |field, content|
   fill_in(field, with: content)
 end
 
-When(/^I click "([^"]*)"$/) do |name|
+When(/^I press "([^"]*)"$/) do |name|
   click_button(name)
+end
+
+When(/^I click "([^"]*)"$/) do |name|
+  click_link(name)
 end

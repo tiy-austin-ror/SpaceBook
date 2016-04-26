@@ -24,33 +24,6 @@ var ready;
 var refreshComments;
 ready = function() {
 
-    // Below is code that auto refreshes comments on event show page
-    var url = document.URL;
-    var commentsContainer = $("#comments-container");
-
-    if (window.location.pathname.split('/').includes("events")) {
-      var getHTML = function(comment) {
-          return `<strong class="sm-margin-right"> ${comment.user_name} </strong> |
-          <em class="sm-padding-left"> ${comment.created_time} </em>
-          <div>
-            -> ${comment.body}
-          </div>`
-      };
-      var jsonComments = function () {
-          $.getJSON(url, function(response){
-                commentsContainer.html("")
-                response.forEach(function(comment) {
-                     commentsContainer.append(getHTML(comment));
-                 });
-            });
-      };
-      jsonComments();
-      refreshComments = setInterval(function () {
-          jsonComments();
-      }, 1000);
-    }
-    // above is code that auto refreshes comments on event show page
-
 };
 
 $(document).ready(ready);
