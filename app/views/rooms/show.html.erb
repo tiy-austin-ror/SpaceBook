@@ -7,6 +7,8 @@
 <%=@room.capacity%>
 <hr>
 
+<div><%= link_to 'Create New Event', new_campus_room_event_path(@room.campus, @room) %></div>
+
 <% @room.events.each do |event| %>
   <%= link_to event.name, campus_room_event_path(@room.campus, @room, event) %> <br>
 <% end %>
