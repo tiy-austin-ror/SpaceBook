@@ -8,16 +8,18 @@ before_action :set_event, only: [:show]
   end
 
   def show
-    #TODO Fetching all users instead of users just in campus
+    #TODO Fetching all users will have to modify to all users in company
 
     @users = User.all
     @event = Event.find(params[:id])
     @room = @event.room
     @campus = @room.campus
     @comments = @event.comments.order(created_at: :desc)
+    @invites = @event.invites.order(created_at: :desc)
     respond_to do |format|
       format.html { }
-      format.json { render json: @comments }
+      format.json { render json: {comments: @comments,
+                                  invites: @invites} }
     end
   end
 
