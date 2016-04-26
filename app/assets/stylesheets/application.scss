@@ -51,6 +51,12 @@ nav.navbar-default {
       color: white;
     }
   }
+  .parent-brand {
+    color: darken(white,15%);
+    font-style: italic;
+    font-size: 80%;
+
+  }
   .row {
     min-width: 12em;
   }
