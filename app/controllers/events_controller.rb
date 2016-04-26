@@ -30,6 +30,7 @@ before_action :set_event, only: [:show]
 
   def create
     @event = @room.events.new(event_params.merge(user_id: current_user.id))
+    EventMailer.new_event(@event).deliver_now
     save_for_html_json(@event, "new") {campus_room_event_path(@campus, @room, @event)}
   end
 
