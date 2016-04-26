@@ -8,7 +8,7 @@ before_action :set_event, only: [:show]
     respond_to do |format|
       format.html { }
       format.pdf do
-        render pdf: 'event-report', template: 'events/index.html.erb'
+        render pdf: 'event-report', disable_external_links: true, template: 'events/index.html.erb'
       end
     end
   end
