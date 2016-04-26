@@ -1,4 +1,4 @@
-<%= bootstrap_form_for InviteCode.new do |f| %>
+<%= bootstrap_form_for :invite, url: "/invite_codes" do |f| %>
   <%= f.email_field :email %>
   <%= f.submit "Send Invite"%>
 <% end %>

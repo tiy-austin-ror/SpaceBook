@@ -15,12 +15,19 @@ class UsersController < ApplicationController
   end
 
   def create
-    if params.fetch(:user).fetch(:password) == params.fetch(:user).fetch(:password_confirmation)
-      @user = User.new(user_params)
-      save_for_html_json(@user, "new") { user_path(@user) }
+    @user_code = InviteCode.find_by(hash_code: params[:hash_code])
+    @user = User.new(user_params)
+    
+    if @user_code.nil?
+      flash.now[:danger] = "Invalid invite link. This is a very exclusive app, you must be invited first!!"
+      render "new"
     else
-      flash[:danger] = "Passwords must match"
-      redirect_to :back
+      if params.fetch(:user).fetch(:password) == params.fetch(:user).fetch(:password_confirmation)
+        save_for_html_json(@user, "new") { @user_code.destroy; user_path(@user) }
+      else
+        flash[:danger] = "Passwords must match"
+        redirect_to :back
+      end
     end
   end
 
@@ -38,6 +45,7 @@ class UsersController < ApplicationController
 
   def admin_dashboard
     @user = current_user
+    @invite_code = InviteCode.new
   end
 
 private

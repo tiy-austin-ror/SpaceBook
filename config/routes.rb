@@ -11,6 +11,8 @@ Rails.application.routes.draw do
       resources :events
     end
   end
+
+  post 'invite_codes' => "invite_codes#create"
   get 'admin' => "users#admin_dashboard"
   root 'dashboard#home'
 
