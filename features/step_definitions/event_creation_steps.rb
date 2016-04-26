@@ -1,4 +1,4 @@
-Given(/^I already have an account$/) do
+Given(/^I already have an account and a room$/) do
   user = User.create!(admin: false, username: "test_user",
            name: "Test User",
            email:"test_user@spacebook.com",
@@ -8,12 +8,4 @@ Given(/^I already have an account$/) do
   campus = Campus.create!(city:Faker::Address.city, state:Faker::Address.state, zip:Faker::Address.zip, name:Faker::Name.name, picture_url: Faker::Avatar.image)
   CampusUser.create!(user_id: user.id, campus_id: campus.id)
   room = Room.create!(name:Faker::Name.name,location:Faker::Address.city, capacity: rand(10..30), picture_url: Faker::Avatar.image, events_count:0, average_capacity_use: rand(1..100), campus_id: campus.id)
-end
-
-When(/^I visit the homepage$/) do
-  visit(root_path)
-end
-
-When(/^I press submit$/) do
-  click_button("Submit")
 end
