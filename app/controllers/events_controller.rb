@@ -54,7 +54,6 @@ before_action :set_event, only: [:show]
     respond_to do |format|
       if @event.save
         EventMailer.new_event(@event).deliver_now
-        #TODO text_schedule(@event)  Don't enable this, it will text me everytime an event is added.
         format.html { redirect_to campus_room_event_path(@campus, @room, @event) }
         format.json { render json: @event }
       else
@@ -74,21 +73,6 @@ before_action :set_event, only: [:show]
   end
 
   private
-
-  def text_schedule(event)
-    account_sid = '#'
-    auth_token = '#'
-      # = Placeholders, currently keeping these off for security.
-    @client = Twilio::REST::Client.new account_sid, auth_token
-
-    @client.account.messages.create({
-    	:from => '+17372104484',
-    	:to => '15126275853',
-    	:body => 'You have an event scheduled for ' + (event.formatted_start_time) + '. ' +
-                'It is in ' + event.room.name + ' at ' + event.room.location + ' and lasts for ' + (event.formatted_event_duration * 15).to_s + ' minutes.',
-    })
-  end
-
 
   def set_event
     @event = Event.find(params[:id])
@@ -119,7 +103,6 @@ before_action :set_event, only: [:show]
                                   :private, :open_invite,
                                   :room_id, :user_id, :agenda, :allow_remote )
   end
-
 
 
 end
