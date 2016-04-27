@@ -107,7 +107,6 @@ CREATE TABLE campuses (
     city character varying,
     state character varying,
     zip character varying,
-    picture_url character varying,
     name character varying,
     company_id integer,
     profile_image_id character varying
@@ -376,7 +375,6 @@ CREATE TABLE rooms (
     name character varying,
     location character varying,
     capacity integer,
-    picture_url character varying,
     events_count integer,
     average_event_duration integer,
     average_attendance_count integer,
@@ -425,7 +423,6 @@ CREATE TABLE users (
     name character varying NOT NULL,
     email character varying NOT NULL,
     phone_num character varying NOT NULL,
-    profile_pic character varying,
     encrypted_password character varying(128),
     confirmation_token character varying(128),
     remember_token character varying(128),
@@ -941,4 +938,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160427172233');
 INSERT INTO schema_migrations (version) VALUES ('20160427172251');
 
 INSERT INTO schema_migrations (version) VALUES ('20160427172258');
+
+INSERT INTO schema_migrations (version) VALUES ('20160427201226');
 
