@@ -12,7 +12,7 @@ def time_floor(time, seconds = 15.minutes)
   Time.at((time.to_f / seconds).floor * seconds).utc
 end
 
-admin = User.new(admin: true, username: "admin", name: "Admin User", email:"admin@spacebook.com", phone_num: Faker::PhoneNumber.phone_number, profile_pic: Faker::Avatar.image, password:"password")
+admin = User.new(admin: true, username: "admin", name: "Admin User", email:"admin@spacebook.com", phone_num: Faker::PhoneNumber.phone_number, password:"password")
 
 google = Company.new(name: "Google")
 google.save!
@@ -20,7 +20,7 @@ google.save!
 valve = Company.new(name: "Valve")
 valve.save!
 
-admin = User.new(admin: true, username: "admin", name: Faker::Name.name, company_id: google.id, email:"admin@spacebook.com", phone_num: Faker::PhoneNumber.phone_number, profile_pic: Faker::Avatar.image, password:"password")
+admin = User.new(admin: true, username: "admin", name: Faker::Name.name, company_id: google.id, email:"admin@spacebook.com", phone_num: Faker::PhoneNumber.phone_number, password:"password")
 admin.save!
 
 
@@ -29,7 +29,7 @@ not_admin.save!
 
 
 4.times do
-  campus = Campus.new(company_id: google.id, city:Faker::Address.city, state:Faker::Address.state, zip:Faker::Address.zip, name:Faker::Name.name, picture_url: Faker::Avatar.image)
+  campus = Campus.new(company_id: google.id, city:Faker::Address.city, state:Faker::Address.state, zip:Faker::Address.zip, name:Faker::Name.name)
   campus.save!
 end
 
@@ -40,14 +40,14 @@ campus_user = CampusUser.new(user_id: not_admin.id, campus_id: 1)
 campus_user.save!
 
 
-admin = User.new(admin: true, username: "admin", name: Faker::Name.name, company_id: valve.id, email:"vadmin@spacebook.com", phone_num: Faker::PhoneNumber.phone_number, profile_pic: Faker::Avatar.image, password:"password")
+admin = User.new(admin: true, username: "admin", name: Faker::Name.name, company_id: valve.id, email:"vadmin@spacebook.com", phone_num: Faker::PhoneNumber.phone_number, password:"password")
 admin.save!
 
 not_admin = User.new(admin: false, username: "not_admin", name: Faker::Name.name, company_id: valve.id, email:"vnot_admin@spacebook.com", phone_num: Faker::PhoneNumber.phone_number, password:"password")
 not_admin.save!
 
 4.times do
-  campus = Campus.new(company_id: valve.id, city:Faker::Address.city, state:Faker::Address.state, zip:Faker::Address.zip, name:Faker::Name.name, picture_url: Faker::Avatar.image)
+  campus = Campus.new(company_id: valve.id, city:Faker::Address.city, state:Faker::Address.state, zip:Faker::Address.zip, name:Faker::Name.name)
   campus.save!
 end
 
@@ -60,7 +60,7 @@ campus_user.save!
 
 100.times do
   company = Company.all.sample
-  user = User.new(admin: false, company_id: company.id, username: Faker::Internet.user_name, name: Faker::Name.name, email:Faker::Internet.email, phone_num: Faker::PhoneNumber.phone_number, profile_pic: Faker::Avatar.image, password:"password")
+  user = User.new(admin: false, company_id: company.id, username: Faker::Internet.user_name, name: Faker::Name.name, email:Faker::Internet.email, phone_num: Faker::PhoneNumber.phone_number, password:"password")
   user.save!
   campus_user = CampusUser.new(user_id: user.id, campus_id: company.campuses.sample.id)
   campus_user.save!
@@ -70,7 +70,7 @@ end
 Campus.all.each do |campus|
   7.times do
     user = User.all.to_a.select{|u| u.campus.id == campus.id}.sample
-    room = campus.rooms.new(name:Faker::Name.name,location:Faker::Address.city, capacity: rand(10..30), picture_url: Faker::Avatar.image, events_count:0, average_capacity_use: rand(1..100))
+    room = campus.rooms.new(name:Faker::Name.name,location:Faker::Address.city, capacity: rand(10..30), events_count:0, average_capacity_use: rand(1..100))
     room.save!
     20.times do
       start = rand(Time.now..1.week.from_now)
