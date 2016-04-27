@@ -10,7 +10,7 @@ before_action :set_event, only: [:show]
     if current_user.admin?
       @events = Event.where(room: params[:room_id]).includes(:room, :user)
     else
-      @events = Event.where(room: params[:room_id], public: true).includes(:room, :user)
+      @events = Event.where(room: params[:room_id], private: false).includes(:room, :user)
     end
 
     respond_to do |format|
