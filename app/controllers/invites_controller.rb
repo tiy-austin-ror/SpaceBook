@@ -1,10 +1,15 @@
 class InvitesController < ApplicationController
 
   def create
-    @invite = Invite.new(invite_params)
     @event = Event.find(params[:invite][:event_id])
     @room = @event.room
     @campus = @event.campus
+    @invite = Invite.find_by(user_id: current_user.id, event_id: @event.id)
+    if @invite.nil?
+       @invite = Invite.new(invite_params.merge(user_id: current_user.id))
+    else
+       @invite.assign_attributes(invite_params)
+    end
     save_for_html_json(@invite, "/events/show") { :back }
   end
 
@@ -26,6 +31,6 @@ class InvitesController < ApplicationController
   end
 
   def invite_params
-    params.require(:invite).permit(:status, :event_id, :user_id)
+    params.require(:invite).permit(:status, :event_id)
   end
 end
