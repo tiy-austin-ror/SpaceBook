@@ -6,7 +6,7 @@ class Campus < ActiveRecord::Base
   belongs_to :company
 
   def public_events
-    events.where(params[public: true]).includes(:room, :user)
+    events.where(public: true).includes(:room, :user)
   end
 
   def all_events
