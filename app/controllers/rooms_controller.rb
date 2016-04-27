@@ -1,12 +1,12 @@
 class RoomsController < ApplicationController
-  before_action :admin_validation, only: [:new, :edit, :create, :update, :destroy]
   before_action :get_campus, only: [:new, :create]
   before_action :get_room, only: [:show ]
   before_action :get_room_campus, only: [:update, :edit]
 
 
   def index
-    @rooms = Room.all.order("average_capacity_use")
+    @rooms = Room.where(campus_id: params[:campus_id])
+    # @rooms = Room.all.order("average_capacity_use")
 
     respond_to do |format|
       format.json { render json: @rooms.to_json(include: :amenities) }
