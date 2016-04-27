@@ -1,16 +1,21 @@
-<h1>Viewing a room</h1>
-<%= attachment_image_tag(@room, :profile_image, :fill, 150, 150, format: "jpg", fallback: 'room.jpg', class:"camp-picture") %>
-<%=@room.name%>
-<hr>
-<%=@room.location%>
-<hr>
-<%=@room.capacity%>
-<hr>
 <div>
-  <h4>List of Amenities</h4>
-  <% @room.amenities.each do |amenity| %>
-  <p><%= amenity.name %></p>
-  <% end %>
+  <h3><strong>Viewing a room</strong></h3>
+</div>
+<div class="row">
+  <div class="col">
+    <%= attachment_image_tag(@room, :profile_image, :fill, 150, 150, format: "jpg", fallback: 'room.jpg', class:"camp-picture") %>
+    <%=@room.name%>
+    <hr>
+    <%=@room.location%>
+    <hr>
+    <%=@room.capacity%>
+  </div>
+  <div class="">
+    <h4>List of Amenities</h4>
+    <% @room.amenities.each do |amenity| %>
+    <p><%= amenity.name %></p>
+    <% end %>
+  </div>
 </div>
 
 
