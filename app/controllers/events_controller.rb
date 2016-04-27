@@ -20,12 +20,7 @@ before_action :set_event, only: [:show]
   end
 
   def show
-<<<<<<< HEAD
-    #TODO Fetching all users will have to modify to all users in company
-    @users = User.all
-=======
     @users = current_user.company.users
->>>>>>> eb959ad31c624bcaae25c48262a6a9b72540de58
     @event = Event.find(params[:id])
     @room = @event.room
     @campus = @room.campus
