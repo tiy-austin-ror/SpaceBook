@@ -23,6 +23,7 @@ before_action :set_event, only: [:show]
   end
 
   def new
+    @room = Room.where(params[:room_id])
     @event = Event.new
   end
 
