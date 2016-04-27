@@ -23,5 +23,7 @@ module Spacebook
     config.active_record.raise_in_transactional_callbacks = true
 
     config.secret_key_base = Rails.env.production? ? ENV['SECRET_TOKEN'] : 'super_secret_token'
+
+    config.time_zone = "Central Time (US & Canada)"
   end
 end
