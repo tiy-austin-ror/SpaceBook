@@ -12,7 +12,6 @@ def time_floor(time, seconds = 15.minutes)
   Time.at((time.to_f / seconds).floor * seconds).utc
 end
 
-<<<<<<< HEAD
 admin = User.new(admin: true, username: "admin", name: "Admin User", email:"admin@spacebook.com", phone_num: Faker::PhoneNumber.phone_number, profile_pic: Faker::Avatar.image, password:"password")
 =======
 google = Company.new(name: "Google")
@@ -22,7 +21,6 @@ valve = Company.new(name: "Valve")
 valve.save!
 
 admin = User.new(admin: true, username: "admin", name: Faker::Name.name, company_id: google.id, email:"admin@spacebook.com", phone_num: Faker::PhoneNumber.phone_number, profile_pic: Faker::Avatar.image, password:"password")
->>>>>>> eb959ad31c624bcaae25c48262a6a9b72540de58
 admin.save!
 
 
