@@ -112,7 +112,10 @@ n = 0
 end
 
 User.all.each do |user|
-  Event.all.each do |event|
-    Invite.create(event: event, user: user)
+  user.campus.events.each do |event|
+    if rand > 0.5 &&
+       rand > 0.5
+      Invite.create(event: event, user: user)
+    end
   end
 end
