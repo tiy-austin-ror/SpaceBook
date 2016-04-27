@@ -1,9 +1,7 @@
 <h4>
-  <% if @user.profile_image_id.nil? %>
-    <img class='dash-picture' height='150px' width='150px' src='<%=@user.profile_pic%>'/>
-  <% else %>
-    <%= image_tag attachment_url(@user, :profile_image, :fill, 150, 150, format: "jpg"), class:"dash-picture" %>
-  <% end %>
+
+  <%= attachment_image_tag(@user, :profile_image, :fill, 150, 150, format: "jpg", fallback: 'default.gif', class:"dash-picture") %>
+
   Welcome: <%=@user.name%>
 </h4>
 
