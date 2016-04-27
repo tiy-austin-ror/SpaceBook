@@ -1,4 +1,9 @@
-<h1>Listing Events</h1>
+<h1 class='header-with-admin-buttons'>Listing Events</h1>
+<% if current_user.admin == true %>
+    <% event = @events[0] %>
+    <%= link_to 'PDF Report of page', campus_room_events_path(event.campus, event.room, format: :pdf), class: "btn btn-default not-pdf-friendly pull-right" %>
+    <%= link_to 'Spreadsheet report of page', campus_room_events_path(event.campus, event.room, format: :csv), class: "btn btn-default not-pdf-friendly pull-right" %>
+  <% end %>
 <div class="table-responsive"></div>
   <table class="table table-hover">
     <thead>
@@ -26,5 +31,4 @@
        <% end %>
       </tr>
     </tbody>
-
 </div>
