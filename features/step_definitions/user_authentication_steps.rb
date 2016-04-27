@@ -5,9 +5,8 @@ Given(/^I have an existing account$/) do
            email:"test_user@spacebook.com",
            company_id: company.id,
            phone_num: Faker::PhoneNumber.phone_number,
-           profile_pic: Faker::Avatar.image,
            password:"password")
-  campus = Campus.create!(company_id: company.id, city:Faker::Address.city, state:Faker::Address.state, zip:Faker::Address.zip, name:Faker::Name.name, picture_url: Faker::Avatar.image)
+  campus = Campus.create!(company_id: company.id, city:Faker::Address.city, state:Faker::Address.state, zip:Faker::Address.zip, name:Faker::Name.name)
   CampusUser.create!(user_id: not_admin.id, campus_id: campus.id)
 end
 
