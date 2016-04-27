@@ -28,16 +28,17 @@
     <%= react_component('InvitesContainer') %>
   </div>
 </div>
-  <hr />
-  <% if current_user == @event.user %>
-    <%= react_component('EventInvites', users: @users, event_id: @event.id) %>
-  <% end %>
+
+<hr />
+<% if user_can_invite? %>
+  <%= react_component('EventInvites', users: @users, event_id: @event.id) %>
+<% end %>
 <div class='not-pdf-friendly'>
-  <div id="join-event" class='not-pdf-friendly'>
-    <% if current_user && current_user.invites.where(event_id: @event.id).count.zero? %>
-      <%= link_to "Join Event", "/invites?invite[status]=Accepted&invite[event_id]=#{@event.id}&invite[user_id]=#{current_user.id}", method: :POST, class: "btn btn-default not-pdf-friendly" %>
-    <% end %>
-  </div>
+
+<div id="join-event">
+  <%= get_join_buttons %>
+</div>
+
 
   <hr />
   <h3>Comments</h3>
