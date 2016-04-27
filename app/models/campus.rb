@@ -3,4 +3,5 @@ class Campus < ActiveRecord::Base
   has_many :rooms
   has_many :events, through: :rooms
   has_many :invite_codes
+  belongs_to :company
 end

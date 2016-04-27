@@ -55,6 +55,9 @@ GEM
       sass (>= 3.3.4)
     bootstrap_form (2.3.0)
     builder (3.2.2)
+    bullet (5.0.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.9.0)
     byebug (8.2.4)
     capybara (2.7.0)
       addressable
@@ -246,6 +249,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
+    uniform_notifier (1.9.0)
     web-console (2.3.0)
       activemodel (>= 4.0)
       binding_of_caller (>= 0.7.2)
@@ -265,6 +269,7 @@ DEPENDENCIES
   bcrypt
   bootstrap-sass (~> 3.3.5)
   bootstrap_form
+  bullet
   byebug
   capybara
   clearance

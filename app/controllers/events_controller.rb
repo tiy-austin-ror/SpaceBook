@@ -1,6 +1,7 @@
 require 'csv'
 
 class EventsController < ApplicationController
+before_action :company_validation
 before_action :set_campus_room_event, only: [:edit, :update, :destroy]
 before_action :set_campus_room, only: [:create, :new]
 before_action :set_event, only: [:show]
@@ -19,8 +20,12 @@ before_action :set_event, only: [:show]
   end
 
   def show
+<<<<<<< HEAD
     #TODO Fetching all users will have to modify to all users in company
     @users = User.all
+=======
+    @users = current_user.company.users
+>>>>>>> eb959ad31c624bcaae25c48262a6a9b72540de58
     @event = Event.find(params[:id])
     @room = @event.room
     @campus = @room.campus
@@ -46,9 +51,17 @@ before_action :set_event, only: [:show]
 
   def create
     @event = @room.events.new(event_params.merge(user_id: current_user.id))
-    EventMailer.new_event(@event).deliver_now
-    save_for_html_json(@event, "new") {campus_room_event_path(@campus, @room, @event)}
-    #text_schedule(@event)  Don't enable this, it will text me everytime an event is added.
+    respond_to do |format|
+      if @event.save
+        EventMailer.new_event(@event).deliver_now
+        #TODO text_schedule(@event)  Don't enable this, it will text me everytime an event is added.
+        format.html { redirect_to campus_room_event_path(@campus, @room, @event) }
+        format.json { render json: @event }
+      else
+        format.html { render :new }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def update

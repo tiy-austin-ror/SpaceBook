@@ -51,6 +51,16 @@ nav.navbar-default {
       color: white;
     }
   }
+  .parent-brand {
+    color: darken(white,15%);
+    font-style: italic;
+    font-size: 80%;
+    margin-top: 0.2em;
+    &:hover {
+      color: darken(white,15%);
+    }
+
+  }
   .row {
     min-width: 12em;
   }

@@ -53,6 +53,7 @@ group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'quiet_assets'
+  gem "bullet"
 end
 
 group :development do
