@@ -14,14 +14,14 @@
               <%= event.agenda %>
             </div>
             <div class='time-display col-xs-4'>
-              <%= event.formatted_start_time %> for <%= event.duration_display %>
+              <%= event.formatted_start_time %> until <%= event.end_time %>
             </div>
           </li>
         </div>
       <% end %>
     </ul>
   </div>
-  
+
   <div class='pending-events-display col-md-5 col-md-offset-1'>
     <h3 class='pending-events-header'>Pending Event Invitations</h3>
     <ul class='pending-events-display-list'>
@@ -35,7 +35,7 @@
               <%= pend.agenda %>
             </div>
             <div class='time-display col-xs-4'>
-              <%= pend.formatted_start_time %> for <%= pend.duration_display %>
+              <%= pend.formatted_start_time %> until <%= pend.end_time %>
             </div>
           </li>
         </div>
@@ -55,7 +55,7 @@
           <div class='col-xs-4 agenda-text'>
              <%= finish.agenda %>
            </div> <div class='time-display col-xs-4'>
-             <%= finish.formatted_start_time %> for <%= finish.duration_display %>
+             <%= finish.formatted_start_time %> until <%= finish.end_time %>
            </div>
          </li>
       </div>

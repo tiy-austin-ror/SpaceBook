@@ -22,7 +22,7 @@ class Event < ActiveRecord::Base
 
   def end_time
     end_time = start_time+(duration*15).minutes
-    "#{end_time.strftime('%r')}"
+    "#{end_time.strftime('%l:%M %p')}"
   end
 
   def duration_display
