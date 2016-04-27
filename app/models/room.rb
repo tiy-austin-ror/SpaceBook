@@ -7,6 +7,9 @@ class Room < ActiveRecord::Base
   has_many :events, dependent: :destroy
   belongs_to :campus#, counter_cache: true
 
+  attachment :profile_image #required for Refile (image upload)
+  
+
   def self.search(search)
     if search
       find(:all, :conditions => ['name ILIKE ?', 'location ILIKE ?', 'capacity ILIKE ?', "%#{search}%"])
