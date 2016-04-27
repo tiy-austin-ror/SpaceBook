@@ -4,7 +4,7 @@ A new event was created in <%= link_to @room.name,
         :only_path => false,
         :campus_id => @room.campus.id,
         :id => @room.id,
-        :host => "example.com" %>.
+        :host => "localhost:3000" %>.
 
   Name: <%= @event.name %>
   When: <%= @event.start_time %>
@@ -16,4 +16,4 @@ To see more details about the event, please visit the <%= link_to "event page",
         :campus_id => @room.campus.id,
         :room_id => @event.room.id,
         :id => @event.id,
-        :host => "example.com" %>.
+        :host => "localhost:3000" %>.
