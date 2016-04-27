@@ -17,13 +17,13 @@ class UsersController < ApplicationController
   def create
     @user_code = InviteCode.find_by(hash_code: params[:hash_code])
     @user = User.new(user_params)
+    @user.company_id = @user_code.campus.company.id
     if @user_code.nil?
       flash.now[:danger] = "Invalid invite link. This is a very exclusive app, you must be invited first!!"
       render "new"
     else
       if params.fetch(:user).fetch(:password) == params.fetch(:user).fetch(:password_confirmation)
         save_for_html_json(@user, "new") do
-          @user.update(company_id: @user_code.campus.company.id)
           CampusUser.create(campus_id: @user_code.campus_id, user_id: @user.id)
           @user_code.destroy
           guest_root_url

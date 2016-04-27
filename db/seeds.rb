@@ -56,7 +56,7 @@ campus_user = CampusUser.new(user_id: not_admin.id, campus_id: 1)
 campus_user.save!
 
 
-200.times do
+100.times do
   company = Company.all.sample
   user = User.new(admin: false, company_id: company.id, username: Faker::Internet.user_name, name: Faker::Name.name, email:Faker::Internet.email, phone_num: Faker::PhoneNumber.phone_number, profile_pic: Faker::Avatar.image, password:"password")
   user.save!
