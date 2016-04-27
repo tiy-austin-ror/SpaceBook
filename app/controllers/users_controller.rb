@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   before_action :company_validation, except: [:index]
   before_action :get_user, only: [:show, :edit, :update, :destroy]
 
+
+
   def index
     @users = User.all
   end
