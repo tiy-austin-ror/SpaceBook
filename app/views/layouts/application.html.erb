@@ -5,6 +5,22 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <% if current_user != nil %>
+  <style>
+    .navbar {
+      background: <%= current_user.company.primary_color %>;
+    }
+    body {
+      background-color: <%= current_user.company.secondary_color %>;
+    }
+    footer {
+      background-color: <%= current_user.company.primary_color %>;
+    }
+    #all_footnotes {
+      background-color: <%= current_user.company.primary_color %>;
+    }
+  </style>
+  <% end %>
 </head>
 <body>
 
