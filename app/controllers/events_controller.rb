@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+before_action :company_validation
 before_action :set_campus_room_event, only: [:edit, :update, :destroy]
 before_action :set_campus_room, only: [:create, :new]
 before_action :set_event, only: [:show]
@@ -8,9 +9,7 @@ before_action :set_event, only: [:show]
   end
 
   def show
-    #TODO Fetching all users will have to modify to all users in company
-
-    @users = User.all
+    @users = current_user.company.users
     @event = Event.find(params[:id])
     @room = @event.room
     @campus = @room.campus
