@@ -12,6 +12,7 @@ Feature: Event Create
     And I click the room link
     And I click "Create New Event"
     And I fill in "Name" with "The Iron Yard Graduation Ceremony"
+    And I select "2018" from "event_start_time_1i"
     And I fill in "Description" with "Party time!"
     And I fill in "Agenda" with "YA DONE BOY!"
     And I press "Submit"

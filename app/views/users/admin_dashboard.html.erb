@@ -1,7 +1,7 @@
 
 <strong>click an event to edit it: <br></strong>
 <% @user.campus_events.includes(:room).each do |event| %>
-  <%= link_to "event ##{event.id}", edit_campus_room_event_path(id: event.id, room_id: event.room.id, campus_id: event.room.campus.id) %> <br>
+  <%= link_to "event ##{event.id}", edit_campus_room_event_path(id: event.id, room_id: event.room.id, campus_id: event.room.campus_id) %> <br>
 <% end %>
 
 <strong>send an invite to a user:</strong>
