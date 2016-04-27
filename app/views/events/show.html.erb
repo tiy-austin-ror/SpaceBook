@@ -25,17 +25,12 @@
   </div>
 </div>
 <hr />
-<% if current_user == @event.user %>
+<% if user_can_invite? %>
   <%= react_component('EventInvites', users: @users, event_id: @event.id) %>
 <% end %>
 
 <div id="join-event">
-  <% if current_user && !@event.private && current_user.invites.where(event_id: @event.id).where("status ILIKE ?", 'Accepted%').count.zero? %>
-    <%= link_to "Join Event", "/invites?invite[status]=Accepted&invite[event_id]=#{@event.id}", method: :POST, class: "btn btn-default" %>
-    <%= link_to "Join Event [remote]", "/invites?invite[status]=Accepted[remote]&invite[event_id]=#{@event.id}", method: :POST, class: "btn btn-default" %>
-  <% elsif current_user && current_user.invites.where(event_id: @event.id, status: 'Pending').count.zero? %>
-    <%= link_to "Leave Event", "/invites?invite[status]=Declinded&invite[event_id]=#{@event.id}", method: :POST, class: "btn btn-default" %>
-  <% end %>
+  <%= get_join_buttons %>
 </div>
 
 <hr />

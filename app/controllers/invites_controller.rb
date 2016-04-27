@@ -4,19 +4,19 @@ class InvitesController < ApplicationController
     @event = Event.find(params[:invite][:event_id])
     @room = @event.room
     @campus = @event.campus
-    @invite = Invite.find_by(user_id: current_user.id, event_id: @event.id)
-    if @invite.nil?
-       @invite = Invite.new(invite_params.merge(user_id: current_user.id))
-    else
-       @invite.assign_attributes(invite_params)
-    end
+    user_id = params[:invite][:user_id] || current_user.id
+    params[:invite][:status] = "Pending" unless current_user == user_id
+    @invite = Invite.new(invite_params.merge(user_id: user_id))
     save_for_html_json(@invite, "/events/show") { :back }
   end
 
   def update
     get_invite
-    @invite.update
-    render json: @invite
+    @event = @invite.event
+    @room = @event.room
+    @campus = @event.campus
+    @invite.assign_attributes(invite_params.merge(user_id: current_user.id)) if @invite.user_id == current_user.id
+    save_for_html_json(@invite, "/events/show") { :back }
   end
 
   def destroy
