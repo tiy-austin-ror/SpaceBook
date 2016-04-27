@@ -14,6 +14,16 @@ class ApplicationController < ActionController::Base
              forbidden: {status:403, message: "Forbbiden, must supply valid user credentials"}}
 
 
+  def company_validation
+    campus = Campus.find(params[:campus_id]) unless params[:campus_id].nil?
+    campus = Campus.find(params[:id]) if campus.nil? && params[:id].present?
+    return if current_user.nil? || campus.nil?
+    unless current_user.campus == campus
+      flash[:danger] = "Couldn't Find Association with Your Company"
+      redirect_to root_path
+    end
+  end
+
   def save_for_html_json(object, render_string)
     respond_to do |format|
       if object.save

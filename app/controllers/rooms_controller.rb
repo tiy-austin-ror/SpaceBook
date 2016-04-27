@@ -1,4 +1,5 @@
 class RoomsController < ApplicationController
+  before_action :company_validation
   before_action :get_campus, only: [:new, :create]
   before_action :get_room, only: [:show ]
   before_action :get_room_campus, only: [:update, :edit]

@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'company' => 'companies#show'
+
+  get 'company/edit' => 'companies#edit'
+
+  get 'invite_codes/create'
+
   constraints Clearance::Constraints::SignedIn.new { |user| user.admin? } do
     root 'users#admin_dashboard', as: :admin_root
 
