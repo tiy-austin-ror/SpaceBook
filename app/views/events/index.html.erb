@@ -1,4 +1,9 @@
-<h1>Listing Events</h1>
+<h1 class='header-with-admin-buttons'>Listing Events</h1>
+<% if current_user.admin == true %>
+    <% event = @events[0] %>
+    <%= link_to 'PDF Report of page', campus_room_events_path(event.campus, event.room, format: :pdf), class: "btn btn-default not-pdf-friendly pull-right" %>
+    <%= link_to 'Spreadsheet report of page', campus_room_events_path(event.campus, event.room, format: :csv), class: "btn btn-default not-pdf-friendly pull-right" %>
+  <% end %>
 <div class="table-responsive"></div>
   <table class="table table-hover">
     <thead>
@@ -14,17 +19,16 @@
     <tbody>
       <% @events.each do |event| %>
       <tr>
-        <td><%= event.name %></td>
+        <td><%= link_to "#{event.name}", campus_room_event_path(event.campus, event.room, event), class: "table-link" %></td>
         <td><%= event.start_time %></td>
+        <td><%= event.end_time %></td>
         <td><%= event.description %></td>
         <td><%= event.room.name %></td>
         <td><%= event.user.username %></td>
-        <td><%= link_to 'Show', campus_room_event_path(event.campus, event.room, event), class: "btn btn-default" %></td>
-        <td><%= link_to 'Edit', edit_campus_room_event_path(event.campus, event.room, event), class: "btn btn-default" %></td>
-        <td><%= link_to 'Destroy', campus_room_event_path(event.campus, event.room, event), class: "btn btn-default", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit Event Details', edit_campus_room_event_path(event.campus, event.room, event), class: "btn btn-default not-pdf-friendly" %></td>
+        <td><%= link_to 'Delete Event', campus_room_event_path(event.campus, event.room, event), class: "btn btn-default not-pdf-friendly", method: :delete, data: { confirm: 'Are you sure?' } %></td>
        </tr>
        <% end %>
       </tr>
     </tbody>
-
 </div>
