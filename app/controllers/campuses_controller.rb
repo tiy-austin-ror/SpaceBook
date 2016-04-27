@@ -2,7 +2,7 @@ class CampusesController < ApplicationController
 before_action :company_validation, except: [:index]
 before_action :set_campus, only: [:show, :update, :destroy]
   def index
-    @campuses = Campus.all
+    @campuses = current_user.company.campuses
   end
 
   def show
