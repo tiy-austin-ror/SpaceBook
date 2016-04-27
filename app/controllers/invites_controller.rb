@@ -5,7 +5,7 @@ class InvitesController < ApplicationController
     @room = @event.room
     @campus = @event.campus
     user_id = params[:invite][:user_id] || current_user.id
-    params[:invite][:status] = "Pending" unless current_user == user_id
+    params[:invite][:status] = "Pending" unless current_user.id == user_id
     @invite = Invite.new(invite_params.merge(user_id: user_id))
     save_for_html_json(@invite, "/events/show") { :back }
   end
