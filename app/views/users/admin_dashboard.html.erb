@@ -1,10 +1,31 @@
+<h4> Welcome: <%=@user.name%>  <img class='dash-picture' src='<%=@user.profile_pic%>'/></h4>
 
-<strong>click an event to edit it: <br></strong>
-<% @user.campus_events.includes(:room).each do |event| %>
-  <%= link_to "event ##{event.id}", edit_campus_room_event_path(id: event.id, room_id: event.room.id, campus_id: event.room.campus_id) %> <br>
-<% end %>
 
-<strong>send an invite to a user:</strong>
-<div>
-  <%= render 'create_invite' %>
+<div class="row">
+  <div class="pending-events-display col-md-5 col-md-offset-1">
+    <h3>Click an event to edit it:</h3>
+    <ul>
+      <% @user.campus_events.includes(:room).each do |event| %>
+      <div>
+        <li>
+          <div>
+            <%= link_to "event ##{event.id}", edit_campus_room_event_path(id: event.id, room_id: event.room.id, campus_id: event.room.campus_id) %> <br>
+          </div>
+        </li>
+      </div>
+      <% end %>
+    </ul>
+  </div>
+  <div class="pending-events-display col-md-5 col-md-offset-1">
+    <h3>Send an invite to a user:</h3>
+    <ul>
+      <div>
+        <li>
+          <div>
+            <%= render 'create_invite' %>
+          </div>
+        </li>
+      </div>
+    </ul>
+  </div>
 </div>

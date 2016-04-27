@@ -86,11 +86,7 @@ ActiveRecord::Base.transaction do # This causes all inserts to happen at one tim
     end
   end
 
-  campus = Campus.first
-  room = campus.rooms.first
-  past_event = room.events.new(user_id: 2, start_time: Time.new(2016, 4, 20, "+6:00"), duration: 1, name: Faker::Company.buzzword,
-                          description: Faker::Company.bs, agenda: Faker::Company.catch_phrase, private: truth.sample)
-  past_event.save!
+
 
   amenity_list = [
         "Coffee",
