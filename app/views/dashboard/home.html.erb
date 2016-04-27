@@ -17,6 +17,9 @@
               <%= event.formatted_start_time %> for <%= event.duration_display %>
             </div>
           </li>
+          <div>
+
+          </div>
         </div>
       <% end %>
     </ul>
@@ -24,17 +27,22 @@
   <div class='pending-events-display col-md-5 col-md-offset-1'>
     <h3 class='pending-events-header'>Pending Event Invitations</h3>
     <ul class='pending-events-display-list'>
-      <% @pending.each do |pend| %>
+      <% @user_pending_invites.each do |pend| %>
         <div class='row'>
           <li class='pending-events-display-list-item'>
-            <div class='col-xs-4'>
-              <%= pend.name.titleize %>
+            <div class='col-xs-3'>
+              <%= pend.event.name.titleize %>
             </div>
-            <div class='col-xs-4 agenda-text'>
-              <%= pend.agenda %>
+            <div class='col-xs-3 agenda-text'>
+              <%= pend.event.agenda %>
             </div>
-            <div class='time-display col-xs-4'>
-              <%= pend.formatted_start_time %> for <%= pend.duration_display %>
+            <div class='time-display col-xs-3'>
+              <%= pend.event.formatted_start_time %> for <%= pend.event.duration_display %>
+            </div>
+            <div>
+              <%= link_to 'Approve', invite_path(pend, status: Invite::ACCEPTED), :class => "btn btn-default", :method => :patch %>
+              <%= link_to 'Deny', invite_path(pend, status: Invite::REJECTED), :class => "btn btn-default", :method => :patch %>
+              <%= link_to 'Remote', invite_path(pend, status: Invite::REMOTE), :class => "btn btn-default", :method => :patch %>
             </div>
           </li>
         </div>
