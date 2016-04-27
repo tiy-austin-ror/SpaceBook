@@ -8,7 +8,7 @@ class Room < ActiveRecord::Base
   belongs_to :campus#, counter_cache: true
 
   attachment :profile_image #required for Refile (image upload)
-  
+
 
   def self.search(search)
     if search

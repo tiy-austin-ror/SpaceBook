@@ -109,7 +109,8 @@ CREATE TABLE campuses (
     zip character varying,
     picture_url character varying,
     name character varying,
-    company_id integer
+    company_id integer,
+    profile_image_id character varying
 );
 
 
@@ -173,7 +174,8 @@ CREATE TABLE companies (
     id integer NOT NULL,
     name character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    profile_image_id character varying
 );
 
 
@@ -378,7 +380,8 @@ CREATE TABLE rooms (
     events_count integer,
     average_event_duration integer,
     average_attendance_count integer,
-    average_capacity_use integer
+    average_capacity_use integer,
+    profile_image_id character varying
 );
 
 
@@ -932,4 +935,10 @@ INSERT INTO schema_migrations (version) VALUES ('20160426174031');
 INSERT INTO schema_migrations (version) VALUES ('20160427160905');
 
 INSERT INTO schema_migrations (version) VALUES ('20160427162152');
+
+INSERT INTO schema_migrations (version) VALUES ('20160427172233');
+
+INSERT INTO schema_migrations (version) VALUES ('20160427172251');
+
+INSERT INTO schema_migrations (version) VALUES ('20160427172258');
 

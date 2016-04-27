@@ -6,5 +6,5 @@ class Campus < ActiveRecord::Base
   belongs_to :company
 
   attachment :profile_image #required for Refile (image upload)
-  
+
 end
