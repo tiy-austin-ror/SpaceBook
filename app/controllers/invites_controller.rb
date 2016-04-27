@@ -10,8 +10,8 @@ class InvitesController < ApplicationController
 
   def update
     get_invite
-    @invite.update
-    render json: @invite
+    @invite.update(status: params[:status])
+    redirect_to :back
   end
 
   def destroy
