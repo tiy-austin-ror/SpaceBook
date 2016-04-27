@@ -28,6 +28,26 @@ before_action :set_campus, only: [:show, :update, :destroy]
     destroy_html_json(@campus, campus_path(@campus))
   end
 
+  def events
+    @campus = Campus.find(params[:campus_id])
+    if current_user.admin?
+      @campus_events = @campus.all_events
+    else
+      @campus_events = @campus.public_events
+    end
+
+    @campus_events = @campus.events.includes(:room, :user)
+    respond_to do |format|
+      format.html { }
+      format.pdf do
+        render pdf: 'event-report', disable_external_links: true, template: 'campuses/events.html.erb'
+      end
+      format.csv do
+        render text: @campus_events.to_csv
+      end
+    end
+  end
+
   private
 
     def set_campus

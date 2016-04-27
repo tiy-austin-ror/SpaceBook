@@ -14,7 +14,7 @@
               <%= event.agenda %>
             </div>
             <div class='time-display col-xs-4'>
-              <%= event.formatted_start_time %> for <%= event.duration_display %>
+              <%= event.formatted_start_time %> until <%= event.end_time %>
             </div>
           </li>
         </div>
@@ -34,8 +34,8 @@
             <div class='col-xs-3 agenda-text'>
               <%= pend.event.agenda %>
             </div>
-            <div class='time-display col-xs-3'>
-              <%= pend.event.formatted_start_time %> for <%= pend.event.duration_display %>
+            <div class='time-display col-xs-4'>
+              <%= pend.formatted_start_time %> until <%= pend.end_time %>
             </div>
             <div>
               <%= link_to 'Approve', invite_path(pend, status: Invite::ACCEPTED), :class => "btn btn-default", :method => :patch %>
@@ -60,7 +60,7 @@
           <div class='col-xs-4 agenda-text'>
              <%= finish.agenda %>
            </div> <div class='time-display col-xs-4'>
-             <%= finish.formatted_start_time %> for <%= finish.duration_display %>
+             <%= finish.formatted_start_time %> until <%= finish.end_time %>
            </div>
          </li>
       </div>

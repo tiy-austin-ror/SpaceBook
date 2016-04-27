@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get 'invite_codes/create'
 
+  get 'campuses/:campus_id/events' => 'campuses#events'
+
   constraints Clearance::Constraints::SignedIn.new { |user| user.admin? } do
     root 'users#admin_dashboard', as: :admin_root
 

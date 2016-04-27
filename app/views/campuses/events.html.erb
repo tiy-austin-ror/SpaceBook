@@ -1,0 +1,33 @@
+<h1>Listing Events for <%= "#{@campus.name}" %></h1>
+<% if current_user.admin == true %>
+    <a class='btn btn-default not-pdf-friendly pull-left' href='/campuses/<%= "#{@campus.id}" %>/events.pdf'>PDF Report of page</a>
+    <a class='btn btn-default not-pdf-friendly pull-left' href='/campuses/<%= "#{@campus.id}" %>/events.csv'>Spreadsheet report of page</a>
+<% end %>
+<div class="table-responsive"></div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Start time</th>
+        <th>Duration</th>
+        <th>Description</th>
+        <th>Room</th>
+        <th>User</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @campus_events.each do |event| %>
+      <tr>
+        <td><%= link_to "#{event.name}", campus_room_event_path(@campus, event.room_id, event), class: "table-link" %></td>
+        <td><%= event.start_time %></td>
+        <td><%= event.end_time %></td>
+        <td><%= event.description %></td>
+        <td><%= event.room.name %></td>
+        <td><%= event.user.username %></td>
+        <td><%= link_to 'Edit Event Details', edit_campus_room_event_path(@campus, event.room_id, event), class: "btn btn-default not-pdf-friendly" %></td>
+        <td><%= link_to 'Delete Event', campus_room_event_path(@campus, event.room_id, event), class: "btn btn-default not-pdf-friendly", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+       </tr>
+       <% end %>
+      </tr>
+    </tbody>
+</div>
