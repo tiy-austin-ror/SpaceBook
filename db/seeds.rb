@@ -13,7 +13,7 @@ def time_floor(time, seconds = 15.minutes)
 end
 
 admin = User.new(admin: true, username: "admin", name: "Admin User", email:"admin@spacebook.com", phone_num: Faker::PhoneNumber.phone_number, profile_pic: Faker::Avatar.image, password:"password")
-=======
+
 google = Company.new(name: "Google")
 google.save!
 
