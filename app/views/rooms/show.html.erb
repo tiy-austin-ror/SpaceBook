@@ -1,5 +1,5 @@
 <h1>Viewing a room</h1>
-
+<%= attachment_image_tag(@room, :profile_image, :fill, 150, 150, format: "jpg", fallback: 'room.jpg', class:"camp-picture") %>
 <%=@room.name%>
 <hr>
 <%=@room.location%>
