@@ -6,6 +6,13 @@
 <hr>
 <%=@room.capacity%>
 <hr>
+<div>
+  <h4>List of Amenities</h4>
+  <% @room.amenities.each do |amenity| %>
+  <p><%= amenity.name %></p>
+  <% end %>
+</div>
+
 
 <div><%= link_to 'Create New Event', new_campus_room_event_path(@room.campus, @room) %></div>
 

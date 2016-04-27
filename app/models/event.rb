@@ -6,6 +6,14 @@ class UniqueTime < ActiveModel::Validator
   end
 end
 
+class FutureTime < ActiveModel::Validator
+  def validate(record)
+    if record.start_time < Time.zone.now
+      record.errors[:base] << 'Events can only be in the future'
+    end
+  end
+end
+
 class Event < ActiveRecord::Base
   has_many :invites
   #TODO Probably wont need the has_many invitees
@@ -15,14 +23,15 @@ class Event < ActiveRecord::Base
   belongs_to :room, counter_cache: true
   belongs_to :user
   validates_with UniqueTime
+  validates_with FutureTime
 
   def formatted_start_time
-    "#{start_time.strftime('%x')} at #{start_time.strftime('%r')}"
+    "#{start_time.strftime('%b %e, %l:%M %p')}"
   end
 
   def end_time
     end_time = start_time+(duration*15).minutes
-    "#{end_time.strftime('%r')}"
+    "#{end_time.strftime('%l:%M %p')}"
   end
 
   def duration_display
@@ -47,6 +56,10 @@ class Event < ActiveRecord::Base
     return "Closed"
   end
 
+  def attending_users
+    invites.where(status: ["Accepted", "Accepted[remote]"])
+  end
+
   def good_time_range?
     room.event_overlap?(self)
   end
@@ -61,5 +74,14 @@ class Event < ActiveRecord::Base
 
   def get_total_participation
     invites.where(status: "Accepted").count + invites.where(status:"Accepted[remote]").count
+  end
+
+  def self.to_csv(query = '')
+    CSV.generate do |csv|
+      csv << column_names
+      where(query).each do |event|
+        csv << event.attributes.values_at(*column_names)
+      end
+    end
   end
 end

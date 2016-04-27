@@ -16,3 +16,7 @@ end
 When(/^I click the room link$/) do
   find("#room-name").find('a').click
 end
+
+When(/^I select "([^"]*)" from "([^"]*)"$/) do |value, field|
+  select(value, :from => field)
+end

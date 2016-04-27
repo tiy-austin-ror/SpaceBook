@@ -39,7 +39,7 @@ var CommentForm = React.createClass({
 
   render: function(){
     return (
-      <div className="container">
+      <div className="container not-pdf-friendly">
         <label><strong>New Comment: </strong>
           <textarea row={40} cols={40}
                  className="form-control-100"
@@ -49,7 +49,7 @@ var CommentForm = React.createClass({
         </label><br/>
         <label>
           <input type="button"
-                 className="btn btn-primary"
+                 className="btn btn-primary not-pdf-friendly"
                  value="Post Comment"
                  onClick={this.handlePostComment} />
         </label>

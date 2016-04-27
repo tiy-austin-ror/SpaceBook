@@ -26,5 +26,8 @@ module Spacebook
 
     # postgres - gem
     config.active_record.schema_format = :sql
+
+    config.time_zone = "Central Time (US & Canada)"
+
   end
 end
