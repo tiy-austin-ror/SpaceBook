@@ -7,6 +7,11 @@ class RemoteInvite < ActiveModel::Validator
 end
 
 class Invite < ActiveRecord::Base
+  ACCEPTED = 'Accepted'
+  REJECTED = 'Rejected'
+  PENDING = 'Pending'
+  REMOTE = 'Accepted[remote]'
+
   def self.confirmation
     ['Accepted', 'Rejected', 'Pending', 'Accepted[remote]']
   end

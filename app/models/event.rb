@@ -6,6 +6,14 @@ class UniqueTime < ActiveModel::Validator
   end
 end
 
+class FutureTime < ActiveModel::Validator
+  def validate(record)
+    if record.start_time < Time.zone.now
+      record.errors[:base] << 'Events can only be in the future'
+    end
+  end
+end
+
 class Event < ActiveRecord::Base
   has_many :invites
   #TODO Probably wont need the has_many invitees
@@ -15,6 +23,7 @@ class Event < ActiveRecord::Base
   belongs_to :room, counter_cache: true
   belongs_to :user
   validates_with UniqueTime
+  validates_with FutureTime
 
   def formatted_start_time
     "#{start_time.strftime('%x')} at #{start_time.strftime('%r')}"
@@ -62,4 +71,5 @@ class Event < ActiveRecord::Base
   def get_total_participation
     invites.where(status: "Accepted").count + invites.where(status:"Accepted[remote]").count
   end
+
 end

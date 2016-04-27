@@ -12,11 +12,16 @@ class InvitesController < ApplicationController
 
   def update
     get_invite
+<<<<<<< HEAD
     @event = @invite.event
     @room = @event.room
     @campus = @event.campus
     @invite.assign_attributes(invite_params.merge(user_id: current_user.id)) if @invite.user_id == current_user.id
     save_for_html_json(@invite, "/events/show") { :back }
+=======
+    @invite.update(status: params[:status])
+    redirect_to :back
+>>>>>>> 10379eecaa35a88fe86fa5f11c7bde9b7b7e7db7
   end
 
   def destroy

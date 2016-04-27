@@ -27,7 +27,6 @@ module EventsHelper
       base_url = "/invites/#{current_user.invites.where(event_id: @event.id).first.id}"
       output << (link_to "Leave Event", "#{base_url}?invite[status]=Declinded", method: :PUT, class: "btn btn-default")
      end
-
      output.html_safe
   end
 
