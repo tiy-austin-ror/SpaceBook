@@ -1,13 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'company' => 'companies#show'
-
-  get 'company/edit' => 'companies#edit'
-
-  get 'invite_codes/create'
-
   constraints Clearance::Constraints::SignedIn.new { |user| user.admin? } do
     root 'users#admin_dashboard', as: :admin_root
+    get 'company/edit' => 'companies#edit'
 
     resources :campuses do
       resources :rooms do
@@ -17,6 +12,8 @@ Rails.application.routes.draw do
   end
 
   constraints Clearance::Constraints::SignedIn.new do
+    root 'dashboard#home'
+    get 'company' => 'companies#show'
 
     delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
     resources :users
@@ -31,8 +28,6 @@ Rails.application.routes.draw do
     end
 
     post 'invite_codes' => "invite_codes#create"
-    get 'admin' => "users#admin_dashboard"
-    root 'dashboard#home'
 
     resources :passwords, controller: "clearance/passwords", only: [:create, :new]
     resource :session, controller: "clearance/sessions", only: [:create]
