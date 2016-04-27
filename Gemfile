@@ -54,6 +54,8 @@ group :development, :test do
   gem "bullet"
 end
 
+
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
@@ -67,6 +69,12 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'kaminari'
 gem 'bcrypt'
 gem 'twilio-ruby'
+
+# Gems for image uploads
+gem 'refile', require: 'refile/rails'
+gem 'refile-mini_magick'
+gem 'refile-postgres'
+
 group :production do
   gem 'puma'
   gem 'rails_12factor'

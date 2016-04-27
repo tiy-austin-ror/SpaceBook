@@ -23,5 +23,8 @@ module Spacebook
     config.active_record.raise_in_transactional_callbacks = true
 
     config.secret_key_base = Rails.env.production? ? ENV['SECRET_TOKEN'] : 'super_secret_token'
+
+    # postgres - gem
+    config.active_record.schema_format = :sql
   end
 end

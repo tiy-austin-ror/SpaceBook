@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   include Clearance::User
   attr_accessor :password_confirmation
 
+  attachment :profile_image #required for Refile (image upload)
   has_one :campus_user
   has_one :campus, through: :campus_user
   has_many :invites
