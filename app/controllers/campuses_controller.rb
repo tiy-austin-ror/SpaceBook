@@ -15,7 +15,7 @@ before_action :set_campus, only: [:show, :update, :destroy]
 
   def create
     @campus = Campus.new(campus_params)
-    @campus.company_id: current_user.company.id
+    @campus.company_id = current_user.company.id
     save_for_html_json(@campus, "show") { campus_path(@campus) }
   end
 
