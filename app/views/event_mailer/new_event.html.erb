@@ -3,8 +3,7 @@
         :action => "show",
         :only_path => false,
         :campus_id => @room.campus.id,
-        :id => @room.id,
-        :host => "localhost:3000" %>.</p>
+        :id => @room.id %>.</p>
 
 <blockquote>
   Name: <em><%= @event.name %></em>
@@ -19,5 +18,4 @@
         :only_path => false,
         :campus_id => @room.campus.id,
         :room_id => @event.room.id,
-        :id => @event.id,
-        :host => "localhost:3000" %>.</p>
+        :id => @event.id %>.</p>
