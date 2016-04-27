@@ -47,6 +47,10 @@ class Event < ActiveRecord::Base
     return "Closed"
   end
 
+  def attending_users
+    invites.where(status: ["Accepted", "Accepted[remote]"])
+  end
+
   def good_time_range?
     room.event_overlap?(self)
   end
