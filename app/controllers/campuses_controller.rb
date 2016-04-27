@@ -28,6 +28,11 @@ before_action :set_campus, only: [:show, :update, :destroy]
     destroy_html_json(@campus, campus_path(@campus))
   end
 
+  def events
+    @campus = Campus.find(params[:campus_id])
+    @campus_events = @campus.events.includes(:room, :user)
+  end
+
   private
 
     def set_campus
