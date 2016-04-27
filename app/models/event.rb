@@ -26,12 +26,12 @@ class Event < ActiveRecord::Base
   validates_with FutureTime
 
   def formatted_start_time
-    "#{start_time.strftime('%x')} at #{start_time.strftime('%r')}"
+    "#{start_time.strftime('%b %e, %l:%M %p')}"
   end
 
   def end_time
     end_time = start_time+(duration*15).minutes
-    "#{end_time.strftime('%r')}"
+    "#{end_time.strftime('%l:%M %p')}"
   end
 
   def duration_display
@@ -76,4 +76,12 @@ class Event < ActiveRecord::Base
     invites.where(status: "Accepted").count + invites.where(status:"Accepted[remote]").count
   end
 
+  def self.to_csv(query = '')
+    CSV.generate do |csv|
+      csv << column_names
+      where(query).each do |event|
+        csv << event.attributes.values_at(*column_names)
+      end
+    end
+  end
 end

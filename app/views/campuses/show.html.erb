@@ -6,7 +6,7 @@
     </h3>
   </div>
   <div class='col-sm-2 col-sm-offset-1'>
-    <img class="style-custome" src="<%= @campus.picture_url%>" />
+    <%= attachment_image_tag(@campus, :profile_image, :fill, 150, 150, format: "jpg", fallback: 'campus.jpg', class:"camp-picture") %>
   </div>
 </div>
   <div class="pull-right">
@@ -18,7 +18,7 @@
       <% rooms.each_with_index do |room, index| %>
         <div class="pending-events-display campus-room col-sm-5 col-sm-offset-<%= 2 if index == 1 %>">
           <h3 id="room-name"><%= link_to room.name, campus_room_path(@campus, room) %></h3>
-          <%=link_to image_tag (room.picture_url) %>
+          <%= attachment_image_tag(room, :profile_image, :fill, 150, 150, format: "jpg", fallback: 'room.jpg', class:"camp-picture") %>
           <div class="row campus-description-padding">
             <div class="col-sm-6">
               <%= room.location %>

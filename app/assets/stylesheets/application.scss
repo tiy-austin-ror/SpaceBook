@@ -18,7 +18,7 @@
  *= require rails_bootstrap_forms
  */
 $primary-color: #457B9D;
-$secondary-color: #CCDBDC;
+$secondary-color: #1D3557;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
@@ -91,7 +91,7 @@ body {
   padding: 2px 0 2px 0;
   div {
     border: none;
-          margin-top: .5em;
+          margin-top: .3em;
     a.nav-link {
       font-size: 1.125em;
       font-family: Lato;
@@ -104,10 +104,31 @@ body {
   }
 }
 
+
 .dash-picture {
-  height: 1.75em;
-  width: 1.75em;
+  border-radius: 50%;
+  border: solid 2px $primary-color;
+  width: 150px;
+  height :auto;
 }
+
+.camp-picture {
+  border-radius: 8px / 8px;
+  border: solid 2px $primary-color;
+  width: 175px;
+  height :auto;
+  margin-top: 10px;
+}
+
+
+.table-link {
+  color: inherit;
+  &:hover {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
 
 .pending-events-display {
   padding: .75em 0;
@@ -175,6 +196,10 @@ body {
 
 .campus-description-padding {
   padding-top: 25px;
+}
+
+.header-with-admin-buttons {
+  display: inline-block;
 }
 
 footer {

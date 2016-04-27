@@ -6,5 +6,6 @@
     <%= f.hidden_field :campus_id, :value => @campus.id %>
     <%= f.text_field :location, class: 'form-control' %>
     <%= f.number_field(:capacity, in: 1..30) %>
+    <%= f.attachment_field :profile_image %>
     <%= f.submit %>
   <% end %>

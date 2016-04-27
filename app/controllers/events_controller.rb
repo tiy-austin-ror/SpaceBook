@@ -1,3 +1,5 @@
+require 'csv'
+
 class EventsController < ApplicationController
 before_action :company_validation
 before_action :set_campus_room_event, only: [:edit, :update, :destroy]
@@ -5,7 +7,21 @@ before_action :set_campus_room, only: [:create, :new]
 before_action :set_event, only: [:show]
 
   def index
-    @events = Event.where(room: params[:room_id])
+    if current_user.admin?
+      @events = Event.where(room: params[:room_id]).includes(:room, :user)
+    else
+      @events = Event.where(room: params[:room_id], private: false).includes(:room, :user)
+    end
+
+    respond_to do |format|
+      format.html { }
+      format.pdf do
+        render pdf: 'event-report', disable_external_links: true, template: 'events/index.html.erb'
+      end
+      format.csv do
+        render text: @events.to_csv
+      end
+    end
   end
 
   def show
@@ -17,6 +33,10 @@ before_action :set_event, only: [:show]
     @invites = @event.invites.order(created_at: :desc)
     respond_to do |format|
       format.html { }
+      format.pdf do
+        render pdf: 'event-report', template: 'events/show.html.erb'
+      end
+
       format.json { render json: {comments: @comments,
                                   invites: @invites} }
     end

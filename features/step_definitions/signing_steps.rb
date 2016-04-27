@@ -4,7 +4,7 @@ end
 
 Given(/^I have an invitation$/) do
   company = Company.create!(name: "SpaceBook")
-  campus = Campus.create(company_id: company.id, city:Faker::Address.city, state:Faker::Address.state, zip:Faker::Address.zip, name:Faker::Name.name, picture_url: Faker::Avatar.image)
+  campus = Campus.create(company_id: company.id, city:Faker::Address.city, state:Faker::Address.state, zip:Faker::Address.zip, name:Faker::Name.name)
   InviteCode.create(campus_id: campus.id, hash_code: 123)
 end
 

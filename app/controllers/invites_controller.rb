@@ -1,17 +1,22 @@
 class InvitesController < ApplicationController
 
   def create
-    @invite = Invite.new(invite_params)
     @event = Event.find(params[:invite][:event_id])
     @room = @event.room
     @campus = @event.campus
+    user_id = params[:invite][:user_id] || current_user.id
+    params[:invite][:status] = "Pending" unless current_user.id == user_id
+    @invite = Invite.new(invite_params.merge(user_id: user_id))
     save_for_html_json(@invite, "/events/show") { :back }
   end
 
   def update
     get_invite
-    @invite.update(status: params[:status])
-    redirect_to :back
+    @event = @invite.event
+    @room = @event.room
+    @campus = @event.campus
+    @invite.assign_attributes(invite_params.merge(user_id: current_user.id)) if @invite.user_id == current_user.id
+    save_for_html_json(@invite, "/events/show") { :back }
   end
 
   def destroy
@@ -26,6 +31,6 @@ class InvitesController < ApplicationController
   end
 
   def invite_params
-    params.require(:invite).permit(:status, :event_id, :user_id)
+    params.require(:invite).permit(:status, :event_id)
   end
 end

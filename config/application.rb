@@ -24,6 +24,10 @@ module Spacebook
 
     config.secret_key_base = Rails.env.production? ? ENV['SECRET_TOKEN'] : 'super_secret_token'
 
+    # postgres - gem
+    config.active_record.schema_format = :sql
+
     config.time_zone = "Central Time (US & Canada)"
+
   end
 end

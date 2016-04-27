@@ -1,7 +1,11 @@
 <h1>Show Event</h1>
+<% if current_user.admin == true %>
+    <% event = @event %>
+    <%= link_to 'PDF Report of page', campus_room_event_path(event.campus, event.room, event, format: :pdf), class: "btn btn-default not-pdf-friendly pull-right" %>
+<% end %>
 
-<%= link_to 'Edit', edit_campus_room_event_path(@event.campus, @event.room, @event), class: "btn btn-default" %> |
-<%= link_to 'Back', campus_room_events_path(@event.campus, @event.room), class: "btn btn-default" %>
+<%= link_to 'Edit', edit_campus_room_event_path(@event.campus, @event.room, @event), class: "btn btn-default not-pdf-friendly" %>
+<%= link_to 'Back', campus_room_events_path(@event.campus, @event.room), class: "btn btn-default not-pdf-friendly" %>
 <div class="row">
   <div class = 'description col-xs-12 col-sm-8 col-md-8'>
     <h2><strong>Name: <%= @event.name %> | Event Details:</strong></h2>
@@ -20,30 +24,32 @@
     <p><%= @event.user.full_name.titleize %></p>
   </div>
   <div class="col-xs-12 col-sm-4 col-md-4">
-    <h2><strong>Invite List </strong></h2>
+    <h2 class="not-pdf-friendly"><strong>Invite List </strong></h2>
     <%= react_component('InvitesContainer') %>
   </div>
 </div>
+
 <hr />
-<% if current_user == @event.user %>
+<% if user_can_invite? %>
   <%= react_component('EventInvites', users: @users, event_id: @event.id) %>
 <% end %>
+<div class='not-pdf-friendly'>
 
 <div id="join-event">
-  <% if current_user && current_user.invites.where(event_id: @event.id).count.zero? %>
-    <%= link_to "Join Event", "/invites?invite[status]=Accepted&invite[event_id]=#{@event.id}&invite[user_id]=#{current_user.id}", method: :POST, class: "btn btn-default" %>
-  <% end %>
+  <%= get_join_buttons %>
 </div>
 
-<hr />
-<h3>Comments</h3>
-<%= react_component('CommentForm', user: current_user,
-                                   campus_id: @campus.id,
-                                   room_id: @room.id,
-                                   event_id: @event.id) %>
-<hr />
 
-<div class="container" id="comments-container">
-  <%= react_component('CommentsContainer') %>
+  <hr />
+  <h3>Comments</h3>
+  <%= react_component('CommentForm', user: current_user,
+                                     campus_id: @campus.id,
+                                     room_id: @room.id,
+                                     event_id: @event.id) %>
+  <hr />
 
+  <div class="container not-pdf-friendly" id="comments-container">
+    <%= react_component('CommentsContainer') %>
+
+  </div>
 </div>

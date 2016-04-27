@@ -14,4 +14,23 @@ module EventsHelper
      ['5 hr 45 min',23],  ['6 hours',24]
    ]
   end
+
+  def get_join_buttons
+     output = ""
+     if current_user && !@event.private && current_user.invites.where(event_id: @event.id).where("status ILIKE ?", 'Accepted%').count.zero?
+      invite_method = current_user.invites.where(event_id: @event.id).count.zero? ? :POST : :PUT
+      base_url = "/invites"
+      base_url = "/invites/#{current_user.invites.where(event_id: @event.id).first.id}" if invite_method == :PUT
+      output << (link_to "Join Event", "#{base_url}?invite[status]=Accepted&invite[event_id]=#{@event.id}", method: invite_method, class: "btn btn-default")
+      output << (link_to "Join Event [remote]", "#{base_url}?invite[status]=Accepted[remote]&invite[event_id]=#{@event.id}", method: invite_method, class: "btn btn-default")
+     elsif current_user && current_user.invites.where(event_id: @event.id).where("status ILIKE ?", 'Accepted%').count != 0
+      base_url = "/invites/#{current_user.invites.where(event_id: @event.id).first.id}"
+      output << (link_to "Leave Event", "#{base_url}?invite[status]=Declinded", method: :PUT, class: "btn btn-default")
+     end
+     output.html_safe
+  end
+
+  def user_can_invite?
+    current_user == @event.user || (@event.open_invite && current_user.invites.where(event_id: @event.id).where("status ILIKE ?", 'Accepted%').count != 0)
+  end
 end

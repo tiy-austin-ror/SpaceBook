@@ -5,7 +5,7 @@
 
       <% @campuses.each do |campus| %>
           <%= campus.name %> <br>
-          <%= image_tag campus.picture_url, width: 50, height:50 %> <br>
+          <%= attachment_image_tag(campus, :profile_image, :fill, 150, 150, format: "jpg", fallback: 'campus.jpg', class:"camp-picture") %>
           <%= link_to 'Show', campus %><br>
           <hr>
       <% end %>
