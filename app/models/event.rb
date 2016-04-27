@@ -72,8 +72,4 @@ class Event < ActiveRecord::Base
     invites.where(status: "Accepted").count + invites.where(status:"Accepted[remote]").count
   end
 
-  def future_date?
-    errors.add(:start_time, "can't be in the past") unless
-      start_time.future?
-  end
 end
