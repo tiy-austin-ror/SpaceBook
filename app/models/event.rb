@@ -17,7 +17,7 @@ class Event < ActiveRecord::Base
   validates_with UniqueTime
 
   def formatted_start_time
-    "#{start_time.strftime('%x')} at #{start_time.strftime('%r')}"
+    "#{start_time.strftime('%b %e, %l:%M %p')}"
   end
 
   def end_time
