@@ -30,6 +30,12 @@ before_action :set_campus, only: [:show, :update, :destroy]
 
   def events
     @campus = Campus.find(params[:campus_id])
+    if current_user.admin?
+      @campus_events = @campus.all_events
+    else
+      @campus_events = @campus.public_events
+    end
+
     @campus_events = @campus.events.includes(:room, :user)
     respond_to do |format|
       format.html { }

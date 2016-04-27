@@ -7,7 +7,12 @@ before_action :set_campus_room, only: [:create, :new]
 before_action :set_event, only: [:show]
 
   def index
-    @events = Event.where(room: params[:room_id]).includes(:room, :user)
+    if current_user.admin?
+      @events = Event.where(room: params[:room_id]).includes(:room, :user)
+    else
+      @events = Event.where(room: params[:room_id, public: true]).includes(:room, :user)
+    end
+
     respond_to do |format|
       format.html { }
       format.pdf do
