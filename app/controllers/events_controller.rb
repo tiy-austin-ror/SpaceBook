@@ -7,14 +7,14 @@ before_action :set_campus_room, only: [:create, :new]
 before_action :set_event, only: [:show]
 
   def index
-    @events = Event.where(room: params[:room_id])
+    @events = Event.where(room: params[:room_id]).includes(:room, :user)
     respond_to do |format|
       format.html { }
       format.pdf do
         render pdf: 'event-report', disable_external_links: true, template: 'events/index.html.erb'
       end
       format.csv do
-        render text: Event.to_csv(room: params[:room_id])
+        render text: @events.to_csv
       end
     end
   end

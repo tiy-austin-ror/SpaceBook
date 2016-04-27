@@ -37,7 +37,7 @@ before_action :set_campus, only: [:show, :update, :destroy]
         render pdf: 'event-report', disable_external_links: true, template: 'campuses/events.html.erb'
       end
       format.csv do
-        render text: Event.to_csv(room: params[:room_id])
+        render text: @campus_events.to_csv
       end
     end
   end
