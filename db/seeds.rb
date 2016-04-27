@@ -6,18 +6,52 @@ truth = [true, false]
 def time_floor(time, seconds = 15.minutes)
   Time.at((time.to_f / seconds).floor * seconds).utc
 end
+#Make Ameneities List
 
-#Establish base working data
+amenities = [
+      "Coffee Pots",
+      "Projectors",
+      "Windows",
+      "Air Conditioned",
+      "Speakers",
+      "Recording Setup",
+      "Microphones",
+      "White Boards",
+    ].each do
+
+    end
+
+amenities.each do |amen|
+  Amenity.create(name: amen)
+end
+
+#Setting Time Rounder
+
+rounded_time = time_floor(rand(Time.now..5.days.from_now))
+
+#Establishing base team
+
 
 company = Company.create(name: "SpaceBook")
 
 admin = User.create(admin: true, username: "admin", name: "Justin Herrick", email:"admin@spacebook.com", phone_num: Faker::PhoneNumber.phone_number, profile_pic: Faker::Avatar.image, password:"password", company_id: company.id)
 
-not_admin = User.new(admin: false, username: "not_admin", name: Faker::Name.name, email:"not_admin@spacebook.com", phone_num: Faker::PhoneNumber.phone_number, password:"password")
-not_admin.save!
+not_admin = User.create(admin: false, username: "not_admin", name: Faker::Name.name, email:"not_admin@spacebook.com", phone_num: Faker::PhoneNumber.phone_number, password:"password", company_id: company.id)
+
+campus = Campus.create(city: "Austin", state: "Texas", zip: "78704", name: "HomeBase", picture_url: Faker::Avatar.image, company_id: company.id)
+
+room = Room.create(name: "Bubble",location: "Front Lobby Couches", capacity: rand(3..5), campus_id: campus.id, picture_url: Faker::Avatar.image, events_count: 0, average_capacity_use: 0)
+
+
+event = room.events.create(user_id: user.id || 0, start_time: rounded_time, duration: rand(1..12), name: Faker::Company.buzzword + " meeting",
+                        description: Faker::Company.bs, agenda: Faker::Company.catch_phrase, private: truth.sample) unless user.nil?
+
+room = Room.create(name: "Nest",location: "Left Side-Room in Hall", capacity: rand(5..12), campus_id: campus.id, picture_url: Faker::Avatar.image, events_count: 0, average_capacity_use: 0)
+
+#Valve
 
 10.times do
-  campus = Campus.new(city:Faker::Address.city, state:Faker::Address.state, zip:Faker::Address.zip, name:Faker::Name.name, picture_url: Faker::Avatar.image)
+  campus =
   campus.save!
 end
 
@@ -57,21 +91,6 @@ room = campus.rooms.first
 past_event = room.events.new(user_id: 2, start_time: Time.new(2016, 4, 20, "+6:00"), duration: 1, name: Faker::Company.buzzword,
                         description: Faker::Company.bs, agenda: Faker::Company.catch_phrase, private: truth.sample)
 past_event.save!
-
-amenity_list = [
-      "Coffee",
-      "Projector",
-      "Windows",
-      "Internal AC",
-      "Speakers",
-      "Video camera",
-      "Microphone",
-      "White board"
-      ]
-
-8.times do
-  Amenity.create(name: amenity_list.shift)
-end
 
 10.times do |n|
   n = n + 1
