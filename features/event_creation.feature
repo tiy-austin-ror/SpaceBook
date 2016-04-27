@@ -9,7 +9,6 @@ Feature: Event Create
     And I press "Sign in"
     When I go to the root path
     And I click "Events"
-    And I click the room link
     And I click "Create New Event"
     And I fill in "Name" with "The Iron Yard Graduation Ceremony"
     And I fill in "Description" with "Party time!"
