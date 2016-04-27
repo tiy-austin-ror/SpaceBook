@@ -8,8 +8,6 @@ Feature: Event Create
     And I fill in "Password" with "password"
     And I press "Sign in"
     When I go to the root path
-    And I click "Events"
-    And I click "Create New Event"
     And I fill in "Name" with "The Iron Yard Graduation Ceremony"
     And I select "2018" from "event_start_time_1i"
     And I fill in "Description" with "Party time!"
