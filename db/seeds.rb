@@ -12,6 +12,8 @@ def time_floor(time, seconds = 15.minutes)
   Time.at((time.to_f / seconds).floor * seconds).utc
 end
 
+admin = User.new(admin: true, username: "admin", name: "Admin User", email:"admin@spacebook.com", phone_num: Faker::PhoneNumber.phone_number, profile_pic: Faker::Avatar.image, password:"password")
+
 google = Company.new(name: "Google")
 google.save!
 
@@ -107,4 +109,10 @@ n = 0
   n = n + 1
   RoomAmenity.create(room_id: n, amenity_id: rand(1..Amenity.count))
   RoomAmenity.create(room_id: n, amenity_id: rand(1..Amenity.count))
+end
+
+User.all.each do |user|
+  Event.all.each do |event|
+    Invite.create(event: event, user: user)
+  end
 end
