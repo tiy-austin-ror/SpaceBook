@@ -1,4 +1,9 @@
-<p>A new event was created in <%= @room.name %></p>
+<p>A new event was created in <%= link_to @room.name,
+        :controller => "rooms",
+        :action => "show",
+        :only_path => false,
+        :campus_id => @room.campus.id,
+        :id => @room.id %>.</p>
 
 <blockquote>
   Name: <em><%= @event.name %></em>
@@ -7,4 +12,10 @@
   When: <%= @event.start_time %>
 </blockquote>
 
-<p>To see more details about the event, please visit the event page.</p>
+<p>To see more details about the event, please visit the <%= link_to "event page",
+        :controller => "events",
+        :action => "show",
+        :only_path => false,
+        :campus_id => @room.campus.id,
+        :room_id => @event.room.id,
+        :id => @event.id %>.</p>
