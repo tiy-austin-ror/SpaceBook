@@ -5,7 +5,8 @@ class RoomsController < ApplicationController
 
 
   def index
-    @rooms = Room.all.order("average_capacity_use")
+    @rooms = Room.where(campus_id: params[:campus_id])
+    # @rooms = Room.all.order("average_capacity_use")
 
     respond_to do |format|
       format.json { render json: @rooms.to_json(include: :amenities) }
