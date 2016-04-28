@@ -6,4 +6,4 @@ Feature: Admin dashboard view
         And I fill in "Email" with "test_admin@spacebook.com"
         And I fill in "Password" with "password"
         When I press "Sign in"
-        Then I should see "click an event to edit it:"
+        Then I should see "Send an invite to join your company:"
