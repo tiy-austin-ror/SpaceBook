@@ -6,7 +6,7 @@ before_action :set_campus, only: [:show, :update, :destroy]
   end
 
   def show
-    @rooms = @campus.rooms.order( average_capacity_use: :DESC )
+    @rooms = @campus.rooms.includes(:events).sort_by{ |room| -room.average_capacity_use }
   end
 
   def new
