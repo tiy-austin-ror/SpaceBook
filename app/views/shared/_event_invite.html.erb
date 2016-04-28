@@ -10,16 +10,20 @@
     </div>
 </div>
 <div class='better-row bottom-border'>
-    <div class='col-xs-5 col-sm-5 col-xs-offset-1'>
+    <div class='col-xs-4 col-sm-4 col-xs-offset-1'>
       <%= link_to invite.room.name, campus_room_path(current_user.campus, invite.room.id), class:'room-name' %>
     </div>
-    <% if invite.status != Invite::ACCEPTED %>
-      <div class='col-xs-4 col-sm-6'>
+    <% if invite.status == Invite::PENDING %>
+      <div class='col-xs-7 col-sm-7'>
         <%= link_to 'Approve', invite_path(invite, invite: {status: Invite::ACCEPTED}), :class => "btn btn-default", :method => :patch %>
         <%= link_to 'Deny', invite_path(invite, invite: {status: Invite::REJECTED}), :class => "btn btn-default", :method => :patch %>
         <% if invite.event.allow_remote %>
           <%= link_to 'Remote', invite_path(invite, invite: {status: Invite::REMOTE}), :class => "btn btn-default", :method => :patch %>
         <% end %>
+      </div>
+    <% else %>
+      <div class='col-xs-7 col-sm-7 room-name'>
+        <%= invite.status %>
       </div>
     <% end %>
   </li>
