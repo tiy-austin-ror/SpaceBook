@@ -3,6 +3,7 @@
 
 ### Establishing Shared Uses ####
 truth = [true, false]
+invitation_acceptance = ["Accepted", "Declined"]
 
 def time_floor(time, seconds = 15.minutes)
   Time.at((time.to_f / seconds).floor * seconds).utc
@@ -65,11 +66,13 @@ ActiveRecord::Base.transaction do # This causes all inserts to happen at one tim
   end
 
   google.campuses.each do |campus|
-    2.times do
+    4.times do
       room = Room.create(name: "The " + Faker::Commerce.color + " room.",location:Faker::Address.city, capacity: rand(5..30), campus_id: campus.id)
       event = Event.create(user_id: google.users.sample.id, start_time: start, duration: rand(1..12), room_id: room.id, name: Faker::Company.buzzword,
                               description: Faker::Company.bs, agenda: Faker::Company.catch_phrase, private: truth.sample, allow_remote: truth.sample)
-      Invite.create(event: event, user: google.users.sample)
+      25.times do
+        Invite.create(event: event, user: google.users.sample, status: invitation_acceptance.sample)
+      end
     end
   end
 

@@ -35,7 +35,9 @@
         <% if signed_in? %>
           <div class='pull-right row'>
             <a class= "nav-link lower-me pull-left col-xs-2" href='/'>Home</a>
-            <a class= "nav-link lower-me pull-left col-xs-2" href='/campuses'>Campuses</a>
+            <% if current_user.admin? %>
+              <a class= "nav-link lower-me pull-left col-xs-2" href='/campuses'>Campuses</a>
+            <% end %>
             <div class='nav navbar-nav navbar row pull-right'>
               <div class='row'>
                 <div class= "col-xs-3"> <%= link_to "Rooms", campus_rooms_path(current_user.campus), class: "nav-link" %> </div>
