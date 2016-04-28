@@ -3,15 +3,26 @@
   Welcome: <%=@user.name%>
 </h4>
 <div class="row">
-  <div class='row pending-events-display'>
-    <div class='col-sm-8 col-sm-offset-1'>
+  <div>
+    <div class='col-sm-8 col-sm-offset-2'>
       <h3 class="campus-header">Send an invite to join your company:
         <%= render 'create_invite' %>
       </h3>
     </div>
   </div>
-
-  <div class='pending-events-display col-md-5 col-md-offset-1'>
+</div>
+<div class="row">
+  <div class='pending-events-display col-md-5 col-md-offset-3'>
+    <h3 class='pending-events-header'>Click a company to edit it:</h3>
+    <ul class='pending-events-display-list'>
+      <li class='pending-events-display-list-item'>
+        <%= link_to "#{@company.name}", edit_company_path(@company) %>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class='pending-events-display col-md-5 col-md-offset-1' id="scrollable">
     <h3 class='pending-events-header'>Click an event to edit it:</h3>
     <ul class='pending-events-display-list'>
       <% @user.campus_events.includes(:room).each do |event| %>
@@ -23,6 +34,7 @@
       <% end %>
     </ul>
   </div>
+
   <div class='pending-events-display col-md-5 col-md-offset-1'>
     <h3 class='pending-events-header'>Click a user to edit them:</h3>
     <ul class='pending-events-display-list'>
@@ -37,6 +49,7 @@
       <% end %>
     </ul>
   </div>
+
   <div class='pending-events-display col-md-5 col-md-offset-1'>
     <h3 class='pending-events-header'>Pending Created Events</h3>
     <ul class='pending-events-display-list'>
@@ -57,7 +70,8 @@
       <% end %>
     </ul>
   </div>
-
+</div>
+<div class="row">
   <div class='pending-events-display col-md-5 col-md-offset-1'>
     <h3 class='pending-events-header'>Pending Event Invitations</h3>
     <ul class='pending-events-display-list'>
@@ -100,16 +114,6 @@
       </div>
       <% end %>
     <ul class='pending-events-display-list'>
-    </ul>
-  </div>
-  <div class='pending-events-display col-md-5 col-md-offset-1'>
-    <h3 class='pending-events-header'>Edit your company:</h3>
-    <ul class='pending-events-display-list'>
-      <div class='row'>
-        <li class='pending-events-display-list-item'>
-          <%= link_to "#{@company.name}", edit_company_path(@company) %>
-        </li>
-      </div>
     </ul>
   </div>
 </div>
