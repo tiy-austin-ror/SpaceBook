@@ -49,4 +49,11 @@ class Room < ActiveRecord::Base
   def event_overlap?(new_event=nil)
     !!get_event_overlap(new_event)
   end
+
+  def average_capacity_use
+    event_attendance = []
+    self.events.each do |x|
+      event_attendance << x.get_physical_participation
+    end
+  end
 end
