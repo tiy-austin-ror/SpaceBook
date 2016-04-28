@@ -30,6 +30,7 @@ gem 'rails-footnotes', '~> 4.0'
 gem 'bootstrap_form'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem 'mailgun-ruby', '~>1.0.5', require: 'mailgun'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
