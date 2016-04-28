@@ -35,8 +35,9 @@
       <% if @user_pending_invites.empty? %>
         <li>You have no pending events</li>
       <% else %>
-      <% @user_pending_invites.each do |pend| %>
-        <%= render partial: "shared/event_invite", locals: {invite: pend} %>
+        <% @user_pending_invites.each do |pend| %>
+          <%= render partial: "shared/event_invite", locals: {invite: pend} %>
+        <% end %>
       <% end %>
     </ul>
   </div>
