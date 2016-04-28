@@ -87,8 +87,8 @@ Rails.application.configure do
     domain: ENV['domain'],
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV['username'],
-    password: ENV['password'],
+    user_name: ENV['gmail_username'],
+    password: ENV['gmail_password'],
   }
 
   config.action_mailer.default_url_options = { host: "tiy-spacebook.herokuapp.com" }
