@@ -1,6 +1,6 @@
 class RemoteInvite < ActiveModel::Validator
   def validate(record)
-    if record.status == "Accepted[remote]" && record.event.allow_remote
+    if (record.status == "Accepted[remote]") && !record.event.allow_remote
       record.errors[:base] << 'This event does not allow remote attendance!'
     end
   end

@@ -31,6 +31,7 @@ before_action :set_event, only: [:show]
     @campus = @room.campus
     @comments = @event.comments.order(created_at: :desc)
     @invites = @event.invites.order(created_at: :desc)
+    @pending_invite = current_user.invites.where(event_id: @event.id, status: Invite::PENDING).first
     respond_to do |format|
       format.html { }
       format.pdf do
@@ -43,6 +44,7 @@ before_action :set_event, only: [:show]
   end
 
   def new
+    @room = Room.find(params[:room_id])
     @event = Event.new
   end
 

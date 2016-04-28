@@ -1,14 +1,12 @@
 Rails.application.routes.draw do
 
-  get 'company' => 'companies#show'
-
-  get 'company/edit' => 'companies#edit'
-
   get 'invite_codes/create'
 
   get 'campuses/:campus_id/events' => 'campuses#events'
 
   constraints Clearance::Constraints::SignedIn.new { |user| user.admin? } do
+    resources :companies
+
     root 'dashboard#admin_dashboard', as: :admin_root
 
     resources :campuses do
@@ -17,6 +15,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  get 'company' => 'companies#show'
 
   constraints Clearance::Constraints::SignedIn.new do
 
