@@ -33,18 +33,22 @@
       <%= link_to "SpaceBook", root_path, class: "navbar-brand" %>
       <% end %>
         <% if signed_in? %>
-          <a class= "nav-link lower-me pull-left" href='/'>Home</a>
-          <div class="nav navbar-nav navbar row pull-right">
-            <div class='row'>
-              <div class= "col-xs-3 col-xs-offset-1"> <%= link_to "Rooms", campus_rooms_path(current_user.campus), class: "nav-link" %> </div>
-              <div class='col-xs-3'><a class= "nav-link" href='/campuses/<%= "#{current_user.campus.id}" %>/events'>Events</a></div>
-              <div class= "col-xs-5"> <%= link_to 'Sign out', sign_out_path, method: :delete, class: "nav-link" %> </div>
+          <div class='pull-right row'>
+            <a class= "nav-link lower-me pull-left col-xs-3" href='/'>Home</a>
+            <div class='nav navbar-nav navbar row pull-right'>
+              <div class='row'>
+                <div class= "col-xs-3 col-xs-offset-1"> <%= link_to "Rooms", campus_rooms_path(current_user.campus), class: "nav-link" %> </div>
+                <div class='col-xs-3'><a class= "nav-link" href='/campuses/<%= "#{current_user.campus.id}" %>/events'>Events</a></div>
+                <div class= "col-xs-5"> <%= link_to 'Sign out', sign_out_path, method: :delete, class: "nav-link" %> </div>
+              </div>
             </div>
-            <% else %>
-              <div class= "col-xs-6"> <%= link_to "Sign In", sign_in_path, class: "nav-link" %> </div>
-              <div class= "col-xs-6"> <%= link_to "Sign Up", new_user_path, class: "nav-link" %> </div>
-            <% end %>
           </div>
+            <% else %>
+              <div class='nav navbar-nav navbar row pull-right'>
+                <div class= "col-xs-6"> <%= link_to "Sign In", sign_in_path, class: "nav-link" %> </div>
+                <div class= "col-xs-6"> <%= link_to "Sign Up", new_user_path, class: "nav-link" %> </div>
+              <% end %>
+            </div>
         </div>
     </nav>
 
