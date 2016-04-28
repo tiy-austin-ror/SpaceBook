@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   constraints Clearance::Constraints::SignedIn.new { |user| user.admin? } do
     resources :companies
 
-    root 'dashboard#admin_dashboard', as: :admin_root
+    # root 'dashboard#admin_dashboard', as: :admin_root
 
     resources :campuses do
       resources :rooms do

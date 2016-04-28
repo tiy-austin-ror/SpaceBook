@@ -1,11 +1,41 @@
-<h4>
+
+  <h4>
   <%= attachment_image_tag(@user, :profile_image, :fill, 150, 150, format: "jpg", fallback: 'default.gif', class:"dash-picture") %>
-  Welcome: <%=@user.name%>
-</h4>
+    Welcome: <%=@user.name%>
+    <br>
+    <% if @user == current_user %>
+      <div style="width: 150px; text-align:center;">
+        <%= link_to "Edit Profile", edit_user_path(@user) %>
+      </div>
+    <% end %>
+  </h4>
+
+
+<% if @user.admin? == true %>
+  <div class="row">
+    <div>
+      <div class='col-sm-8 col-sm-offset-2'>
+        <h3 class="campus-header">Send an invite to join your company:
+          <%= render 'create_invite' %>
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class='pending-events-display col-md-5 col-md-offset-1'>
+      <h3 class='pending-events-header'>Click a company to edit it:</h3>
+      <ul class='pending-events-display-list'>
+        <li class='pending-events-display-list-item'>
+          <%= link_to "#{@company.name}", edit_company_path(@company) %>
+        </li>
+      </ul>
+    </div>
+  </div>  
+<% end %>
 
 <div class="row">
   <div class='pending-events-display col-md-5 col-md-offset-1'>
-    <h3 class='pending-events-header'>Pending Created Events</h3>
+    <h3 class='pending-events-header'>My Created Events</h3>
     <ul class='pending-events-display-list'>
       <% if @events.empty? %>
         <li>You have not created any events</li>
@@ -30,10 +60,23 @@
   </div>
 
   <div class='pending-events-display col-md-5 col-md-offset-1'>
-    <h3 class='pending-events-header'>Pending Event Invitations</h3>
+    <h3 class='pending-events-header'>My Upcoming Events</h3>
     <ul class='pending-events-display-list'>
       <% if @user_pending_invites.empty? %>
         <li>You have no pending events</li>
+      <% else %>
+        <% @user_accepted_invites.each do |pend| %>
+          <%= render partial: "shared/event_invite", locals: {invite: pend} %>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class='pending-events-display col-md-5 col-md-offset-1'>
+    <h3 class='pending-events-header'>My Pending Invites</h3>
+    <ul class='pending-events-display-list'>
+      <% if @user_pending_invites.empty? %>
+        <li>You have no pending invites</li>
       <% else %>
         <% @user_pending_invites.each do |pend| %>
           <%= render partial: "shared/event_invite", locals: {invite: pend} %>
