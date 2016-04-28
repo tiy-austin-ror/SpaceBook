@@ -102,4 +102,14 @@
     <ul class='pending-events-display-list'>
     </ul>
   </div>
+  <div class='pending-events-display col-md-5 col-md-offset-1'>
+    <h3 class='pending-events-header'>Edit your company:</h3>
+    <ul class='pending-events-display-list'>
+      <div class='row'>
+        <li class='pending-events-display-list-item'>
+          <%= link_to "#{@company.name}", edit_company_path(@company) %>
+        </li>
+      </div>
+    </ul>
+  </div>
 </div>
