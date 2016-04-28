@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :company_validation, except: [:index]
+  # TODO: Make company validation better, so users can only see users in their company
+  before_action :company_validation, except: [:index, :edit]
   before_action :get_user, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -36,7 +37,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if current_user != @user
+    if current_user != @user && !current_user.admin?
       flash[:danger] = "You cannot access another user's edit page!"
       redirect_to root_path
     end
@@ -44,7 +45,7 @@ class UsersController < ApplicationController
 
   def update
     @user.assign_attributes(user_params)
-    if current_user == @user
+    if current_user == @user || current_user.admin == true
       save_for_html_json(@user, "edit") { root_path }
     else
       redirect_to root_path
