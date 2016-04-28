@@ -55,6 +55,7 @@ before_action :set_event, only: [:show]
     @event = @room.events.new(event_params.merge(user_id: current_user.id))
     respond_to do |format|
       if @event.save
+        Invite.create(user_id: current_user.id, event_id: @event.id, status: "Accepted")
         EventMailer.new_event(@event).deliver_now
         format.html { redirect_to campus_room_event_path(@campus, @room, @event) }
         format.json { render json: @event }
