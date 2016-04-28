@@ -5,11 +5,11 @@
     <%= link_to 'Spreadsheet report of page', campus_room_events_path(event.campus, event.room, format: :csv), class: "btn btn-default not-pdf-friendly pull-right" %>
   <% end %>
 
-  <div class="row">
+  <div class="better-row">
     <div class='pending-events-display col-md-12 col-md-offset-0'>
       <h4 class='pending-events-header'>Upcoming Events </h4>
       <ul class='pending-events-display-list'>
-        <div class='row room-show-bottom-spacer'>
+        <div class='better-row room-show-bottom-spacer'>
           <li class='pending-events-display-list-item'>
             <div class='col-xs-2'>
               <h5><strong>Room </strong></h5>
@@ -35,7 +35,7 @@
           </li>
         </div>
           <% @events.each do |event| %>
-            <div class='row room-show-bottom-spacer'>
+            <div class='better-row room-show-bottom-spacer'>
               <li class='pending-events-display-list-item'>
                 <div class='col-xs-2'>
                   <%= link_to "#{event.name}", campus_room_event_path(event.campus, event.room, event) %>
