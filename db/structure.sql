@@ -174,7 +174,10 @@ CREATE TABLE companies (
     name character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    profile_image_id character varying
+    profile_image_id character varying,
+    primary_color character varying,
+    secondary_color character varying,
+    snippet text
 );
 
 
@@ -938,6 +941,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160427172233');
 INSERT INTO schema_migrations (version) VALUES ('20160427172251');
 
 INSERT INTO schema_migrations (version) VALUES ('20160427172258');
+
+INSERT INTO schema_migrations (version) VALUES ('20160427180726');
 
 INSERT INTO schema_migrations (version) VALUES ('20160427201226');
 
