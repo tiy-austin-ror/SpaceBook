@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'invite_codes/create'
 
-  get 'campuses/:campus_id/events' => 'campuses#events'
 
   constraints Clearance::Constraints::SignedIn.new { |user| user.admin? } do
     resources :companies
@@ -32,8 +30,9 @@ Rails.application.routes.draw do
       end
     end
 
+    get 'campuses/:campus_id/events' => 'campuses#events'
+
     post 'invite_codes' => "invite_codes#create"
-    get 'admin' => "users#admin_dashboard"
     root 'dashboard#home'
 
     resources :passwords, controller: "clearance/passwords", only: [:create, :new]
