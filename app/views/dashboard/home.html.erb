@@ -7,11 +7,11 @@
   <div class='pending-events-display col-md-5 col-md-offset-1'>
     <h3 class='pending-events-header'>Pending Created Events</h3>
     <ul class='pending-events-display-list'>
-      <% @events.each do |event| %>
+      <% @events.includes(:campus).includes(:room).each do |event| %>
         <div class='row'>
           <li class='pending-events-display-list-item'>
             <div class='col-xs-4'>
-              <%= event.name.titleize %>
+              <%= link_to event.name.titleize, campus_room_event_path(event.campus, event.campus.room_id, event) %>
             </div>
             <div class='col-xs-4 agenda-text'>
               <%= event.agenda %>

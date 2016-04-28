@@ -1,7 +1,7 @@
 <div class='row'>
   <li class='pending-events-display-list-item'>
     <div class='col-xs-4'>
-      <%= invite.event.name.titleize %>
+      <%= link_to invite.event.name.titleize, campus_room_event_path(invite.event.campus, invite.event.room_id, invite.event_id) %>
     </div>
 
     <div class='time-display col-xs-4'>
@@ -10,7 +10,9 @@
     <div class='col-xs-3'>
       <%= link_to 'Approve', invite_path(invite, invite: {status: Invite::ACCEPTED}), :class => "btn btn-default", :method => :patch %>
       <%= link_to 'Deny', invite_path(invite, invite: {status: Invite::REJECTED}), :class => "btn btn-default", :method => :patch %>
-      <%= link_to 'Remote', invite_path(invite, invite: {status: Invite::REMOTE}), :class => "btn btn-default", :method => :patch %>
+      <% if invite.event.allow_remote %>
+        <%= link_to 'Remote', invite_path(invite, invite: {status: Invite::REMOTE}), :class => "btn btn-default", :method => :patch %>
+      <% end %>
     </div>
   </li>
 </div>
