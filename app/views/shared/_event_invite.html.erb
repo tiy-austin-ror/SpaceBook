@@ -1,18 +1,20 @@
-<div class='row'>
+<div class='row bottom-border'>
   <li class='pending-events-display-list-item'>
-    <div class='col-xs-4'>
+    <div class='col-s-4 col-xs-4 col-xs-offset-1'>
       <%= invite.event.name.titleize %>
     </div>
 
-    <div class='time-display col-xs-4'>
+    <div class='time-display col-s-4 col-xs-7'>
       <%= invite.event.formatted_start_time %> until <%= invite.event.end_time %>
     </div>
-    <div class='col-xs-3'>
-      <%= link_to 'Approve', invite_path(invite, invite: {status: Invite::ACCEPTED}), :class => "btn btn-default", :method => :patch %>
-      <%= link_to 'Deny', invite_path(invite, invite: {status: Invite::REJECTED}), :class => "btn btn-default", :method => :patch %>
-      <% if invite.event.allow_remote %>
-        <%= link_to 'Remote', invite_path(invite, invite: {status: Invite::REMOTE}), :class => "btn btn-default", :method => :patch %>
-      <% end %>
-    </div>
+    <% if invite.status != Invite::ACCEPTED %>
+      <div class='col-s-3 col-xs-6 col-xs-offset-6'>
+        <%= link_to 'Approve', invite_path(invite, invite: {status: Invite::ACCEPTED}), :class => "btn btn-default", :method => :patch %>
+        <%= link_to 'Deny', invite_path(invite, invite: {status: Invite::REJECTED}), :class => "btn btn-default", :method => :patch %>
+        <% if invite.event.allow_remote %>
+          <%= link_to 'Remote', invite_path(invite, invite: {status: Invite::REMOTE}), :class => "btn btn-default", :method => :patch %>
+        <% end %>
+      </div>
+    <% end %>
   </li>
 </div>
