@@ -30,7 +30,7 @@ gem 'rails-footnotes', '~> 4.0'
 gem 'bootstrap_form'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
-gem 'mailgun-ruby', '~>1.0.5', require: 'mailgun'
+gem 'mailgun-ruby', require: 'mailgun'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -47,7 +47,6 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'pry-rails'
-
   gem "codeclimate-test-reporter", require: nil
   gem 'cucumber-rails', require: false
   gem 'selenium-webdriver'
@@ -67,6 +66,7 @@ group :development do
   gem 'spring'
 end
 
+gem 'figaro'
 gem 'clearance'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'kaminari'
