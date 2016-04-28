@@ -1,10 +1,10 @@
 <h1>Show Event</h1>
+<% event = @event %>
 <% if current_user.admin == true %>
-    <% event = @event %>
     <%= link_to 'PDF Report of page', campus_room_event_path(event.campus, event.room, event, format: :pdf), class: "btn btn-default not-pdf-friendly pull-right" %>
+<% elsif current_user.admin == true || current_user.id == event.id %>
+  <%= link_to 'Edit', edit_campus_room_event_path(@event.campus, @event.room, @event), class: "btn btn-default not-pdf-friendly" %>
 <% end %>
-
-<%= link_to 'Edit', edit_campus_room_event_path(@event.campus, @event.room, @event), class: "btn btn-default not-pdf-friendly" %>
 <%= link_to 'Back', campus_room_events_path(@event.campus, @event.room), class: "btn btn-default not-pdf-friendly" %>
 <div class="row">
   <div class = 'description col-xs-12 col-sm-8 col-md-8'>
@@ -35,9 +35,14 @@
 <% end %>
 <div class='not-pdf-friendly'>
 
-<div id="join-event">
-  <%= get_join_buttons %>
-</div>
+<% if @pending_invite %>
+  <h1>You have a pending invite for this event: </h1>
+  <%= render partial: "shared/event_invite", locals:{invite: @pending_invite} %>
+<% else %>
+  <div id="join-event">
+    <%= get_join_buttons %>
+  </div>
+<% end %>
 
 
   <hr />
