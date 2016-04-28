@@ -7,20 +7,24 @@
   <div class='pending-events-display col-md-5 col-md-offset-1'>
     <h3 class='pending-events-header'>Pending Created Events</h3>
     <ul class='pending-events-display-list'>
-      <% @events.each do |event| %>
-        <div class='row'>
-          <li class='pending-events-display-list-item'>
-            <div class='col-xs-4'>
-              <%= event.name.titleize %>
-            </div>
-            <div class='col-xs-4 agenda-text'>
-              <%= event.agenda %>
-            </div>
-            <div class='time-display col-xs-4'>
-              <%= event.formatted_start_time %> until <%= event.end_time %>
-            </div>
-          </li>
-        </div>
+      <% if @events.empty? %>
+        <li>You have not created any events</li>
+      <% else %>
+        <% @events.each do |event| %>
+          <div class='row'>
+            <li class='pending-events-display-list-item'>
+              <div class='col-xs-4'>
+                <%= event.name.titleize %>
+              </div>
+              <div class='col-xs-4 agenda-text'>
+                <%= event.agenda %>
+              </div>
+              <div class='time-display col-xs-4'>
+                <%= event.formatted_start_time %> until <%= event.end_time %>
+              </div>
+            </li>
+          </div>
+        <% end %>
       <% end %>
     </ul>
   </div>
@@ -28,23 +32,27 @@
   <div class='pending-events-display col-md-5 col-md-offset-1'>
     <h3 class='pending-events-header'>Pending Event Invitations</h3>
     <ul class='pending-events-display-list'>
-      <% @user_pending_invites.each do |pend| %>
-        <div class='row'>
-          <li class='pending-events-display-list-item'>
-            <div class='col-xs-4'>
-              <%= pend.event.name.titleize %>
-            </div>
+      <% if @user_pending_invites.empty? %>
+        <li>You have no pending events</li>
+      <% else %>
+        <% @user_pending_invites.each do |pend| %>
+          <div class='row'>
+            <li class='pending-events-display-list-item'>
+              <div class='col-xs-4'>
+                <%= pend.event.name.titleize %>
+              </div>
 
-            <div class='time-display col-xs-4'>
-              <%= pend.event.formatted_start_time %> until <%= pend.event.end_time %>
-            </div>
-            <div class='col-xs-3'>
-              <%= link_to 'Approve', invite_path(pend, status: Invite::ACCEPTED), :class => "btn btn-default", :method => :patch %>
-              <%= link_to 'Deny', invite_path(pend, status: Invite::REJECTED), :class => "btn btn-default", :method => :patch %>
-              <%= link_to 'Remote', invite_path(pend, status: Invite::REMOTE), :class => "btn btn-default", :method => :patch %>
-            </div>
-          </li>
-        </div>
+              <div class='time-display col-xs-4'>
+                <%= pend.event.formatted_start_time %> until <%= pend.event.end_time %>
+              </div>
+              <div class='col-xs-3'>
+                <%= link_to 'Approve', invite_path(pend, status: Invite::ACCEPTED), :class => "btn btn-default", :method => :patch %>
+                <%= link_to 'Deny', invite_path(pend, status: Invite::REJECTED), :class => "btn btn-default", :method => :patch %>
+                <%= link_to 'Remote', invite_path(pend, status: Invite::REMOTE), :class => "btn btn-default", :method => :patch %>
+              </div>
+            </li>
+          </div>
+        <% end %>
       <% end %>
     </ul>
   </div>
@@ -52,19 +60,23 @@
   <div class='pending-events-display col-md-5 col-md-offset-1'>
     <h3 class='pending-events-header'>Completed events</h3>
     <ul class='pending-events-display-list'>
-      <% @finished.each do |finish| %>
-      <div class='row'>
-        <li class='pending-events-display-list-item'>
-          <div class='col-xs-4'>
-            <%= finish.name.titleize %>
-          </div>
-          <div class='col-xs-4 agenda-text'>
-             <%= finish.agenda %>
-           </div> <div class='time-display col-xs-4'>
-             <%= finish.formatted_start_time %> until <%= finish.end_time %>
-           </div>
-         </li>
-      </div>
+      <% if @finished.empty? %>
+        <li>You have no events that have been completed</li>
+      <% else %>
+        <% @finished.each do |finish| %>
+        <div class='row'>
+          <li class='pending-events-display-list-item'>
+            <div class='col-xs-4'>
+              <%= finish.name.titleize %>
+            </div>
+            <div class='col-xs-4 agenda-text'>
+               <%= finish.agenda %>
+             </div> <div class='time-display col-xs-4'>
+               <%= finish.formatted_start_time %> until <%= finish.end_time %>
+             </div>
+           </li>
+        </div>
+        <% end %>
       <% end %>
     <ul class='pending-events-display-list'>
     </ul>
