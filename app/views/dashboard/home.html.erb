@@ -1,7 +1,16 @@
-<h4>
+
+  <h4>
   <%= attachment_image_tag(@user, :profile_image, :fill, 150, 150, format: "jpg", fallback: 'default.gif', class:"dash-picture") %>
-  Welcome: <%=@user.name%>
-</h4>
+    Welcome: <%=@user.name%>
+    <br>
+    <% if @user == current_user %>
+      <div style="width: 150px; text-align:center;">
+        <%= link_to "Edit Profile", edit_user_path(@user) %>
+      </div>
+    <% end %>
+  </h4>
+
+
 
 <div class="row">
   <div class='pending-events-display col-md-5 col-md-offset-1'>
