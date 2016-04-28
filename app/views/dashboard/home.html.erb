@@ -7,33 +7,40 @@
       <div style="width: 150px; text-align:center;">
         <%= link_to "Edit Profile", edit_user_path(@user) %>
       </div>
+      <% if @user.admin? == true %>
+      <div style="width: 180px; text-align:center;">
+        <%= link_to "Edit Company Profile", edit_company_path(@user) %>
+      </div>
+      <% end %>
     <% end %>
   </h4>
 
-
+<div class="row">
 <% if @user.admin? == true %>
-  <div class="row">
-    <div>
-      <div class='col-sm-8 col-sm-offset-2'>
-        <h3 class="campus-header">Send an invite to join your company:
-          <%= render 'create_invite' %>
-        </h3>
-      </div>
+  <div>
+    <div class='col-sm-8 col-sm-offset-2'>
+      <h3 class="campus-header">Send an invite to join your company:
+        <%= render 'create_invite' %>
+      </h3>
     </div>
   </div>
-  <div class="row">
-    <div class='pending-events-display col-md-5 col-md-offset-1'>
-      <h3 class='pending-events-header'>Click a company to edit it:</h3>
-      <ul class='pending-events-display-list'>
-        <li class='pending-events-display-list-item'>
-          <%= link_to "#{@company.name}", edit_company_path(@company) %>
+  <div class='pending-events-display col-md-5 col-md-offset-1'>
+    <h3 class='pending-events-header'>My Company's Users</h3>
+    <ul class='pending-events-display-list'>
+      <% @user.company.users.each do |user| %>
+        <div class='better-row'>
+          <li class='pending-events-display-list-item'>
+          <div class="better-row bottom-border">
+            <div class='col-xs-4'>
+              <%= link_to "#{user.name}", edit_user_path(user) %>
+            </div>
+          </div>
         </li>
-      </ul>
-    </div>
-  </div>  
+      </div>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
-
-<div class="row">
   <div class='pending-events-display col-md-5 col-md-offset-1'>
     <h3 class='pending-events-header'>My Created Events</h3>
     <ul class='pending-events-display-list'>
