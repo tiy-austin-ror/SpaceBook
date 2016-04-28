@@ -54,7 +54,8 @@ class Room < ActiveRecord::Base
     event_attendance = []
     self.events.each do |x|
       event_attendance << x.get_physical_participation
-      event_attendance.inject{ |sum, el| sum + el }.to_f / arr.size
     end
+    average_attendance = event_attendance.inject{ |sum, el| sum + el }.to_f / event_attendance.size
+    average_attendance.round(1)
   end
 end
