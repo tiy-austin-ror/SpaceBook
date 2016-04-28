@@ -1,13 +1,13 @@
+<h4>
+  <%= attachment_image_tag(@user, :profile_image, :fill, 150, 150, format: "jpg", fallback: 'default.gif', class:"dash-picture") %>
+  Welcome: <%=@user.name%>
+</h4>
 <div class="row">
   <div class='row pending-events-display'>
     <div class='col-sm-8 col-sm-offset-1'>
-      <h3 class="campus-header">
-        <strong>Welcome</strong>
-        <%=@user.name%>
+      <h3 class="campus-header">Send an invite to join your company:
+        <%= render 'create_invite' %>
       </h3>
-    </div>
-    <div class='col-sm-2 col-sm-offset-1'>
-      <%= attachment_image_tag(@user, :profile_image, :fill, 150, 150, format: "jpg", fallback: 'default.gif', class:"dash-picture") %>
     </div>
   </div>
 
@@ -20,6 +20,20 @@
             <%= link_to "#{event.name}", edit_campus_room_event_path(id: event.id, room_id: event.room.id, campus_id: event.room.campus_id) %> <br>
           </li>
         </div>
+      <% end %>
+    </ul>
+  </div>
+  <div class='pending-events-display col-md-5 col-md-offset-1'>
+    <h3 class='pending-events-header'>Click a user to edit them:</h3>
+    <ul class='pending-events-display-list'>
+      <% @user.company.users.each do |user| %>
+      <div class='row'>
+        <li class='pending-events-display-list-item'>
+          <div class='col-xs-4'>
+            <%= link_to "#{user.name}", edit_user_path(user) %>
+          </div>
+        </li>
+      </div>
       <% end %>
     </ul>
   </div>
@@ -86,18 +100,6 @@
       </div>
       <% end %>
     <ul class='pending-events-display-list'>
-    </ul>
-  </div>
-  <div class='pending-events-display col-md-5 col-md-offset-1'>
-    <h3 class='pending-events-header'>Send an invite to a user:</h3>
-    <ul class='pending-events-display-list'>
-      <div class='row'>
-        <li class='pending-events-display-list-item'>
-          <div class='col-xs-4'>
-            <%= render 'create_invite' %>
-          </div>
-         </li>
-      </div>
     </ul>
   </div>
 </div>
