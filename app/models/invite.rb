@@ -18,6 +18,7 @@ class Invite < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :event
+  has_one :room, through: :event, source: :room
   validates_with RemoteInvite
   validates :user_id, presence: { message: "Invalid User Name" }
   validates :user_id, uniqueness: {
