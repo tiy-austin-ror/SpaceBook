@@ -55,9 +55,9 @@ ActiveRecord::Base.transaction do # This causes all inserts to happen at one tim
   austin = Campus.create(company_id: google.id, city: "Austin", state:"Texas", zip: "78759", name: "Google Austin")
   mountview = Campus.create(company_id: google.id, city: "Mountain View", state:"California", zip: "94043", name: "Google Inc.")
 
-  admin = User.create(admin: true, username: "admin", company_id: google.id, name: "Google Admin", email:"admin@google.com", phone_num: Faker::PhoneNumber.phone_number, password:"password")
+  admin = User.create(admin: true, username: "admin", company_id: google.id, name: "Google Admin", email:"vnp229@gmail.com", phone_num: Faker::PhoneNumber.phone_number, password:"password")
   CampusUser.create(user_id: admin.id, campus_id: mountview.id)
-  not_admin = User.create(admin: false, username: "not_admin", name: "Google NonAdmin", company_id: google.id, email:"not_admin@google.com", phone_num: Faker::PhoneNumber.phone_number, password:"password")
+  not_admin = User.create(admin: false, username: "not_admin", name: "Google NonAdmin", company_id: google.id, email:"spacebook1@mailinator.com", phone_num: Faker::PhoneNumber.phone_number, password:"password")
   CampusUser.create(user_id: not_admin.id, campus_id: austin.id)
 
   7.times do
@@ -83,9 +83,9 @@ ActiveRecord::Base.transaction do # This causes all inserts to happen at one tim
   kirchberg = Campus.create(company_id: valve.id, city: "Luxembourg City", state:"Luxembourg", zip: "2222", name: "Valve S.a.r.l.")
   bellevue = Campus.create(company_id: valve.id, city: "Bellevue", state:"Washington", zip: "98004", name: "Valve Headquarters")
 
-  admin = User.create(admin: true, username: "admin", company_id: valve.id, name: "Valve Admin", email:"admin@valve.com", phone_num: Faker::PhoneNumber.phone_number, password:"password")
+  admin = User.create(admin: true, username: "admin", company_id: valve.id, name: "Valve Admin", email:"jaxom555@gmail.com", phone_num: Faker::PhoneNumber.phone_number, password:"password")
   CampusUser.create(user_id: admin.id, campus_id: bellevue.id)
-  not_admin = User.create(admin: false, username: "not_admin", name: "Valve NonAdmin", company_id: valve.id, email:"not_admin@valve.com", phone_num: Faker::PhoneNumber.phone_number, password:"password")
+  not_admin = User.create(admin: false, username: "not_admin", name: "Valve NonAdmin", company_id: valve.id, email:"spacebook2@mailinator.com", phone_num: Faker::PhoneNumber.phone_number, password:"password")
   CampusUser.create(user_id: not_admin.id, campus_id: kirchberg.id)
 
   7.times do
