@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :company_validation, except: [:index]
+  # TODO: Make company validation better, so users can only see users in their company
+  before_action :company_validation, except: [:index, :edit]
   before_action :get_user, only: [:show, :edit, :update, :destroy]
 
   def index
