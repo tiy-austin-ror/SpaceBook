@@ -17,7 +17,7 @@ class RoomsController < ApplicationController
 
   def show
     @room = get_room
-    @events = @room.events.where(private: "false") + current_user.meetings.where(room_id: @room.id)
+    @events = @room.events.where(private: "false") + current_user.meetings.where(room_id: @room.id, private: "true")
   end
 
   def new
