@@ -29,22 +29,7 @@
     <h3 class='pending-events-header'>Pending Event Invitations</h3>
     <ul class='pending-events-display-list'>
       <% @user_pending_invites.each do |pend| %>
-        <div class='row'>
-          <li class='pending-events-display-list-item'>
-            <div class='col-xs-4'>
-              <%= pend.event.name.titleize %>
-            </div>
-
-            <div class='time-display col-xs-4'>
-              <%= pend.event.formatted_start_time %> until <%= pend.event.end_time %>
-            </div>
-            <div class='col-xs-3'>
-              <%= link_to 'Approve', invite_path(pend, status: Invite::ACCEPTED), :class => "btn btn-default", :method => :patch %>
-              <%= link_to 'Deny', invite_path(pend, status: Invite::REJECTED), :class => "btn btn-default", :method => :patch %>
-              <%= link_to 'Remote', invite_path(pend, status: Invite::REMOTE), :class => "btn btn-default", :method => :patch %>
-            </div>
-          </li>
-        </div>
+        <%= render partial: "shared/event_invite", locals: {invite: pend} %>
       <% end %>
     </ul>
   </div>
