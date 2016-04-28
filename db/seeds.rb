@@ -17,10 +17,10 @@ ActiveRecord::Base.transaction do # This causes all inserts to happen at one tim
   google = Company.new(name: "Google")
   google.save!
 
-  admin = User.new(admin: true, username: "admin", company_id: google.id, name: "Gogole Admin", email:"admin@google.com", phone_num: Faker::PhoneNumber.phone_number, password:"password")
+  admin = User.new(admin: true, username: "admin", company_id: google.id, name: "Gogole Admin", email:"jaxom555@gmail.com", phone_num: Faker::PhoneNumber.phone_number, password:"password")
   admin.save!
 
-  not_admin = User.new(admin: false, username: "not_admin", name: "Google NonAdmin", company_id: google.id, email:"not_admin@google.com", phone_num: Faker::PhoneNumber.phone_number, password:"password")
+  not_admin = User.new(admin: false, username: "not_admin", name: "Google NonAdmin", company_id: google.id, email:"spacebook1@mailinator.com", phone_num: Faker::PhoneNumber.phone_number, password:"password")
   not_admin.save!
 
   4.times do
@@ -39,10 +39,10 @@ ActiveRecord::Base.transaction do # This causes all inserts to happen at one tim
   valve = Company.new(name: "Valve")
   valve.save!
 
-  admin = User.new(admin: true, username: "admin", company_id: valve.id, name: "Valve Admin", email:"admin@valve.com", phone_num: Faker::PhoneNumber.phone_number, password:"password")
+  admin = User.new(admin: true, username: "admin", company_id: valve.id, name: "Valve Admin", email:"vnp229@gmail.com", phone_num: Faker::PhoneNumber.phone_number, password:"password")
   admin.save!
 
-  not_admin = User.new(admin: false, username: "not_admin", name: "Valve NonAdmin", company_id: valve.id, email:"not_admin@valve.com", phone_num: Faker::PhoneNumber.phone_number, password:"password")
+  not_admin = User.new(admin: false, username: "not_admin", name: "Valve NonAdmin", company_id: valve.id, email:"spacebook2@mailinator.com", phone_num: Faker::PhoneNumber.phone_number, password:"password")
   not_admin.save!
 
   4.times do
