@@ -24,7 +24,7 @@
         <td><%= event.description %></td>
         <td><%= event.room.name %></td>
         <td><%= event.user.username %></td>
-        <% if current_user.admin? || if current_user.id == event.id %>
+        <% if current_user.admin? || current_user.id == event.id %>
           <td><%= link_to 'Edit Event Details', edit_campus_room_event_path(@campus, event.room_id, event), class: "btn btn-default not-pdf-friendly" %></td>
           <td><%= link_to 'Delete Event', campus_room_event_path(@campus, event.room_id, event), class: "btn btn-default not-pdf-friendly", method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
