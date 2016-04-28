@@ -145,6 +145,10 @@ body {
 
 .pending-events-display-list {
   list-style: none;
+  padding-left: 0;
+  overflow-y: scroll;
+  height: 500px;
+  width: auto;
 }
 
 .agenda-text {
@@ -203,6 +207,23 @@ body {
 
 .header-with-admin-buttons {
   display: inline-block;
+}
+
+.sm-bottom-border {
+  padding-top: 1em;
+  padding-bottom: 0.25em;
+}
+.bottom-border {
+  padding-bottom: 3em;
+  border-bottom: solid 1px lighten($primary-color, 35%);
+}
+.room-name {
+  font-style: italic;
+}
+
+.better-row {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 footer {
