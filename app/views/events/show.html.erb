@@ -35,9 +35,14 @@
 <% end %>
 <div class='not-pdf-friendly'>
 
-<div id="join-event">
-  <%= get_join_buttons %>
-</div>
+<% if @pending_invite %>
+  <h1>You have a pending invite for this event: </h1>
+  <%= render partial: "shared/event_invite", locals:{invite: @pending_invite} %>
+<% else %>
+  <div id="join-event">
+    <%= get_join_buttons %>
+  </div>
+<% end %>
 
 
   <hr />

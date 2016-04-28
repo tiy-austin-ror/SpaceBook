@@ -16,7 +16,16 @@ class InvitesController < ApplicationController
     @room = @event.room
     @campus = @event.campus
     @invite.assign_attributes(invite_params.merge(user_id: current_user.id)) if @invite.user_id == current_user.id
-    save_for_html_json(@invite, "/events/show") { :back }
+
+    respond_to do |format|
+      if @invite.save
+        format.html { redirect_to :back}
+        format.json { render json: @invite}
+      else
+        format.html { redirect_to :back }
+        format.json { render json: @invite.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy

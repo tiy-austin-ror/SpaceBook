@@ -1,0 +1,18 @@
+<div class='row'>
+  <li class='pending-events-display-list-item'>
+    <div class='col-xs-4'>
+      <%= invite.event.name.titleize %>
+    </div>
+
+    <div class='time-display col-xs-4'>
+      <%= invite.event.formatted_start_time %> until <%= invite.event.end_time %>
+    </div>
+    <div class='col-xs-3'>
+      <%= link_to 'Approve', invite_path(invite, invite: {status: Invite::ACCEPTED}), :class => "btn btn-default", :method => :patch %>
+      <%= link_to 'Deny', invite_path(invite, invite: {status: Invite::REJECTED}), :class => "btn btn-default", :method => :patch %>
+      <% if invite.event.allow_remote %>
+        <%= link_to 'Remote', invite_path(invite, invite: {status: Invite::REMOTE}), :class => "btn btn-default", :method => :patch %>
+      <% end %>
+    </div>
+  </li>
+</div>

@@ -2,16 +2,12 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.1
--- Dumped by pg_dump version 9.5.1
-
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
-SET row_security = off;
 
 --
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
@@ -34,7 +30,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: amenities; Type: TABLE; Schema: public; Owner: -
+-- Name: amenities; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE amenities (
@@ -65,7 +61,7 @@ ALTER SEQUENCE amenities_id_seq OWNED BY amenities.id;
 
 
 --
--- Name: campus_users; Type: TABLE; Schema: public; Owner: -
+-- Name: campus_users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE campus_users (
@@ -97,7 +93,7 @@ ALTER SEQUENCE campus_users_id_seq OWNED BY campus_users.id;
 
 
 --
--- Name: campuses; Type: TABLE; Schema: public; Owner: -
+-- Name: campuses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE campuses (
@@ -133,7 +129,7 @@ ALTER SEQUENCE campuses_id_seq OWNED BY campuses.id;
 
 
 --
--- Name: comments; Type: TABLE; Schema: public; Owner: -
+-- Name: comments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE comments (
@@ -166,7 +162,7 @@ ALTER SEQUENCE comments_id_seq OWNED BY comments.id;
 
 
 --
--- Name: companies; Type: TABLE; Schema: public; Owner: -
+-- Name: companies; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE companies (
@@ -174,7 +170,10 @@ CREATE TABLE companies (
     name character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    profile_image_id character varying
+    profile_image_id character varying,
+    primary_color character varying,
+    secondary_color character varying,
+    snippet text
 );
 
 
@@ -198,7 +197,7 @@ ALTER SEQUENCE companies_id_seq OWNED BY companies.id;
 
 
 --
--- Name: events; Type: TABLE; Schema: public; Owner: -
+-- Name: events; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE events (
@@ -238,7 +237,7 @@ ALTER SEQUENCE events_id_seq OWNED BY events.id;
 
 
 --
--- Name: invite_codes; Type: TABLE; Schema: public; Owner: -
+-- Name: invite_codes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE invite_codes (
@@ -270,7 +269,7 @@ ALTER SEQUENCE invite_codes_id_seq OWNED BY invite_codes.id;
 
 
 --
--- Name: invites; Type: TABLE; Schema: public; Owner: -
+-- Name: invites; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE invites (
@@ -303,7 +302,7 @@ ALTER SEQUENCE invites_id_seq OWNED BY invites.id;
 
 
 --
--- Name: refile_attachments; Type: TABLE; Schema: public; Owner: -
+-- Name: refile_attachments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE refile_attachments (
@@ -332,7 +331,7 @@ ALTER SEQUENCE refile_attachments_id_seq OWNED BY refile_attachments.id;
 
 
 --
--- Name: room_amenities; Type: TABLE; Schema: public; Owner: -
+-- Name: room_amenities; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE room_amenities (
@@ -364,7 +363,7 @@ ALTER SEQUENCE room_amenities_id_seq OWNED BY room_amenities.id;
 
 
 --
--- Name: rooms; Type: TABLE; Schema: public; Owner: -
+-- Name: rooms; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE rooms (
@@ -403,7 +402,7 @@ ALTER SEQUENCE rooms_id_seq OWNED BY rooms.id;
 
 
 --
--- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE schema_migrations (
@@ -412,7 +411,7 @@ CREATE TABLE schema_migrations (
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: -
+-- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE users (
@@ -536,7 +535,7 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 
 --
--- Name: amenities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: amenities_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY amenities
@@ -544,7 +543,7 @@ ALTER TABLE ONLY amenities
 
 
 --
--- Name: campus_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: campus_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY campus_users
@@ -552,7 +551,7 @@ ALTER TABLE ONLY campus_users
 
 
 --
--- Name: campuses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: campuses_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY campuses
@@ -560,7 +559,7 @@ ALTER TABLE ONLY campuses
 
 
 --
--- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY comments
@@ -568,7 +567,7 @@ ALTER TABLE ONLY comments
 
 
 --
--- Name: companies_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: companies_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY companies
@@ -576,7 +575,7 @@ ALTER TABLE ONLY companies
 
 
 --
--- Name: events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: events_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY events
@@ -584,7 +583,7 @@ ALTER TABLE ONLY events
 
 
 --
--- Name: invite_codes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: invite_codes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY invite_codes
@@ -592,7 +591,7 @@ ALTER TABLE ONLY invite_codes
 
 
 --
--- Name: invites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: invites_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY invites
@@ -600,7 +599,7 @@ ALTER TABLE ONLY invites
 
 
 --
--- Name: refile_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: refile_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY refile_attachments
@@ -608,7 +607,7 @@ ALTER TABLE ONLY refile_attachments
 
 
 --
--- Name: room_amenities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: room_amenities_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY room_amenities
@@ -616,7 +615,7 @@ ALTER TABLE ONLY room_amenities
 
 
 --
--- Name: rooms_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: rooms_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY rooms
@@ -624,7 +623,7 @@ ALTER TABLE ONLY rooms
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY users
@@ -632,126 +631,126 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: index_campus_users_on_campus_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_campus_users_on_campus_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_campus_users_on_campus_id ON campus_users USING btree (campus_id);
 
 
 --
--- Name: index_campus_users_on_user_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_campus_users_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_campus_users_on_user_id ON campus_users USING btree (user_id);
 
 
 --
--- Name: index_campuses_on_company_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_campuses_on_company_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_campuses_on_company_id ON campuses USING btree (company_id);
 
 
 --
--- Name: index_comments_on_event_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_comments_on_event_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_comments_on_event_id ON comments USING btree (event_id);
 
 
 --
--- Name: index_comments_on_user_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_comments_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_comments_on_user_id ON comments USING btree (user_id);
 
 
 --
--- Name: index_events_on_room_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_events_on_room_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_events_on_room_id ON events USING btree (room_id);
 
 
 --
--- Name: index_events_on_user_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_events_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_events_on_user_id ON events USING btree (user_id);
 
 
 --
--- Name: index_invite_codes_on_campus_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_invite_codes_on_campus_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_invite_codes_on_campus_id ON invite_codes USING btree (campus_id);
 
 
 --
--- Name: index_invites_on_event_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_invites_on_event_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_invites_on_event_id ON invites USING btree (event_id);
 
 
 --
--- Name: index_invites_on_user_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_invites_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_invites_on_user_id ON invites USING btree (user_id);
 
 
 --
--- Name: index_refile_attachments_on_namespace; Type: INDEX; Schema: public; Owner: -
+-- Name: index_refile_attachments_on_namespace; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_refile_attachments_on_namespace ON refile_attachments USING btree (namespace);
 
 
 --
--- Name: index_room_amenities_on_amenity_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_room_amenities_on_amenity_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_room_amenities_on_amenity_id ON room_amenities USING btree (amenity_id);
 
 
 --
--- Name: index_room_amenities_on_room_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_room_amenities_on_room_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_room_amenities_on_room_id ON room_amenities USING btree (room_id);
 
 
 --
--- Name: index_rooms_on_campus_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_rooms_on_campus_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_rooms_on_campus_id ON rooms USING btree (campus_id);
 
 
 --
--- Name: index_users_on_company_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_users_on_company_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_users_on_company_id ON users USING btree (company_id);
 
 
 --
--- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_users_on_email ON users USING btree (email);
 
 
 --
--- Name: index_users_on_remember_token; Type: INDEX; Schema: public; Owner: -
+-- Name: index_users_on_remember_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_users_on_remember_token ON users USING btree (remember_token);
 
 
 --
--- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
@@ -873,7 +872,7 @@ ALTER TABLE ONLY invites
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO "$user", public;
+SET search_path TO "$user",public;
 
 INSERT INTO schema_migrations (version) VALUES ('20160421204842');
 
@@ -938,6 +937,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160427172233');
 INSERT INTO schema_migrations (version) VALUES ('20160427172251');
 
 INSERT INTO schema_migrations (version) VALUES ('20160427172258');
+
+INSERT INTO schema_migrations (version) VALUES ('20160427180726');
 
 INSERT INTO schema_migrations (version) VALUES ('20160427201226');
 
