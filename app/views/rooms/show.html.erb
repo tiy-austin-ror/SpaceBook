@@ -1,26 +1,52 @@
 <div>
   <h3><strong>Viewing a room</strong></h3>
 </div>
-<div class="row">
-  <div class="col">
+<div class="row pending-events-display">
+  <div class="col-sm-4 col-sm-offset-0">
     <%= attachment_image_tag(@room, :profile_image, :fill, 150, 150, format: "jpg", fallback: 'room.jpg', class:"camp-picture") %>
-    <%=@room.name%>
-    <hr>
-    <%=@room.location%>
-    <hr>
-    <%=@room.capacity%>
+    <div class="col-sm-8 col-sm-offset-0">
+      <%=@room.name%>
+    </div>
   </div>
-  <div class="">
+</div>
+<div class="row pending-events-display">
+  <div class="col-sm-2 col-sm-offset-1">
+    <%=@room.location%>
+  </div>
+  <div class="col-sm-2 col-sm-offset-1">
+    <p>Capacity <%=@room.capacity%>
+  </div>
+  <div class="col-sm-5 col-sm-offset-1">
     <h4>List of Amenities</h4>
     <% @room.amenities.each do |amenity| %>
     <p><%= amenity.name %></p>
     <% end %>
   </div>
 </div>
-
-
 <div><%= link_to 'Create New Event', new_campus_room_event_path(@room.campus, @room) %></div>
 
-<% @room.events.each do |event| %>
-  <%= link_to event.name, campus_room_event_path(@room.campus, @room, event) %> <br>
-<% end %>
+</hr>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Start time</th>
+      <th>Duration</th>
+      <th>Description</th>
+      <th>Room</th>
+      <th>User</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @room.events.each do |event| %>
+    <tr>
+      <td><%= link_to "#{event.name}", campus_room_event_path(event.campus, event.room, event), class: "table-link" %></td>
+      <td><%= event.start_time %></td>
+      <td><%= event.end_time %></td>
+      <td><%= event.description %></td>
+      <td><%= event.room.name %></td>
+      <td><%= event.user.username %></td>
+     </tr>
+     <% end %>
+    </tr>
+  </tbody>
