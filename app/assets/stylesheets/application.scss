@@ -104,6 +104,9 @@ body {
   }
 }
 
+.lower-me {
+  margin-top: .9em;
+}
 
 .dash-picture {
   border-radius: 50%;
@@ -142,6 +145,10 @@ body {
 
 .pending-events-display-list {
   list-style: none;
+  padding-left: 0;
+  overflow-y: scroll;
+  height: 500px;
+  width: auto;
 }
 
 .agenda-text {
@@ -213,6 +220,25 @@ body {
 .btn-custom {
   width: 126px !important;
 }
+
+.sm-bottom-border {
+  padding-top: 1em;
+  padding-bottom: 0.25em;
+}
+.bottom-border {
+  padding-bottom: 3em;
+  border-bottom: solid 1px lighten($primary-color, 35%);
+}
+.room-name {
+  font-style: italic;
+  font-size: 0.9em;
+}
+
+.better-row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 footer {
   position: absolute;
   bottom: 0;
