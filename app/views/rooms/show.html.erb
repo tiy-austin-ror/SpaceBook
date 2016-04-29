@@ -1,21 +1,60 @@
-<h1>Viewing a room</h1>
-<%= attachment_image_tag(@room, :profile_image, :fill, 150, 150, format: "jpg", fallback: 'room.jpg', class:"camp-picture") %>
-<%=@room.name%>
-<hr>
-<%=@room.location%>
-<hr>
-<%=@room.capacity%>
-<hr>
 <div>
-  <h4>List of Amenities</h4>
-  <% @room.amenities.each do |amenity| %>
-  <p><%= amenity.name %></p>
-  <% end %>
+  <h3><strong>Viewing <%=@room.name%></strong></h3>
 </div>
 
+<div>
+  <%= attachment_image_tag(@room, :profile_image, :fill, 150, 150, format: 'jpg', fallback: 'room.jpg', class:'camp-picture') %>
+</div>
 
-<div><%= link_to 'Create New Event', new_campus_room_event_path(@room.campus, @room) %></div>
+<div class='row pending-events-display'>
+  <div class='col-sm-3 col-sm-offset-1'>
+    <h4>Location <h5><%=@room.location%></h5></h4>
+  </div>
+  <div class='col-sm-3 col-sm-offset-1'>
+    <h4>Capacity <h5><%=@room.capacity%></h5><h4>
+  </div>
+  <div class='col-sm-4 col-sm-offset-0'>
+    <h4>List of Amenities</h4>
+    <% @room.amenities.each do |amenity| %>
+    <h5><%= amenity.name %></h5>
+    <% end %>
+  </div>
+</div>
 
-<% @events.each do |event| %>
-  <%= link_to event.name, campus_room_event_path(@room.campus, @room, event) %> <br>
-<% end %>
+<div><%= link_to 'Create New Event', new_campus_room_event_path(@room.campus, @room), class:'btn btn-default create-event-btn' %></div>
+
+<div class="row">
+  <div class='pending-events-display col-md-12 col-md-offset-0'>
+    <h4 class='pending-events-header'>Upcoming Events </h4>
+    <ul class='pending-events-display-list'>
+      <div class='row room-show-bottom-spacer'>
+        <li class='pending-events-display-list-item'>
+          <div class='col-xs-4'>
+            <h5><strong>Name </strong></h5>
+          </div>
+          <div class='col-xs-4 agenda-text'>
+            <h5><strong>Description </strong></h5>
+          </div>
+          <div class='time-display col-xs-4'>
+            <h5><strong>Start Time </strong></h5>
+          </div>
+        </li>
+      </div>
+        <% @events.each do |event| %>
+          <div class='row room-show-bottom-spacer'>
+            <li class='pending-events-display-list-item'>
+              <div class='col-xs-4'>
+                <%= link_to "#{event.name}", campus_room_event_path(event.campus, event.room, event) %>
+              </div>
+              <div class='col-xs-4 agenda-text'>
+                <%= event.agenda %>
+              </div>
+              <div class='time-display col-xs-4'>
+                <%= event.formatted_start_time %> until <%= event.end_time %>
+              </div>
+            </li>
+          </div>
+        <% end %>
+    </ul>
+  </div>
+</div>

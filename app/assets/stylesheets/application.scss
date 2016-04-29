@@ -198,7 +198,6 @@ body {
 
 .campus-room {
   text-align: center;
-
 }
 
 .campus-description-padding {
@@ -207,6 +206,19 @@ body {
 
 .header-with-admin-buttons {
   display: inline-block;
+}
+
+.create-event-btn {
+  margin-top: 1em;
+  padding: 1em;
+}
+
+.room-show-bottom-spacer {
+  margin-bottom: 1em;
+}
+
+.btn-custom {
+  width: 126px !important;
 }
 
 .sm-bottom-border {

@@ -13,7 +13,7 @@ Feature: Admin Room Creation
     And I fill in "Location" with "2nd floor, in the bathroom"
     And I fill in "Capacity" with "17"
     And I press "Create Room"
-    Then I should see "Viewing a room"
+    Then I should see "Viewing"
 
 
   Scenario: Regular users cannot create a room

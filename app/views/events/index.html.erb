@@ -4,31 +4,63 @@
     <%= link_to 'PDF Report of page', campus_room_events_path(event.campus, event.room, format: :pdf), class: "btn btn-default not-pdf-friendly pull-right" %>
     <%= link_to 'Spreadsheet report of page', campus_room_events_path(event.campus, event.room, format: :csv), class: "btn btn-default not-pdf-friendly pull-right" %>
   <% end %>
-<div class="table-responsive"></div>
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Start time</th>
-        <th>Duration</th>
-        <th>Description</th>
-        <th>Room</th>
-        <th>User</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @events.each do |event| %>
-      <tr>
-        <td><%= link_to "#{event.name}", campus_room_event_path(event.campus, event.room, event), class: "table-link" %></td>
-        <td><%= event.start_time %></td>
-        <td><%= event.end_time %></td>
-        <td><%= event.description %></td>
-        <td><%= event.room.name %></td>
-        <td><%= event.user.username %></td>
-        <td><%= link_to 'Edit Event Details', edit_campus_room_event_path(event.campus, event.room, event), class: "btn btn-default not-pdf-friendly" %></td>
-        <td><%= link_to 'Delete Event', campus_room_event_path(event.campus, event.room, event), class: "btn btn-default not-pdf-friendly", method: :delete, data: { confirm: 'Are you sure?' } %></td>
-       </tr>
-       <% end %>
-      </tr>
-    </tbody>
-</div>
+
+  <div class="better-row">
+    <div class='pending-events-display col-md-12 col-md-offset-0'>
+      <h4 class='pending-events-header'>Upcoming Events </h4>
+      <ul class='pending-events-display-list'>
+        <div class='better-row room-show-bottom-spacer'>
+          <li class='pending-events-display-list-item'>
+            <div class='col-xs-2'>
+              <h5><strong>Room </strong></h5>
+            </div>
+            <div class='agenda-text col-xs-2 '>
+              <h5><strong>Start Time </strong></h5>
+            </div>
+            <div class='time-display col-xs-2'>
+              <h5><strong>Description </strong></h5>
+            </div>
+            <div class='col-xs-2'>
+              <h5><strong>Room </strong></h5>
+            </div>
+            <div class=' col-xs-2'>
+              <h5><strong>User </strong></h5>
+            </div>
+            <div class='col-xs-2'>
+              <% if current_user.admin == true %>
+              <h5>Edit </h5>
+              <h5>Delete </h5>
+              <% end %>
+            </div>
+          </li>
+        </div>
+          <% @events.each do |event| %>
+            <div class='better-row room-show-bottom-spacer'>
+              <li class='pending-events-display-list-item'>
+                <div class='col-xs-2'>
+                  <%= link_to "#{event.name}", campus_room_event_path(event.campus, event.room, event) %>
+                </div>
+                <div class='time-display col-xs-2'>
+                  <%= event.formatted_start_time %> until <%= event.end_time %>
+                </div>
+                <div class='col-xs-2'>
+                  <%= event.description %>
+                </div>
+                <div class='col-xs-2'>
+                  <%= event.room.name %>
+                </div>
+                <div class='col-xs-2'>
+                  <%= event.user.username %>
+                </div>
+                <div class='col-xs-2'>
+                  <% if current_user.admin == true %>
+                  <%= link_to 'Edit Event Details', edit_campus_room_event_path(event.campus, event.room, event), class: "btn btn-default btn-custom not-pdf-friendly" %>
+                  <%= link_to 'Delete Event', campus_room_event_path(event.campus, event.room, event), class: "btn btn-default btn-custom not-pdf-friendly", method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <% end %>
+                </div>
+              </li>
+            </div>
+          <% end %>
+      </ul>
+    </div>
+  </div>
