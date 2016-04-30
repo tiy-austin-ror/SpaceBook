@@ -11,9 +11,15 @@ var CommentForm = React.createClass({
     };
   },
   handleChange: function (event) {
-    this.setState({
-      commentText: event.target.value
-    });
+      this.setState({
+        commentText: event.target.value
+      });
+  },
+  handleDown: function(event){
+      console.log(event.keyCode);
+      if (event.keyCode === 13) {
+        this.handlePostComment();
+      }
   },
 
   handlePostComment: function () {
@@ -45,6 +51,7 @@ var CommentForm = React.createClass({
                  className="form-control-100"
                  placeholder="Hello World"
                  value={this.state.commentText}
+                 onKeyDown={this.handleDown}
                  onChange={this.handleChange}/>
         </label><br/>
         <label>
